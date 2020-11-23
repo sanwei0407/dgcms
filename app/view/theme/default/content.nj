@@ -1,0 +1,244 @@
+<html>
+<body>
+{% include "./public/head.nj" %}
+	<div class="content2">
+				<div class="content-left">
+					<div class="news-title">
+						严刹抄袭之风，微信缘何被抓了典型
+					</div>
+					<div class="news-time">
+						// 2015-02-06
+					</div>
+					<div class="news-info">
+						不过，辩证一点来看问题，倘若微信公众平台此次真的按照其发布的处罚规则来执行，完全杜绝缺乏原创能力的账号转载他人的原创内容，从传播角度来看，无异于阻碍信息的自由流通。所以，在尊重原创和内容创作......
+					</div>
+					<div class="li">
+						
+					</div>
+					<div class="news-pohto">
+						<img src="https://fakeimg.pl/500x334/">
+					</div>
+					<div class="news-content">
+						<div class="news-content-atuher">文/宁宇</div>
+						<div class="news">
+							<div>太太出国访学，我作为家属陪同前往，到了当地之后，自然要买张当地的电话卡换上，于是有了亲身体验美国运营商服务的经历。</div>
+
+                            我们在美国东部的北卡罗来纳州，距离首府罗利一百英里的小镇格林维尔。这里人口不过数万，其中一多半与坐落在这里的东卡罗来纳大学有关，是个名副其实的大学城。美国四家基础移动通信运营商中，Sprint并未在这里开展业务，因此网络的竞争主要在Verizon、AT&T和T-Mobile三家之间开展。然而如果加上虚拟运营商，再看这一区域的移动通信市场，就妙趣横生了。
+
+                            下面介绍一周来的初步体验成果：
+
+                            <div>【网络覆盖】我自己用漫游手机体验的同时，还访谈了在这里的居民住户。比较一致的结论是：Verizon的网络覆盖最好；AT&T也还不错；T-Mobile的覆盖最差。不过好快只是相对的，无论哪家运营商，到了室内都是烂到渣。要想长时间打电话，还是移步到室外比较稳妥。
+
+								每家基础运营商都提供了自己的覆盖图，从图上来看都包括了旅游景点、大城市和交通沿线，据其介绍，这些高收益的地区的覆盖完全可以保障；但实际覆盖程度如何，不得而知。
+	
+								运营商在室内覆盖不佳，但WiFi在一定程度上补上了这个短板。校园的各个building和hall里面都有WiFi，只要是在校学生或老师，都可以无偿使用，而且网速超快。在校外的餐饮场所以及部分公共区域，用户也可以使用免费的WiFi，只不过认证流程比较繁琐，网速也不快，着急的话还是用运营商的网络更靠谱。
+	                       </div>
+                            <div> 
+								【价格比较】三家基础运营商里，T-Mobile的价格最优惠，而且手段最创新，往往引领竞争；AT&T与T-Mobile的网络制式相同，受冲击程度最大，对T-Mobile的一些有效创新或者杀伤力大的业务跟进模仿；而Verizon相对淡定。虽然使用同一家基础运营商的网络，虚拟运营商比基础运营商的价格更低、策略更灵活、营销手段更丰富，客户能直接感知到虚拟运营商的竞争力。比如同样的套餐内容，虚拟运营商可以比基础运营商的价格低三分之一；比如同样在超市和卖场，虚拟运营商的曝光率和被推介的程度也都高于基础运营商；而我最终也选择了一家虚拟运营商的服务，因为他设计的产品更符合我们的需求。
+                            </div>
+							<div>
+								【服务比较】通信网络一样，价格更低，为何还有客户愿意成为基础运营商的客户？答案就是：品牌+服务的溢价。虚拟运营商长于营销，在服务方面尽量降低成本，引导客户多使用自助服务，不象基础运营商那样还开实体店提供服务。我自己的体验，从网上购买虚拟运营商的SIM卡，下单与到货中间隔了十天之久，据说这是比较正常的服务水平。而且虚拟运营商做营销时，经常设置“消费陷阱”，让客户贪小便宜吃大亏，因此口碑比较差。因此，如果客户想省心，少找麻烦，还是愿意老老实实地购买基础运营商的产品和服务。
+							</div>
+                            <div>
+								【流量业务的应用】东卡校园里人来人往，面对面时交流聊天，一个人时插着耳机听音乐，很少见到闷头刷手机的低头族。而与学生交流和访谈中发现，绝大多数人对于搜索、导航、社交等移动互联网的使用都很自如；在银行办理业务时，也被主动推荐移动APP，这些现象表明：移动互联网时代已经到来，各类移动互联网应用已经普及。
+							</div>
+							<div>
+								【套餐特点】美国主要的套餐仍是双向收费，移动电话做主被叫以及收发短信均要收费，一般情况下，套餐中包括的通话分钟数和短信可以互换，一分钟通话等于一条短信。终端补贴仍是运营商进行客户营销和捆绑的重要手段；而在流量资费方面，有很多与当地实际情况结合的创新，包括高门槛的流量收费+语音短信免费的套餐（最低是每月45$，含500M流量），多终端多用户付费共享群组的流量账户，以及无线+有线+TV+WiFi的组合营销等，都比较符合美国的当地消费特点，受到广泛关注。
+							</div>
+                            <div>
+								虽然只有一周时间，但已经深切感受到：美国运营商所面对的市场和商业环境与国内有很大不同。业务使用场景不同、消费模式不同、外部环境不同，对美国运营商的举措国内可以学习借鉴，但不可照搬，更不宜盲目简单地进行横向对比。否则，砸了自己的饭碗不说，还毁了行业。
+							</div>     
+						</div>
+					</div>
+					<div class="li"></div>
+					<div class="more">
+						<div class="li"></div>
+						<div class="more-title">阅读延展</div>
+						<div class="li"></div>
+					</div>
+					<div class="muen">
+						<div class="muen-item">
+							<div class="muen-item-img">
+								<img src="https://fakeimg.pl/254x166/">
+							</div>
+							<div class="muen-content">
+								<div class="content">
+									日本原宿街拍：有趣有形的“乱衣季”来了
+								</div>
+							</div>
+						</div>
+						<div class="muen-item ">
+							<div class="muen-item-img">
+								<img src="https://fakeimg.pl/254x166/">
+							</div>
+							<div class="muen-content">
+								<div class="content">
+									日本原宿街拍：有趣有形的“乱衣季”来了
+								</div>
+							</div>
+						</div>
+						<div class="muen-item">
+							<div class="muen-item-img">
+								<img src="https://fakeimg.pl/254x166/">
+							</div>
+							<div class="muen-content">
+								<div class="content">
+									日本原宿街拍：有趣有形的“乱衣季”来了
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="li"></div>
+				</div>
+				<div class="content-right">
+						<div class="title">
+							<div class="title-left">
+								<div class="title-left-icon">
+									<img src="https://fakeimg.pl/19x26/">
+								</div>
+								<div class="title-left-name">
+									今日头条
+								</div>
+							</div>
+							<div class="title-right"></div>
+						</div>
+						<div class="ad">
+							广告招租
+						</div>
+						<div class="title">
+							<div class="title-left">
+								<div class="title-left-icon">
+									<img src="https://fakeimg.pl/19x26/">
+								</div>
+								<div class="title-left-name">
+									热文榜单
+								</div>
+							</div>
+							<div class="title-right"></div>
+						</div>
+						<div class="hotpage">
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item" style="border: none;">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+						</div>
+						<div class="ad">
+							广告招租
+						</div>
+						<div class="title">
+							<div class="title-left">
+								<div class="title-left-icon">
+									<img src="https://fakeimg.pl/19x26/">
+								</div>
+								<div class="title-left-name">
+									热门推荐
+								</div>
+							</div>
+							<div class="title-right"></div>
+						</div>
+						<div class="flash-report">
+							<div class="flash-report-item">
+								<div class="item-labeling ">1</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">2</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">3</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">4</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">5</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">6</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+						</div>
+						<div class="ad">
+							广告招租
+						</div>
+					</div>
+				</div>
+			
+{% include "./public/foot.nj" %}
+</body>
+</html>
+
+<script>
+var mySwiper = new Swiper ('.swiper-container', {
+    
+    loop: true, // 循环模式选项
+
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+
+    // 如果需要前进后退按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
+</script>

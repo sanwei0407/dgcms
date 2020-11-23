@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{siteInfo.cfg_webname}}</title>
+		<link rel="stylesheet" href="/public/css/weitoutiao.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+	</head>
+	<body>
+		<div id="weitoutiao">
+			<div class="header">
+				<div class="header-muen">
+					<div class="header-icon">
+						<img src="https://fakeimg.pl/120x62/">
+					</div>
+					<div class="muen-item">
+						<ul id="nav">
+              {% for item in category %}
+                 <li><a href="{{item.seoUrl}}" targt="_blank">{{ item.name }}</a></li>
+				  		{% endfor %}
+						</ul>
+					</div>
+					<div class="muen-input ">
+						<input type="text" placeholder="关键词"/>
+						<img src="https://fakeimg.pl/34x30/">
+					</div>
+				</div>
+			</div>

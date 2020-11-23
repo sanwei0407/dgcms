@@ -1,0 +1,61 @@
+{
+  "name": "dg_egg",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "directory-tree": "^2.2.5",
+    "egg": "^2.15.1",
+    "egg-cors": "^2.2.3",
+    "egg-oss": "^2.0.0",
+    "egg-redis": "^2.4.0",
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^6.0.0",
+    "egg-sequelize-auto": "^0.1.1",
+    "egg-sms": "^1.0.2",
+    "egg-view-nunjucks": "^2.2.0",
+    "mysql2": "^2.2.5",
+    "nunjucks": "^3.2.2",
+    "pinyin": "^2.9.1",
+    "pinyin4js": "^1.3.18",
+    "utility": "^1.16.3"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-dg_egg --port=8001",
+    "stop": "egg-scripts stop --title=egg-server-dg_egg",
+    "dev": "egg-bin dev --port=8001",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod",
+    "db": "egg-sequelize-auto -o app/model -d dg -h home.yiker.cc -u dg -p 3306 -x iKnBTSrdFa37GetN -e mysql"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Arsenal",
+  "license": "MIT"
+}

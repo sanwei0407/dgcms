@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+</head>
+<body>
+    <h1>test.nj</h1>
+   {% remote key="recommend",api="/findArtList",data={"page":"1","limit":"10"},methods="post" %}
+              {% for item in recommend %}
+                       <div>    {{item.title}}</div>
+              {% endfor %}
+
+  {% ad key="ad",api="/findOneAd",data={"aid":1},methods="post" %}
+
+                       <div>   {{ad|safe }}
+                            </div>
+                       {{articleDatail.title}}
+                       {{siteInfo.cfg_basehost}}
+                            
+</body>
+</html>
+<script>
+var mySwiper = new Swiper ('.swiper-container', {
+    //direction: 'vertical', // 垂直切换选项
+    loop: true, // 循环模式选项
+
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+
+    // 如果需要前进后退按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
+</script>
+
+
+

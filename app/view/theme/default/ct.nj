@@ -1,0 +1,218 @@
+<html>
+<body>
+{% include "./public/head.nj" %}
+	<div class="content2">
+				<div class="content-left">
+					<div class="news-title">
+						{{article.title}}
+					</div>
+					<div class="news-time">
+					 {{ article.addTime|time}}
+					</div>
+					<div class="news-info">
+            {{ article.contentSummary}}
+					</div>
+					<div class="li">
+
+					</div>
+					<div class="news-pohto">
+						<img src="https://fakeimg.pl/500x334/">
+					</div>
+					<div class="news-content">
+						<div class="news-content-atuher">文/ {{article.author}}</div>
+						<div class="news">
+						    {{ article.content|safe  }}
+						</div>
+					</div>
+					<div class="li"></div>
+					<div class="more">
+						<div class="li"></div>
+						<div class="more-title">阅读延展</div>
+						<div class="li"></div>
+					</div>
+					<div class="muen">
+						<div class="muen-item">
+							<div class="muen-item-img">
+								<img src="https://fakeimg.pl/254x166/">
+							</div>
+							<div class="muen-content">
+								<div class="content">
+									日本原宿街拍：有趣有形的“乱衣季”来了
+								</div>
+							</div>
+						</div>
+						<div class="muen-item ">
+							<div class="muen-item-img">
+								<img src="https://fakeimg.pl/254x166/">
+							</div>
+							<div class="muen-content">
+								<div class="content">
+									日本原宿街拍：有趣有形的“乱衣季”来了
+								</div>
+							</div>
+						</div>
+						<div class="muen-item">
+							<div class="muen-item-img">
+								<img src="https://fakeimg.pl/254x166/">
+							</div>
+							<div class="muen-content">
+								<div class="content">
+									日本原宿街拍：有趣有形的“乱衣季”来了
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="li"></div>
+				</div>
+				<div class="content-right">
+						<div class="title">
+							<div class="title-left">
+								<div class="title-left-icon">
+									<img src="https://fakeimg.pl/19x26/">
+								</div>
+								<div class="title-left-name">
+									今日头条
+								</div>
+							</div>
+							<div class="title-right"></div>
+						</div>
+						<div class="ad">
+							广告招租
+						</div>
+						<div class="title">
+							<div class="title-left">
+								<div class="title-left-icon">
+									<img src="https://fakeimg.pl/19x26/">
+								</div>
+								<div class="title-left-name">
+									热文榜单
+								</div>
+							</div>
+							<div class="title-right"></div>
+						</div>
+						<div class="hotpage">
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+							<div class="hotpage-item" style="border: none;">
+								<div class="item-pohto">
+									<img src="https://fakeimg.pl/92x60/">
+								</div>
+								<div class="item-title">
+									姑娘快把腿秀起来
+								</div>
+							</div>
+						</div>
+						<div class="ad">
+							广告招租
+						</div>
+						<div class="title">
+							<div class="title-left">
+								<div class="title-left-icon">
+									<img src="https://fakeimg.pl/19x26/">
+								</div>
+								<div class="title-left-name">
+									热门推荐
+								</div>
+							</div>
+							<div class="title-right"></div>
+						</div>
+						<div class="flash-report">
+							<div class="flash-report-item">
+								<div class="item-labeling ">1</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">2</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">3</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">4</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">5</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+							<div class="flash-report-item">
+								<div class="item-labeling ">6</div>
+								<div class="item-info">
+									“差评”改“好评”一个收费260，揭秘藏在“
+								</div>
+							</div>
+						</div>
+						<div class="ad">
+							广告招租
+						</div>
+					</div>
+				</div>
+
+{% include "./public/foot.nj" %}
+</body>
+</html>
+
+<script>
+var mySwiper = new Swiper ('.swiper-container', {
+
+    loop: true, // 循环模式选项
+
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+
+    // 如果需要前进后退按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
+</script>
