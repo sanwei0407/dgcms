@@ -18,6 +18,10 @@ module.exports = app => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
   }, {
     tableName: 'viprule',
   });
