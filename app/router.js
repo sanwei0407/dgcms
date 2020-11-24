@@ -91,6 +91,9 @@ module.exports = app => {
   router.post('/findOneVoteitem', controller.admin.voteitem.findOneVoteitem);// 查找单个投票
   router.post('/reviceVoteitem', controller.admin.voteitem.reviceVoteitem);// 编辑投票
 
+
+  //投票日志
+  router.post('/addVoteLog', controller.admin.voteLog.addVoteLog); // 添加投票
   // 广告接口 (缩写:ad)
   router.post('/addad', controller.admin.ad.addad); // 添加广告
   router.post('/adFindAll', controller.admin.ad.adFindAll); // 查找广告

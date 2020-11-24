@@ -3,7 +3,7 @@ const utils = require('utility'); // 引入一个工具库
 const Controller = require('egg').Controller;
 
 
-class VoteController extends Controller {
+class VoteitemController extends Controller {
 
   //@author Martin
   //@last update 2020年11月12日9:43:56
@@ -191,4 +191,4 @@ async reviceVoteitem(){
 
 }
 
-module.exports = VoteController;
+module.exports = VoteitemController;

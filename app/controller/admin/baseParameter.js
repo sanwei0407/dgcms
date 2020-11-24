@@ -101,27 +101,30 @@ class BaseParameterController extends Controller {
   async reviceBP() {
     const { ctx } = this;
     const {
-      id,
-      key,
-      value,
-      name,
+      all,
     } = ctx.request.body;
-    const update = {};
-    if (key) update.key = key;
-    if (value) update.value = value;
-    if (name) update.name = name;
-    if (!id) return ctx.body = { success: false, msg: '该参数不存在' };
+    console.log("接到的数据",all)
+    // const update = {};
+    // if (key) update.key = key;
+    // if (value) update.value = value;
+    // if (name) update.name = name;
+    // if (!id) return ctx.body = { success: false, msg: '该参数不存在' };
     try {
-      const res = await ctx.model.BaseParameter.update(
-        update,
-        {
-          where: {
-            id,
-          },
-        }
-      );
-      ctx.body = { success: true, msg: '修改成功', data: res };
-
+      for(const item of all){
+        const updateData = {...item};
+        delete updateData.id;
+         await ctx.model.BaseParameter.update(
+          updateData,
+          {
+            where: {
+              id:item.Id,
+            },
+          }
+        );
+      }
+      
+      ctx.body = { success: true, msg: '修改成功' };
+      console.log("接到的数据",all)
     } catch (e) {
       console.log(e);
       ctx.body = {

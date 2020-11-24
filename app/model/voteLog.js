@@ -30,10 +30,6 @@ module.exports = app => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    perlimit: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
   }, {
     tableName: 'voteLog'
   });
