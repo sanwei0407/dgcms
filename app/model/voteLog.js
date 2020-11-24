@@ -3,43 +3,39 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('voteitem', {
+  const Model = app.model.define('voteLog', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-autoIncrement:true
+      autoIncrement:true
     },
-    title: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    desc: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    berif: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    cover: {
-      type: DataTypes.STRING(150),
-      allowNull: true
-    },
-    ticketCount: {
+    uid: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    state: {
+    vid: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    vid:{
+    vitemId: {
       type: DataTypes.INTEGER,
       allowNull: true
-    }
+    },
+    addTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    ip: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    perlimit: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
   }, {
-    tableName: 'voteitem'
+    tableName: 'voteLog'
   });
 
   Model.associate = function() {

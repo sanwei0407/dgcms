@@ -191,7 +191,7 @@ class ArticleController extends Controller {
       whoCanRead,
       reading,
     } = ctx.request.body;
-    const update = {};
+    const update = {updateTime:Date.now()};
     if (title) update.title = title;
     if (content) update.content = content;
     if (author) update.author = author;

@@ -79,6 +79,13 @@ module.exports = app => {
   router.post('/findOneVote', controller.admin.vote.findOneVote);// 查找单个投票
   router.post('/reviceVote', controller.admin.vote.reviceVote);// 编辑投票
 
+  //投票选项接口
+  router.post('/addVoteitem', controller.admin.voteitem.addVoteitem); // 添加投票
+  router.post('/delVoteitem', controller.admin.voteitem.delVoteitem); // 删除投票
+  router.post('/findVoteitemList', controller.admin.voteitem.findVoteitemList); // 查找投票
+  router.post('/findOneVoteitem', controller.admin.voteitem.findOneVoteitem);// 查找单个投票
+  router.post('/reviceVoteitem', controller.admin.voteitem.reviceVoteitem);// 编辑投票
+
   // 广告接口 (缩写:ad)
   router.post('/addad', controller.admin.ad.addad); // 添加广告
   router.post('/adFindAll', controller.admin.ad.adFindAll); // 查找广告

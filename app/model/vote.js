@@ -47,6 +47,10 @@ autoIncrement:true
       allowNull: false,
       defaultValue: '0'
     },
+    updateTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+    }
   }, {
     tableName: 'vote'
   });

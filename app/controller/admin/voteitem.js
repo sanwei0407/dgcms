@@ -9,44 +9,42 @@ class VoteController extends Controller {
   //@last update 2020年11月12日9:43:56
   //@发起投票
   //title-标题 cover-封面 desc-内容说明 sTime-开始时间 eTime-结束时间 author-作者 perLimit-每个人投票限制 addTime-发布时间
-    async addVote(){
+    async addVoteitem(){
       const {
         ctx
       } = this;
       const {
         title,
         desc,
-        author,
+        berif,
         cover,
-        eTime,
-        sTime,
-        perLimit,
+        ticketCount,
+        state,
+        vid,
       } = ctx.request.body;
       if(!title) return ctx.body = {success:false,msg:'请输入标题!'}
       if(!desc) return ctx.body = {success:false,msg:'请输入内容说明!'}
-      if(!author) return ctx.body = {success:false,msg:'请输入作者!'}
+      if(!berif) return ctx.body = {success:false,msg:'请输入简介!'}
       if(!cover) return ctx.body = {success:false,msg:'请输入封面地址'}
-      if(!sTime) return ctx.body = {success:false,msg:'请输入开始时间'}
-      if(!eTime) return ctx.body = {success:false,msg:'请输入结束时间'}
-      if(!perLimit) return ctx.body = {success:false,msg:'请输入每个人的投票限制'}
+      if(!ticketCount) return ctx.body = {success:false,msg:'请输入投票总数'}
+      if(!vid) return ctx.body = {success:false,msg:'请输入投票归属id'}
       try{
-        await ctx.model.Vote.create({
+        await ctx.model.Voteitem.create({
           title,
           desc,
-          author,
+          berif,
           cover,
-          eTime,
-          sTime,
-          perLimit,
-          addTime:Date.now(),
+          ticketCount,
+          state,
+          vid,
         })
         ctx.body = {
           success:true,
-          msg:'发布投票成功!'
+          msg:'发布投票选项成功!'
         }
       }catch(e){
         console.log(e)
-        ctx.body={success:false,msg:'发起投票失败'}
+        ctx.body={success:false,msg:'发起投票选项失败'}
       }
      
     }
@@ -55,7 +53,7 @@ class VoteController extends Controller {
   //@last update 2020年11月12日10:20:27
   //@删除投票
   //id-投票id  isDelete-是否删除 
-    async delVote(){
+    async delVoteitem(){
       const {
         ctx,
       } = this;
@@ -63,8 +61,8 @@ class VoteController extends Controller {
         id,
       } = ctx.request.body;
       try{
-        await ctx.model.Vote.update({
-          isDelete:1
+        await ctx.model.Voteitem.update({
+          state:-1
         },
         {
           where:{
@@ -86,32 +84,35 @@ class VoteController extends Controller {
   //@last update 2020年11月18日08:53:59
   //@查找投票
   //isDelete-是否删除  title-标题 desc-内容说明 author-作者  page:分页 limit:每页限制的条数
-    async findVoteList() {
+    async findVoteitemList() {
       const { ctx,app } = this;
       let { 
         title,
         desc,
-        author,
+        berif,
+        vid,
         limit,
         page
       } = ctx.request.body;
       const { Op } = app.Sequelize;
-      const where = {isDelete:0};
+      const where = {state:1};
       if(title) where.title = {[Op.like]:title+'%'};
       if(desc) where.desc = {[Op.like]:desc+'%'};
-      if(author) where.author = {[Op.like]:author+'%'};
+      if(berif) where.berif = {[Op.like]:berif+'%'};
+      if(vid) where.vid = {[Op.like]:vid+'%'};
+
 
 
       limit = limit ? limit*1 : 20;
       page = page ? page : 1;
       const offset = (page - 1) * limit;
       try {
-          const res = await ctx.model.Vote.findAndCountAll({
+          const res = await ctx.model.Voteitem.findAndCountAll({
               where,
               limit,
               offset,
               attributes: {
-                exclude: [ 'isDelete' ],
+                exclude: [ 'state' ],
               },
           });
           ctx.body = { success: true, data: res };
@@ -125,16 +126,16 @@ class VoteController extends Controller {
   //@last update 2020年11月18日08:59:18
   //@查找文章(对单个文章进行编辑时使用)
   //aid-文章id
-  async findOneVote() {
+  async findOneVoteitem() {
     const { ctx } = this;
     const { id } = ctx.request.body;
-    if (!id) return ctx.body = { success: false, info: '该投票不存在' };
+    if (!id) return ctx.body = { success: false, info: '该投票选项不存在' };
     try {
-        const res = await ctx.model.Vote.findByPk(id, { raw: true });
+        const res = await ctx.model.Voteitem.findByPk(id, { raw: true });
         if (res) {
             return ctx.body = { success: true, data: res };
         }
-        ctx.body = { success: false, info: '该投票不存在' };
+        ctx.body = { success: false, info: '该投票选项不存在' };
 
     } catch (e) {
         ctx.body = { success: false, info: '查询出错 ' };
@@ -146,27 +147,29 @@ class VoteController extends Controller {
   //@last update 2020年11月18日08:59:24
   //@查找文章(对单个文章进行编辑时使用)
   //aid-文章id title-标题 content-内容 author-作者 from-来源 cid-分栏id top-是否置顶
-async reviceVote(){
+async reviceVoteitem(){
   const { ctx } = this;
   let { 
     id,
     title,
     desc,
-    author,
-    sTime,
-    eTime,
-    perLimit, 
+    berif,
+    cover,
+    ticketCount,
+    state,
+    vid, 
 } = ctx.request.body;
-  const update = {updateTime:Date.now()};
+  const update = {};
   if(title) update.title = title
   if(desc) update.desc = desc
-  if(author) update.author = author
-  if(sTime) update.sTime = sTime
-  if(eTime) update.eTime = eTime
-  if(perLimit) update.perLimit = perLimit
-  if(!id) return ctx.body={success:false,msg:'该投票不存在'}
+  if(berif) update.berif = berif
+  if(cover) update.cover = cover
+  if(ticketCount) update.ticketCount = ticketCount
+  if(state) update.state = state
+  if(vid) update.vid = vid
+  if(!id) return ctx.body={success:false,msg:'该投票列表不存在'}
   try{
-    const res = await ctx.model.Vote.update(
+    const res = await ctx.model.Voteitem.update(
       update,
       {
         where:{
