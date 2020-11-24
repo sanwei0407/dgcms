@@ -5,6 +5,7 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  // router.get('/*', controller.client.common.abc)
 
   // 会员规则管理
   router.post('/addvipRule', controller.admin.vipRule.addvipRule); // 添加会员等级+对应的规则
@@ -22,13 +23,17 @@ module.exports = app => {
   router.post('/checkSms', controller.admin.admin.checkSms); // 校验短信验证码（暂时不用）
   router.post('/delAdmin', controller.admin.admin.delAdmin); // 校验短信验证码（暂时不用）
 
-  // router.get('/*', controller.client.common.abc)
+  // 前后台共用用户的接口--common
+  router.post('/common/addUser', controller.common.addUser); // 用户注册（增加）的接口
+  router.post('/common/delUser', controller.common.delUser); // 用户删除的接口
+
+  // 后台用户的接口
+  router.post('/admin/editUser', controller.admin.user.AdEditUser); // 用户编辑的接口
+  router.post('/admin/findUserList', controller.admin.user.AdFindUserList); // 用户查询所有数据的接口
+  router.post('/admin/findOneUser', controller.admin.user.AdFindOneUser); // 查询单个用户信息的接口
 
   // 用户的接口
-  router.post('/addUser', controller.client.user.addUser); // 用户注册（增加）的接口
-  router.post('/delUser', controller.client.user.delUser); // 用户删除的接口
   router.post('/editUser', controller.client.user.editUser); // 用户编辑的接口
-  router.post('/findUserList', controller.client.user.findUserList); // 用户查询所有数据的接口
   router.post('/findOneUser', controller.client.user.findOneUser); // 查询单个用户信息的接口
   router.post('/userLogin', controller.client.user.userLogin); // 用户登录的接口
 
