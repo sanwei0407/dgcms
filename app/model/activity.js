@@ -7,8 +7,7 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-autoIncrement:true
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING(80),
@@ -50,14 +49,14 @@ autoIncrement:true
       type: DataTypes.STRING(50),
       allowNull: true
     },
-    isDelete: {
-       type: DataTypes.INTEGER,
-       allowNull: false,
-       defaultValue: '0'
-    },
     addTime: {
       type: DataTypes.BIGINT,
       allowNull: true
+    },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
     }
   }, {
     tableName: 'activity'

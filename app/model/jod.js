@@ -3,38 +3,48 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('sponsor', {
+  const Model = app.model.define('jod', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
-    url: {
+    Salary: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    post: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    name: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    type: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    imgurl: {
+    workA: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    order: {
-      type: DataTypes.INTEGER,
+    jodC: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    jobR: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    workingH: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    companyP: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     isdelete: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      defaultValue: '0'
     }
   }, {
-    tableName: 'sponsor'
+    tableName: 'jod'
   });
 
   Model.associate = function() {

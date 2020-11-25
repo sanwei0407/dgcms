@@ -3,15 +3,14 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('baseParameter', {
-    Id: {
+  const Model = app.model.define('baseparameter', {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement:true
+      primaryKey: true
     },
     key: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     value: {
@@ -19,11 +18,11 @@ module.exports = app => {
       allowNull: true
     },
     name: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
-    },
+    }
   }, {
-    tableName: 'baseParameter'
+    tableName: 'baseparameter'
   });
 
   Model.associate = function() {

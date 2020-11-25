@@ -3,12 +3,11 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('voteLog', {
+  const Model = app.model.define('votelog', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement:true
+      primaryKey: true
     },
     uid: {
       type: DataTypes.INTEGER,
@@ -27,11 +26,15 @@ module.exports = app => {
       allowNull: true
     },
     ip: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
+    perlimit: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
   }, {
-    tableName: 'voteLog'
+    tableName: 'votelog'
   });
 
   Model.associate = function() {

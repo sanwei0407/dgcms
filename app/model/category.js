@@ -7,8 +7,7 @@ module.exports = app => {
     cid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING(10),
@@ -19,7 +18,7 @@ module.exports = app => {
       allowNull: true
     },
     templateId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     isNav: {
@@ -32,31 +31,33 @@ module.exports = app => {
       defaultValue: '1'
     },
     ctTemplateId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     isDelete: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      defaultValue: '0'
     },
     pid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      defaultValue: '0'
     },
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     outUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     keyWord: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     desc: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     ctHtml: {
@@ -66,7 +67,7 @@ module.exports = app => {
     isSubmit: {
       type: DataTypes.INTEGER,
       allowNull: true
-    },
+    }
   }, {
     tableName: 'category'
   });

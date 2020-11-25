@@ -7,28 +7,27 @@ module.exports = app => {
     aid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      primaryKey: true
     },
     addTime: {
       type: DataTypes.BIGINT,
-      allowNull: true,
+      allowNull: true
     },
     type: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     url: {
       type: DataTypes.STRING(255),
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'attachment',
+    tableName: 'attachment'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

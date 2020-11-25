@@ -7,8 +7,7 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-autoIncrement:true
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING(50),
@@ -32,9 +31,10 @@ autoIncrement:true
     },
     state: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      defaultValue: '1'
     },
-    vid:{
+    vid: {
       type: DataTypes.INTEGER,
       allowNull: true
     }

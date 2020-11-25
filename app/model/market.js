@@ -3,47 +3,51 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('ad', {
-    aid: {
+  const Model = app.model.define('market', {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
-    type: {
+    Price: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    condition: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    adUrl: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    desc: {
+    region: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    goto: {
+    contacts: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    width: {
+    pictureD: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    height: {
+    tradeN: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    isDelete: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: '0'
+    commodityD: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
-    isHot: {
-      type: DataTypes.INTEGER,
+    storeInformation: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    isdelete: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
-    tableName: 'ad'
+    tableName: 'market'
   });
 
   Model.associate = function() {

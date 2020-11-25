@@ -1,30 +1,58 @@
-'use strict';
+/* indent size: 2 */
+
 module.exports = app => {
-    const DataTypes = app.Sequelize;
-    const { STRING, INTEGER, BIGINT } = DataTypes;
-    // app.model.define("对应的表头",{字段},{其他配置})
-    const Model = app.model.define('pm', {
-        // 字段映射
-        pmID: {
-            type: INTEGER,
-            primaryKey: true,   // 是否是主键
-            autoIncrement: true,    // 是否自增
-            allowNull: false,   // 是否允许为null
-        },
-        fromID: INTEGER,           // 发消息人的id
-        toID: INTEGER,             // 接收的人的 id
-        msg: STRING,               // 信息的内容
-        sentTime: BIGINT,          // 发送的时间
-        readTime: BIGINT,          // 接收的人阅读的时间
-        isread: INTEGER,           // 是否已读
-        type: INTEGER,             // 私信类型
-        canRead: INTEGER,          // 是否已删除
-        imgUrl: STRING,            // 上传图片的地址
-    }, {
-        timestamps: false,
-        // 配置项
-    });
+  const DataTypes = app.Sequelize;
 
+  const Model = app.model.define('pm', {
+    pmID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    fromID: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    toID: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    msg: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    sentTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    readTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    isread: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    type: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    canRead: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: '1'
+    },
+    imgUrl: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    }
+  }, {
+    tableName: 'pm'
+  });
 
-    return Model;
+  Model.associate = function() {
+
+  }
+
+  return Model;
 };

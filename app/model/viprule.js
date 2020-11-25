@@ -7,28 +7,28 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      primaryKey: true
     },
     vipGrade: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.STRING(20),
+      allowNull: true
     },
     vipIntegral: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.STRING(20),
+      allowNull: true
     },
     isDelete: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
+      allowNull: true,
+      defaultValue: '0'
+    }
   }, {
-    tableName: 'viprule',
+    tableName: 'viprule'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

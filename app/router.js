@@ -127,6 +127,32 @@ module.exports = app => {
   router.get('/', controller.admin.common.abc); // 首页
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 
+  // 招聘信息接口
+  router.post('/addJod', controller.client.jod.addJod);// 添加招聘信息
+  router.post('/delJod', controller.client.jod.delJod);// 删除招聘信息
+  router.post('/findAllJod', controller.client.jod.findAllJod);// 查找所有招聘信息
+  router.post('/findOneJod', controller.client.jod.findOneJod); // 查询单个招聘信息接口
+  router.post('/editJod', controller.client.jod.editJod);// 编辑招聘信息
 
+  // 跳蚤市场信息接口
+  router.post('/addMarket', controller.client.market.addMarket);// 添加跳蚤市场信息
+  router.post('/delMarket', controller.client.market.delMarket);// 删除跳蚤市场信息
+  router.post('/findAllMarket', controller.client.market.findAllMarket);// 查找跳蚤市场信息
+  router.post('/findOneMarket', controller.client.market.findOneMarket); // 查询单个跳蚤市场信息
+  router.post('/editMarket', controller.client.market.editMarket); // 编辑跳蚤市场信息
+
+  // 房屋租聘信息接口
+  router.post('/addHouse', controller.client.house.addHouse);// 添加房屋租聘信息
+  router.post('/delHouse', controller.client.house.delHouse);// 删除房屋租聘信息
+  router.post('/findAllHouse', controller.client.house.findAllHouse);// 查找房屋租聘信息
+  router.post('/findOneHouse', controller.client.house.findOneHouse); // 查询单个房屋租聘信息
+  router.post('/editHouse', controller.client.house.editHouse); // 编辑房屋租聘信息
+
+  // 服务类接口
+  router.post('/addServers', controller.client.servers.addServers);// 添加服务信息
+  router.post('/delServers', controller.client.servers.delServers);// 删除服务信息
+  router.post('/findAllServers', controller.client.servers.findAllServers);// 查找所有服务信息
+  router.post('/findOneServers', controller.client.servers.findOneServers); // 查询单个服务信息
+  router.post('/editServers', controller.client.servers.editServers); // 编辑服务信息
 
 };

@@ -7,56 +7,56 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: false
     },
     desc: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
     sTime: {
       type: DataTypes.BIGINT,
-      allowNull: true,
+      allowNull: true
     },
     eTime: {
       type: DataTypes.BIGINT,
-      allowNull: true,
+      allowNull: true
     },
     brief: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     author: {
       type: DataTypes.STRING(32),
-      allowNull: true,
+      allowNull: true
     },
     addTime: {
       type: DataTypes.BIGINT,
-      allowNull: true,
+      allowNull: true
     },
     peopleLimit: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     type: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     isdelete: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    },
+      defaultValue: '0'
+    }
   }, {
-    tableName: 'book',
+    tableName: 'book'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

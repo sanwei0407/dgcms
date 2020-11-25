@@ -7,8 +7,7 @@ module.exports = app => {
     aid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement:true
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING(255),
@@ -50,28 +49,30 @@ module.exports = app => {
     },
     tag: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
-    updateTime: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-    },
-    isHot:{
-      type: DataTypes.TINYINT,
-      allowNull: true,
+    isHot: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
     },
     whoCanRead: {
       type: DataTypes.STRING(125),
       allowNull: true
     },
     reading: {
-      type: DataTypes.STRING(125),
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: '0'
     },
     contentSummary: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    updateTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    }
   }, {
     tableName: 'article'
   });

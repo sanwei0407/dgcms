@@ -7,8 +7,7 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-autoIncrement:true
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING(255),
@@ -49,7 +48,7 @@ autoIncrement:true
     },
     updateTime: {
       type: DataTypes.BIGINT,
-      allowNull: true,
+      allowNull: true
     }
   }, {
     tableName: 'vote'
