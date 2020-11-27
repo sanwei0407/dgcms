@@ -176,7 +176,7 @@ class CommonController extends Controller {
     }
     // 注入当前page
     ctx.locals.page = page;
-    ctx.locals.nextPage = page*1 + 1;
+    ctx.locals.nextPage = page * 1 + 1;
     ctx.locals.prePage = page > 1 ? page - 1 : page;
 
     const isDetailPage = !!path.match(/\/\d+$/g); // 是否是内容页 目前以链接当中是否有 /纯数字/ 为例子
@@ -217,6 +217,16 @@ class CommonController extends Controller {
       const aid = path.match(/\/\d+$/)[0].replace('/', ''); // 内容id
       // 获取文章详情
       const article = await ctx.model.Article.findByPk(aid, { raw: true });
+      // 进入文章详情后让文章（article）的阅读量 + 1
+      const _reading = article.reading * 1 + 1;
+      await ctx.model.Article.update({
+        reading: _reading,
+      },
+      {
+        where: {
+          aid,
+        },
+      });
       const cate = await ctx.model.Category.findByPk(article.cid, { raw: true });
       const _tp = cate.ctTemplateId; // 获取内容模板 todo ctTemplateId 变量名语义不清晰
       templateDir = _tp;

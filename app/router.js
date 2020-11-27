@@ -5,7 +5,6 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  // router.get('/*', controller.client.common.abc)
 
   // 会员规则管理
   router.post('/addvipRule', controller.admin.vipRule.addvipRule); // 添加会员等级+对应的规则
@@ -62,7 +61,6 @@ module.exports = app => {
   router.post('/adminSent', controller.admin.pm.adminSent); // 管理员发送信息
   router.post('/userSent', controller.admin.pm.userSent); // 管理员发送信息
   router.post('/getPmList', controller.admin.pm.getPmList); // 得到聊天记录
-
 
   // 活动发布的接口
   router.post('/addActivity', controller.admin.activity.addActivity); // （添加）活动发布的接口

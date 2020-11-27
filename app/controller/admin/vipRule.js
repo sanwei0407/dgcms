@@ -41,7 +41,7 @@ class VipRuleController extends Controller {
       ctx.body = { success: false, msg: '删除失败', e };
     }
   }
-  async findvipRule() {
+  async findvipRule()  {
     const { ctx, app } = this;
     let { vipGrade, vipIntegral, limit, page } = ctx.request.body;
     const { Op } = app.Sequelize;
