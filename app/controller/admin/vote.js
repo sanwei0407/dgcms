@@ -102,8 +102,6 @@ class VoteController extends Controller {
     if (title) where.title = { [Op.like]: title + '%' };
     if (desc) where.desc = { [Op.like]: desc + '%' };
     if (author) where.author = { [Op.like]: author + '%' };
-
-
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
@@ -143,7 +141,6 @@ class VoteController extends Controller {
       console.log(e);
     }
   }
-
   // @author Martin
   // @last update 2020年11月18日08:59:24
   // @查找文章(对单个文章进行编辑时使用)
@@ -185,8 +182,6 @@ class VoteController extends Controller {
       };
     }
   }
-
-
 }
 
 module.exports = VoteController;

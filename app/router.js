@@ -82,7 +82,7 @@ module.exports = app => {
   router.post('/findOneVote', controller.admin.vote.findOneVote);// 查找单个投票
   router.post('/reviceVote', controller.admin.vote.reviceVote);// 编辑投票
 
-  //投票选项接口
+  // 投票选项接口
   router.post('/addVoteitem', controller.admin.voteitem.addVoteitem); // 添加投票
   router.post('/delVoteitem', controller.admin.voteitem.delVoteitem); // 删除投票
   router.post('/findVoteitemList', controller.admin.voteitem.findVoteitemList); // 查找投票
@@ -90,7 +90,7 @@ module.exports = app => {
   router.post('/reviceVoteitem', controller.admin.voteitem.reviceVoteitem);// 编辑投票
 
 
-  //投票日志
+  // 投票日志
   router.post('/addVoteLog', controller.admin.voteLog.addVoteLog); // 添加投票
   // 广告接口 (缩写:ad)
   router.post('/addad', controller.admin.ad.addad); // 添加广告
