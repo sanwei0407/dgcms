@@ -48,7 +48,7 @@ class VoteController extends Controller {
       };
     } catch (e) {
       console.log(e);
-      ctx.body = { success: false, msg: '发起投票失败' };
+      ctx.body = { success: false, msg: '发起投票失败', e };
     }
 
   }
@@ -159,14 +159,14 @@ class VoteController extends Controller {
       eTime,
       perLimit,
     } = ctx.request.body;
-    const update = {};
+    const update = { updateTime: Date.now() };
     if (title) update.title = title;
     if (desc) update.desc = desc;
     if (author) update.author = author;
     if (sTime) update.sTime = sTime;
     if (eTime) update.eTime = eTime;
     if (perLimit) update.perLimit = perLimit;
-    if (!id) return ctx.body = { success: false, msg: '该文章不存在' };
+    if (!id) return ctx.body = { success: false, msg: '该投票不存在' };
     try {
       const res = await ctx.model.Vote.update(
         update,
@@ -174,37 +174,7 @@ class VoteController extends Controller {
           where: {
             id,
           },
-  //@author Martin
-  //@last update 2020年11月18日08:59:24
-  //@查找文章(对单个文章进行编辑时使用)
-  //aid-文章id title-标题 content-内容 author-作者 from-来源 cid-分栏id top-是否置顶
-async reviceVote(){
-  const { ctx } = this;
-  let {
-    id,
-    title,
-    desc,
-    author,
-    sTime,
-    eTime,
-    perLimit,
-} = ctx.request.body;
-  const update = {updateTime:Date.now()};
-  if(title) update.title = title
-  if(desc) update.desc = desc
-  if(author) update.author = author
-  if(sTime) update.sTime = sTime
-  if(eTime) update.eTime = eTime
-  if(perLimit) update.perLimit = perLimit
-  if(!id) return ctx.body={success:false,msg:'该投票不存在'}
-  try{
-    const res = await ctx.model.Vote.update(
-      update,
-      {
-        where:{
-          id,
-        }
-      );
+        });
       ctx.body = { success: true, msg: '修改成功', data: res };
 
     } catch (e) {
