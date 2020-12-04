@@ -7,31 +7,32 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     path: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     pid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     action: {
       type: DataTypes.STRING(20),
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'role'
+    tableName: 'role',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

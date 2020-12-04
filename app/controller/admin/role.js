@@ -33,14 +33,14 @@ class AdminController extends Controller {
     if (name) where.name = { [Op.like]: '%' + name + '%' };
     if (path) where.path = { [Op.like]: '%' + path + '%' };
     if (pid) where.pid = { [Op.like]: pid + '%' };
-    limit = limit ? limit : 20;
-    page = page ? page : 1;
-    const offset = (page - 1) * limit;
+    // limit = limit ? limit : 20;
+    // page = page ? page : 1;
+    // const offset = (page - 1) * limit;
     try {
       const res = await ctx.model.Role.findAndCountAll({
         where,
         limit,
-        offset,
+        // offset,
         attributes: {
           exclude: [ 'path' ],
         },
