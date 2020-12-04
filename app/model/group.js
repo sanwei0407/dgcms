@@ -7,23 +7,24 @@ module.exports = app => {
     groupId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     roles: {
       type: DataTypes.TEXT,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'group'
+    tableName: 'group',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
