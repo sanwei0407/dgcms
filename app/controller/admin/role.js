@@ -8,14 +8,17 @@ class AdminController extends Controller {
   // @增加权限的接口
   async addRole() {
     const { ctx } = this;
-    const { name, path, pid, action } = ctx.request.body;
+    const { name, path, pid, action, icon } = ctx.request.body;
     try {
-      await ctx.model.Role.create({
+      console.log('090090', icon);
+      const zbx = await ctx.model.Role.create({
         name, // 名称
-        path, // 地址路径
+        path: path ? path : '', // 地址路径
         pid, // 上级id
         action, // 操作
+        icon, // 图标
       });
+      console.log('zbxzbxzbx', zbx);
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
       ctx.body = { success: false, info: '添加失败' };
@@ -27,20 +30,15 @@ class AdminController extends Controller {
   // @查询权限的接口
   async findRole() {
     const { ctx, app } = this;
-    let { name, path, pid, limit, page } = ctx.request.body;
+    const { name, path, pid } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = {};
     if (name) where.name = { [Op.like]: '%' + name + '%' };
     if (path) where.path = { [Op.like]: '%' + path + '%' };
     if (pid) where.pid = { [Op.like]: pid + '%' };
-    // limit = limit ? limit : 20;
-    // page = page ? page : 1;
-    // const offset = (page - 1) * limit;
     try {
       const res = await ctx.model.Role.findAndCountAll({
         where,
-        limit,
-        // offset,
         attributes: {
           exclude: [ 'path' ],
         },

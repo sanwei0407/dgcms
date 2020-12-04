@@ -26,6 +26,10 @@ module.exports = app => {
       type: DataTypes.STRING(20),
       allowNull: true,
     },
+    icon: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
   }, {
     tableName: 'role',
   });
