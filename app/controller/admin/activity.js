@@ -4,6 +4,42 @@ const Controller = require('egg').Controller;
 
 
 class UserController extends Controller {
+  async searchPosition(){
+    const {
+      ctx,app
+    } = this;
+    const{
+        keyword,
+    } = ctx.request.body;
+    try{
+      const url = `http://api.map.baidu.com/place/v2/search?query=${keyword}&region=全国&output=json&ak=1RO8EvPHSDzApYU0pORqyXKEWAmGs3we`
+      let res = await ctx.curl(url,{
+        dataType: 'json',
+    })
+      ctx.body = res.data
+    }catch(e){
+      console.log(e)
+    }
+  }
+   async getPosition(){
+    const {
+      ctx,
+    } = this;
+    const{
+        keyword,
+    } = ctx.request.body;
+    try{
+      const url = `http://api.map.baidu.com/reverse_geocoding/v3/?ak=1RO8EvPHSDzApYU0pORqyXKEWAmGs3we&output=json&coordtype=wgs84ll&location= 
+
+      ${keyword}`
+      let res = await ctx.curl(url,{
+        dataType: 'json',
+    })
+      ctx.body = res.data
+    }catch(e){
+      console.log(e)
+    }
+  }
   // @author zbx
   // @last update 2020年11月12日 10:30
   // @（新增）活动发布的接口

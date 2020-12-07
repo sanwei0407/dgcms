@@ -68,6 +68,8 @@ module.exports = app => {
   router.post('/editActivity', controller.admin.activity.editActivity); // （编辑）活动发布的接口
   router.post('/findActivity', controller.admin.activity.findActivity); // （查询全部）活动发布信息的接口
   router.post('/findOneActivity', controller.admin.activity.findOneActivity); // （查询单个）活动发布信息的接口
+  router.post('/searchPosition', controller.admin.activity.searchPosition); // （查询单个）活动发布信息的接口
+  router.post('/getPosition', controller.admin.activity.getPosition); // （查询单个）活动发布信息的接口
 
   // 系统基本参数的接口
   router.post('/addBP', controller.admin.baseParameter.addBP); // （添加）添加系统参数的接口
