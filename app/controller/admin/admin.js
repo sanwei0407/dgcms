@@ -1,17 +1,17 @@
 'use strict';
 const utils = require('utility'); // 引入一个工具库
 const Controller = require('egg').Controller;
-
+const pinyin4js = require('pinyin4js');
 
 class AdminController extends Controller {
   // @author zbx
   // @last update 2020年11月10日 16:15
-  // @管理员注册的接口
+  // @管理员注册（增加）的接口
   // userName-用户名 pwd-用户密码 addTime-注册时间 groupId-用户组id phone-用户手机号码 smscode-验证码
   async addAdmin() {
     const { ctx, app } = this;
-    const { userName, pwd, groupId, phone,aaa } = ctx.request.body;
-    console.log(ctx.request.body)
+    const { userName, pwd, groupId, phone } = ctx.request.body;
+    console.log(ctx.request.body);
     const { Op } = app.Sequelize;
     // 过滤数据
     if (!(userName && pwd && groupId)) {
@@ -63,9 +63,10 @@ class AdminController extends Controller {
   // @author Martin
   // @last update 2020年11月10日14:33:27
   // @管理员登录
-  // userName-用户名 pwd-密码  pwdd-MD5加密后的密码 groupId-分组Id
+  // userName-用户名 pwd-密码  pwdd-MD5加密后的密码
   async loginAdmin() {
-    const { ctx } = this;
+    const { ctx, app } = this;
+    const { Op } = app.Sequelize;
     const {
       userName,
       pwd,
@@ -79,12 +80,41 @@ class AdminController extends Controller {
         },
       });
       if (pwdd === res.pwd) { // 密码正确
+        const groupId = res.groupId;
+        // 登录后--可以获取到用户的groupId--通过groupId获取到对应的roles--从而知道该用户可以访问的路径
+        const groupRole = await ctx.model.Group.findByPk(groupId, { raw: true });
+        // console.log('groupRole', groupRole);
+        // 通过roles去获取对应可访问的路径
+
+        const _arr = groupRole.roles.split(',');
+        const _arry = await ctx.model.Role.findAll({ where: {
+          id: {
+            [Op.in]: _arr.map(r => parseInt(r)),
+          },
+        },
+        raw: true,
+        });
+        const _menu = _arry.map(r => ({ ...r, title: r.name, name: pinyin4js.convertToPinyinString(r.name, '', pinyin4js.WITHOUT_TONE) }));
+        // const _menu = _arry.map(r => ({ ...r, title: r.name, name: r.path.substr(1) }));
+        console.log(_menu);
+        for (const item of _menu) {
+          if (item.pid > 0) {
+            const parent = _menu.find(r => r.id === item.pid); // 找（父亲）等于pid的id
+            if (parent) {
+              if (!parent.children) parent.children = [];
+              parent.children.push(item);
+            }
+          }
+        }
+        const TreeDate = _menu.filter(r => r.pid === 1);
+        console.log('菜单对应的路径：', TreeDate);
         ctx.body = {
           success: true,
           msg: '登录成功',
           data: {
             userName: res.userName,
             groupId: res.groupId,
+            TreeDate,
           },
         };
       }
@@ -105,29 +135,28 @@ class AdminController extends Controller {
 
   // @author Martin
   // @last update 2020年11月13日08:45:14
-  // @管理员登录
-  // 
-  async delAdmin(){
+  // @管理员删除的接口
+  async delAdmin() {
     const { ctx } = this;
     const {
       aid,
     } = ctx.request.body;
-    try{
+    try {
       await ctx.model.Admin.destroy({
-        where:{
+        where: {
           aid,
-        }
-      })
-      ctx.body={success:true,msg:'删除成功'}
-    }catch(e){
-      console.log(e)
+        },
+      });
+      ctx.body = { success: true, msg: '删除成功' };
+    } catch (e) {
+      console.log(e);
     }
-    
+
   }
 
   // @author undefined(罗铿）
   // @lastUpdata 2020.11.10 14:44
-  // @管理员修改密码
+  // @管理员修改（编辑）密码
   // @userName 用户名 pwd 密码 phone 手机号码
   async editAdmin() {
     const { ctx } = this;
@@ -169,13 +198,33 @@ class AdminController extends Controller {
   }
 
   // @author zbx
-  // @last update 2020年11月11日 17:04
-  // @管理员注册的接口
-  async groupAdmin() {
-    const { ctx } = this;
-    const { groupId, name, roles } = ctx.request.body;
-  }
+  // @last update 2020年11月25日 14:04
+  // @管理员查询的接口
+  async findAdmin() {
+    const { ctx, app } = this;
+    let { userName, phone, page, limit } = ctx.request.body;
+    const { Op } = app.Sequelize;
+    const where = {};
+    if (userName) where.userName = { [Op.like]: '%' + userName + '%' };
+    if (phone) where.phone = { [Op.like]: '%' + phone + '%' };
 
+    limit = limit ? limit : 20;
+    page = page ? page : 1;
+    const offset = (page - 1) * limit;
+    try {
+      const res = await ctx.model.Admin.findAndCountAll({
+        where,
+        limit,
+        offset,
+        attributes: {
+          exclude: [ 'pwd' ],
+        },
+      });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询失败', e };
+    }
+  }
 
   // @author zbx
   // @last update 2020年11月10日 16:45

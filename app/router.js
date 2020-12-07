@@ -5,6 +5,7 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  // router.get('/*', controller.client.common.abc)
 
   // 会员规则管理
   router.post('/addvipRule', controller.admin.vipRule.addvipRule); // 添加会员等级+对应的规则
@@ -17,10 +18,21 @@ module.exports = app => {
   router.post('/editAdmin', controller.admin.admin.editAdmin); // 管理员修改（编辑）密码
   router.post('/loginAdmin', controller.admin.admin.loginAdmin); // 管理员登录接口
   router.post('/addAdmin', controller.admin.admin.addAdmin); // 管理员注册(增加)的接口
-  router.post('/groupAdmin', controller.admin.admin.groupAdmin); // 管理员注册(增加)的接口
+  router.post('/findAdmin', controller.admin.admin.findAdmin); // 管理员(查询)的接口
   router.post('/smsCode', controller.admin.admin.smscode); // 发送短信验证码（暂时不用）
   router.post('/checkSms', controller.admin.admin.checkSms); // 校验短信验证码（暂时不用）
   router.post('/delAdmin', controller.admin.admin.delAdmin); // 校验短信验证码（暂时不用）
+
+  // 管理员的权限接口
+  router.post('/addRole', controller.admin.role.addRole); // 增加权限的接口
+  router.post('/findRole', controller.admin.role.findRole); // 查询权限的接口
+  router.post('/findOneRole', controller.admin.role.findOneRole); // 通过id查询权限详情的接口
+  router.post('/delRole', controller.admin.role.delRole); // 删除权限的接口
+  router.post('/addGroup', controller.admin.group.addGroup); // 增加角色的接口
+  router.post('/findGroup', controller.admin.group.findGroup); // 查询角色的接口
+  router.post('/findOneGroup', controller.admin.group.findOneGroup); // 通过groupId查询角色详情的接口
+  router.post('/delGroup', controller.admin.group.delGroup); // 删除角色的接口
+  router.post('/editGroup', controller.admin.group.editGroup); // 编辑角色的接口
 
   // 前后台共用用户的接口--common
   router.post('/common/addUser', controller.common.addUser); // 用户注册（增加）的接口
