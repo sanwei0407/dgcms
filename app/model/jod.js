@@ -8,7 +8,7 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement:true
+      autoIncrement: true
     },
     Salary: {
       type: DataTypes.DECIMAL,
@@ -19,6 +19,10 @@ module.exports = app => {
       allowNull: true
     },
     workA: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    workAGPS: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
@@ -47,7 +51,7 @@ module.exports = app => {
     tableName: 'jod'
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 
