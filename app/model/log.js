@@ -7,7 +7,8 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
     content: {
       type: DataTypes.STRING(255),

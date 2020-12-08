@@ -7,7 +7,8 @@ module.exports = app => {
     pmID: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
     fromID: {
       type: DataTypes.INTEGER,

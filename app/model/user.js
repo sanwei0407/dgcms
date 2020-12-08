@@ -7,7 +7,8 @@ module.exports = app => {
     uid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
     userName: {
       type: DataTypes.STRING(50),

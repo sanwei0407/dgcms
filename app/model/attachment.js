@@ -7,7 +7,8 @@ module.exports = app => {
     aid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
     addTime: {
       type: DataTypes.BIGINT,
