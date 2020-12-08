@@ -26,6 +26,7 @@ module.exports = app => {
   // 管理员的权限接口
   router.post('/addRole', controller.admin.role.addRole); // 增加权限的接口
   router.post('/findRole', controller.admin.role.findRole); // 查询权限的接口
+  router.post('/findPath', controller.admin.role.findPath); // 通过路径查询该路径的详情
   router.post('/findOneRole', controller.admin.role.findOneRole); // 通过id查询权限详情的接口
   router.post('/delRole', controller.admin.role.delRole); // 删除权限的接口
   router.post('/addGroup', controller.admin.group.addGroup); // 增加角色的接口

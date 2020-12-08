@@ -7,16 +7,46 @@ class AdminController extends Controller {
   // @last update 2020年11月24日 21:15
   // @增加角色（用户组）的接口
   async addGroup() {
-    const { ctx } = this;
+    const { ctx, app } = this;
+    const Op = app.Sequelize;
     const { name } = ctx.request.body;
+    // try {
+    //   await ctx.model.Group.create({
+    //     name, // 名称
+    //   });
+    //   ctx.body = { success: true, info: '添加成功' };
+    // } catch (e) {
+    //   ctx.body = { success: false, info: '添加失败' };
+    //   console.log(e);
+    // }
     try {
-      await ctx.model.Group.create({
-        name, // 名称
+      // 账号信息的过滤（查看是否已注册）
+      const res = await ctx.model.Group.findAll({
+        where: {
+          [Op.or]:
+              [
+                { name },
+              ],
+        },
       });
-      ctx.body = { success: true, info: '添加成功' };
+      console.log('zbx', res);
+      if (res[0]) {
+        ctx.body = { success: false, info: '该角色已存在！' };
+        return;
+      }
+      try {
+        await ctx.model.Group.create({
+          name, // 名称
+        });
+        ctx.body = { success: true, info: '添加成功' };
+      } catch (e) {
+        ctx.body = { success: false, info: '添加失败' };
+        console.log(e);
+      }
     } catch (e) {
-      ctx.body = { success: false, info: '添加失败' };
       console.log(e);
+      ctx.body = { success: false, info: '添加失败2' };
+      return;
     }
   }
   // @author zbx
