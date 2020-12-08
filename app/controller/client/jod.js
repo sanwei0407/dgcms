@@ -86,7 +86,6 @@ class jodController extends Controller {
     if (jobR) where.jobRequirements = { [Op.like]: jobR + '%' };
     if (workingH) where.workingHours = { [Op.like]: +workingH + '%' };
     if (companyP) where.companyProfile = { [Op.like]: companyP + '%' };
-
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
@@ -111,7 +110,7 @@ class jodController extends Controller {
   async editJod() {
     console.log("a");
     const { ctx } = this;
-    const { Salary, post, workA, jodC, jobR, workingH, companyP, id } = ctx.request.body;
+    const { Salary, post, workA,workAGPS, jodC, jobR, workingH, companyP, id } = ctx.request.body;
     const update = {};
     if (Salary) update.Salary = Salary;
     if (post) update.post = post;
@@ -120,6 +119,7 @@ class jodController extends Controller {
     if (jobR) update.jobR = jobR;
     if (workingH) update.workingH = workingH;
     if (companyP) update.companyP = companyP;
+    if(workAGPS) update.workAGPS = workAGPS;
     if (!id) return ctx.body = { success: false, info: '无该id或者未输入id' };
     try {
       const res = await ctx.model.Jod.update(update, {
