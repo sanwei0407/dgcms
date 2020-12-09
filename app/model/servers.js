@@ -30,10 +30,6 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    serviceC: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
     companyP: {
       type: DataTypes.STRING(255),
       allowNull: true
@@ -42,10 +38,7 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    movingP: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
+    
     chargingS: {
       type: DataTypes.STRING(255),
       allowNull: true,

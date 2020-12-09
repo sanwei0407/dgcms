@@ -160,11 +160,17 @@ module.exports = app => {
   router.post('/findOneHouse', controller.client.house.findOneHouse); // 查询单个房屋租聘信息
   router.post('/editHouse', controller.client.house.editHouse); // 编辑房屋租聘信息
 
-  // 服务类接口
+  // 服务接口
   router.post('/addServers', controller.client.servers.addServers);// 添加服务信息
   router.post('/delServers', controller.client.servers.delServers);// 删除服务信息
   router.post('/findAllServers', controller.client.servers.findAllServers);// 查找所有服务信息
   router.post('/findOneServers', controller.client.servers.findOneServers); // 查询单个服务信息
   router.post('/editServers', controller.client.servers.editServers); // 编辑服务信息
+
+  // 服务类型接口
+  router.post('/addServeType', controller.client.serveType.addServeType);// 添加服务类型
+  router.post('/delServeType', controller.client.serveType.delServeType);// 删除服务类型
+  router.post('/updateServeType', controller.client.serveType.updateServeType);// 更改服务类型信息
+  router.post('/getServeTypeList', controller.client.serveType.getServeTypeList);// 获取服务类型列表
 
 };
