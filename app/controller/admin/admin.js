@@ -168,7 +168,8 @@ class AdminController extends Controller {
         },
         raw: true,
         });
-        const _temp = _arry.map(r => ({ ...r, title: r.name, name: pinyin4js.convertToPinyinString(r.name, '', pinyin4js.WITHOUT_TONE) }));
+        let _temp = _arry.map(r => ({ ...r, title: r.name, name: pinyin4js.convertToPinyinString(r.name, '', pinyin4js.WITHOUT_TONE) }));
+        _temp = _temp.filter(r => r.path);
         const _menu = _temp.filter(r => r.action === '' || r.action === null);
         for (const item of _menu) {
           if (item.pid > 0) {
