@@ -6,8 +6,9 @@ module.exports = app => {
   const Model = app.model.define('shop_payinfo', {
     payid: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       primaryKey: true,
+      autoIncrement: true,
     },
     orderid: {
       type: DataTypes.STRING(64),
