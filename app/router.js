@@ -174,4 +174,9 @@ module.exports = app => {
   router.post('/updateServeType', controller.client.serveType.updateServeType);// 更改服务类型信息
   router.post('/getServeTypeList', controller.client.serveType.getServeTypeList);// 获取服务类型列表
 
+  // 电商订单接口
+  router.post('/shopOrdersAdd', controller.shop.shoporders.shopOrdersAdd);// 创建订单
+  router.post('/shopOrdersFind', controller.shop.shoporders.shopOrdersFind);// 查询所有订单
+  router.post('/shopOrdersDel', controller.shop.shoporders.shopOrdersDel);// 软删除订单
+  router.post('/shopOrdersUpdate', controller.shop.shoporders.shopOrdersUpdate);// 修改订单
 };

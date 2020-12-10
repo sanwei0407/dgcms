@@ -7,39 +7,39 @@ module.exports = app => {
     payid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     orderid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     userid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     payplatform: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     platformnumber: {
       type: DataTypes.STRING(200),
-      allowNull: true
+      allowNull: true,
     },
     platformstatus: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     createtime: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'shop_payinfo'
+    tableName: 'shop_payinfo',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
