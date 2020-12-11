@@ -174,4 +174,20 @@ module.exports = app => {
   router.post('/updateServeType', controller.client.serveType.updateServeType);// 更改服务类型信息
   router.post('/getServeTypeList', controller.client.serveType.getServeTypeList);// 获取服务类型列表
 
+  // 电商订单接口
+  router.post('/shopOrdersAdd', controller.shop.shoporders.shopOrdersAdd);// 创建订单
+  router.post('/shopOrdersFind', controller.shop.shoporders.shopOrdersFind);// 查询所有订单
+  router.post('/shopOrdersDel', controller.shop.shoporders.shopOrdersDel);// 软删除订单
+  router.post('/shopOrdersUpdate', controller.shop.shoporders.shopOrdersUpdate);// 修改订单
+
+  // 支付信息接口
+  router.post('/shopPayinfoAdd', controller.shop.shoppayinfo.shopPayinfoAdd);// 支付信息存放入表
+
+  // 电商商品接口
+  router.post('/shopProductAdd', controller.shop.shopproduct.shopProductAdd);// 新增商品
+  router.post('/shopProductDel', controller.shop.shopproduct.shopProductDel);// 删除商品
+  router.post('/shopProductUpdate', controller.shop.shopproduct.shopProductUpdate);// 修改商品信息
+  router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
+  router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
+
 };
