@@ -15,15 +15,14 @@ class ShopuserController extends Controller {
         },
       });
       if (pwdd === res.password) { // 密码正确
-        ctx.body = {
-          success: true,
-          msg: '登录成功',
-          data: {
-            username: res.username,
-          },
+        console.log('///', res.password);
+        ctx.body = { success: true, msg: '登录成功', data: {
+          username: res.username,
+          id: res.id,
+        },
         };
       }
-      if (pwdd !== res.pwd) { // 密码错误
+      if (pwdd !== res.password) { // 密码错误
         ctx.body = { success: false, msg: '密码错误' };
       }
     } catch (e) {
@@ -32,7 +31,7 @@ class ShopuserController extends Controller {
     }
   }
   // 用户注册
-  async shopUsersAdd() {
+  async shopUserAdd() {
     const { ctx } = this;
     const { username, password, phone, sex } = ctx.request.body;
     if (!username) return ctx.body = { success: false, info: '请填写用户姓名' };
@@ -44,14 +43,14 @@ class ShopuserController extends Controller {
       return;
     }
     try {
-      ctx.model.Shopuser.create({
+      const res = ctx.model.Shopuser.create({
         username,
         password: utils.md5(password),
         phone,
         sex,
         creatime: Date.now(),
       });
-      ctx.body = { success: true, info: '用户注册成功' };
+      ctx.body = { success: true, info: '用户注册成功', data: res };
     } catch (e) {
       ctx.body = { success: false, info: '用户注册失败' };
       console.log(e);
@@ -60,14 +59,13 @@ class ShopuserController extends Controller {
   // 修改用户信息
   async shopUsersUpdate() {
     const { ctx } = this;
-    const { id, username, password, phone } = ctx.request.body;
+    const { id, username, phone, sex } = ctx.request.body;
     const update = {};
     if (username) update.username = username;
-    if (password) update.password = utils.md5(password);
     if (phone) update.phone = phone;
+    if (sex) update.sex = sex;
     // 数据过滤
     if (!phone) return ctx.body = { success: false, info: '手机号未填写' };
-    if (!password) return ctx.body = { success: false, info: '密码未填写' };
     // 手机号码检验
     if (!(/^1[3456789]\d{9}$/.test(phone))) {
       ctx.body = { success: false, info: '请输入正确的手机号' };
@@ -76,7 +74,7 @@ class ShopuserController extends Controller {
     try {
       const res = await ctx.model.Shopuser.findOne({
         where: {
-          phone,
+          id,
         },
       }
       );
