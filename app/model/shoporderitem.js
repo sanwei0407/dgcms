@@ -8,56 +8,56 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement:true
+      autoIncrement: true,
     },
     orderid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     userid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     proid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     proname: {
       type: DataTypes.STRING(100),
-      allowNull: true
+      allowNull: true,
     },
     proimage: {
       type: DataTypes.STRING(500),
-      allowNull: true
+      allowNull: true,
     },
     currentunitprice: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     totalprice: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     createtime: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     isDelete: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '0'
+      defaultValue: '0',
     },
   }, {
-    tableName: 'shop_orderitem'
+    tableName: 'shop_orderitem',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
