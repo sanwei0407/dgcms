@@ -99,8 +99,6 @@ class AdminController extends Controller {
       for (const item of resAction.rows) {
         actionId.push(item.id);
       }
-      // console.log('actionId', actionId);
-      // console.log('rolesArr', rolesArr);
       const _yes = []; // 存放页面中有的按钮权限的id
       for (const item of actionId) {
         if (rolesArr.includes(item)) {

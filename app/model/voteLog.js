@@ -8,39 +8,39 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement:true
+      autoIncrement: true,
     },
     uid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     vid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     vitemId: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     addTime: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: true,
     },
     ip: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     perlimit: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'votelog'
+    tableName: 'votelog',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

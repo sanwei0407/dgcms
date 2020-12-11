@@ -7,7 +7,7 @@ module.exports = app => {
     shoppingid: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      autoIncrement:true,
+      autoIncrement: true,
       primaryKey: true,
     },
     userid: {
