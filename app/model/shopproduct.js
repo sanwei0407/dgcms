@@ -7,51 +7,52 @@ module.exports = app => {
     proid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     cateid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     proname: {
       type: DataTypes.STRING(100),
-      allowNull: true
+      allowNull: true,
     },
     subtitle: {
       type: DataTypes.STRING(200),
-      allowNull: true
+      allowNull: true,
     },
     mainimage: {
       type: DataTypes.STRING(500),
-      allowNull: true
+      allowNull: true,
     },
     detail: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: true,
     },
     price: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     status: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     createtime: {
-      type: DataTypes.DATE,
-      allowNull: true
-    }
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   }, {
-    tableName: 'shop_product'
+    tableName: 'shop_product',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

@@ -174,16 +174,20 @@ module.exports = app => {
   router.post('/updateServeType', controller.client.serveType.updateServeType);// 更改服务类型信息
   router.post('/getServeTypeList', controller.client.serveType.getServeTypeList);// 获取服务类型列表
 
-  // 商城接口
-  // 订单明细接口
-  router.post('/addOrderit', controller.shop.orderitem.addOrderit); // 添加订单明细
-  router.post('/delOrderit', controller.shop.orderitem.delOrderit); // 删除订单明细
-  router.post('/findOitList', controller.shop.orderitem.findOitList); // 查询订单明细
-  router.post('/findOnelist', controller.shop.orderitem.findOnelist); // 查询单个订单明细
-  router.post('/reviceOit', controller.shop.orderitem.reviceOit); // 修改订单明细
-  // 购物车接口
-  router.post('/addCar', controller.shop.shopcart.addCar); // 添加购物车
-  router.post('/delCar', controller.shop.shopcart.delCar); // 删除购物车
-  router.post('/findCartList', controller.shop.shopcart.findCartList); // 查询购物车
+  // 电商订单接口
+  router.post('/shopOrdersAdd', controller.shop.shoporders.shopOrdersAdd);// 创建订单
+  router.post('/shopOrdersFind', controller.shop.shoporders.shopOrdersFind);// 查询所有订单
+  router.post('/shopOrdersDel', controller.shop.shoporders.shopOrdersDel);// 软删除订单
+  router.post('/shopOrdersUpdate', controller.shop.shoporders.shopOrdersUpdate);// 修改订单
+
+  // 支付信息接口
+  router.post('/shopPayinfoAdd', controller.shop.shoppayinfo.shopPayinfoAdd);// 支付信息存放入表
+
+  // 电商商品接口
+  router.post('/shopProductAdd', controller.shop.shopproduct.shopProductAdd);// 新增商品
+  router.post('/shopProductDel', controller.shop.shopproduct.shopProductDel);// 删除商品
+  router.post('/shopProductUpdate', controller.shop.shopproduct.shopProductUpdate);// 修改商品信息
+  router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
+  router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
 
 };
