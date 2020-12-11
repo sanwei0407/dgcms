@@ -107,7 +107,7 @@ class ShopuserController extends Controller {
     page = page ? page : 1;
     const offset = (page - 1) * limit;
     try {
-      const res = await ctx.model.Shoporders.findAndCountAll({
+      const res = await ctx.model.Shopuser.findAndCountAll({
         where,
         limit,
         offset,
@@ -123,7 +123,7 @@ class ShopuserController extends Controller {
     const { ctx } = this;
     const { id } = ctx.request.body;
     try {
-      const res = await ctx.model.destroy({
+      const res = await ctx.model.Shopuser.destroy({
         where: {
           id,
         },
