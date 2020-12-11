@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 class ArticleController extends Controller {
 
-    // @添加 购物车
+    // @添加购物车
     // carid-购物车id userid-用户id proid-商品id quantity-商品数量
     // checked-是否勾选 1.勾选 2.未勾选 createtime-创建时间
 

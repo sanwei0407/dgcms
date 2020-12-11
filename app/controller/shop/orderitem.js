@@ -180,8 +180,7 @@ class ArticleController extends Controller {
                     where: {
                         id,
                     },
-                }
-            );
+                });
             ctx.body = { success: true, msg: '修改成功', data: res };
         } catch (e) {
             console.log(e);
