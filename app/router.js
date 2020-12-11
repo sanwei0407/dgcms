@@ -190,4 +190,29 @@ module.exports = app => {
   router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
   router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
 
+  // 电商订单明细表接口
+  router.post('/addOrderit', controller.shop.orderitem.addOrderit);// 添加订单明细
+  router.post('/delOrderit', controller.shop.orderitem.delOrderit);// 删除订单明细
+  router.post('/findOitList', controller.shop.orderitem.findOitList);// 查询订单明细
+  router.post('/findOnelist', controller.shop.orderitem.findOnelist);// 查询单个订单明细
+  router.post('/reviceOit', controller.shop.orderitem.reviceOit);// 编辑订单明细
+
+  // 电商购物车表接口
+  router.post('/addCar', controller.shop.shopcart.addCar);// 添加购物车
+  router.post('/delCar', controller.shop.shopcart.delCar);// 删除购物车
+  router.post('/findCartList', controller.shop.shopcart.findCartList);// 查询购物车
+  router.post('/findOnecart', controller.shop.shopcart.findOnecart);// 查询单个购物车
+  router.post('/reviceCart', controller.shop.shopcart.reviceCart);// 编辑购物车信息
+
+  // 电商商品类别接口
+  router.post('/addClassify', controller.shop.shopclassify.addClassify);// 添加商品类别
+  router.post('/delClassify', controller.shop.shopclassify.delClassify);// 删除商品类别
+  router.post('/findClassify', controller.shop.shopclassify.findClassify);// 查询商品类别
+  router.post('/findOneify', controller.shop.shopclassify.findOneify);// 查询单个商品类别
+  router.post('/reviceify', controller.shop.shopclassify.reviceify);// 编辑商品类别
+
+  // 收货人信息接口
+  router.post('/addrece', controller.shop.Shoprecemsg.addrece);// 编辑商品类别
+
+
 };

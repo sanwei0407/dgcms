@@ -7,7 +7,8 @@ module.exports = app => {
     cateid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
     parentid: {
       type: DataTypes.STRING(64),
@@ -28,7 +29,12 @@ module.exports = app => {
     createtime: {
       type: DataTypes.DATE,
       allowNull: true
-    }
+    },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
+    },
   }, {
     tableName: 'shop_classify'
   });

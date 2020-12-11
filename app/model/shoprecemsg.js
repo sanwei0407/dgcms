@@ -6,7 +6,8 @@ module.exports = app => {
   const Model = app.model.define('shop_recemsg', {
     shoppingid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      autoIncrement:true
     },
     userid: {
       type: DataTypes.STRING(64),
@@ -47,7 +48,12 @@ module.exports = app => {
     createtime: {
       type: DataTypes.INTEGER,
       allowNull: true
-    }
+    },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
+    },
   }, {
     tableName: 'shop_recemsg'
   });
