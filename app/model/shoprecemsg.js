@@ -7,60 +7,61 @@ module.exports = app => {
     shoppingid: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      autoIncrement:true
+      primaryKey: true,
+      autoIncrement: true,
     },
     userid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     orderid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     recename: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     recephone: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     recemobile: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     receprovince: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     rececity: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     recedistrict: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     receaddress: {
       type: DataTypes.STRING(200),
-      allowNull: true
+      allowNull: true,
     },
     createtime: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     isDelete: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '0'
+      defaultValue: '0',
     },
   }, {
-    tableName: 'shop_recemsg'
+    tableName: 'shop_recemsg',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
