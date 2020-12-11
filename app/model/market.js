@@ -8,7 +8,7 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement:true
+      autoIncrement: true
     },
     Price: {
       type: DataTypes.DECIMAL,
@@ -23,6 +23,10 @@ module.exports = app => {
       allowNull: true
     },
     contacts: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    phone: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
@@ -50,7 +54,7 @@ module.exports = app => {
     tableName: 'market'
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

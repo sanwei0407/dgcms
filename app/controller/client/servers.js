@@ -79,7 +79,7 @@ class ServersController extends Controller {
   // 查找所有服务信息
   async findAllServers() {
     const { ctx, app } = this;
-    let { limit, page, category, serviceArea, contacts, businessA, serviceF, serviceC, companyP, serviceContent, movingP, chargingS, serviceComm } = ctx.request.body;
+    let { limit, page, category, serviceArea, contacts, businessA, serviceF, companyP, serviceContent, chargingS, serviceComm } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = { isdelete: 0 };
     if (category) where.category = { [Op.like]: category + '%' };
@@ -87,10 +87,8 @@ class ServersController extends Controller {
     if (businessA) where.businessA = { [Op.like]: businessA + '%' };
     if (contacts) where.contacts = { [Op.like]: contacts + '%' };
     if (serviceF) where.serviceF = { [Op.like]: serviceF + '%' };
-    if (serviceC) where.serviceC = { [Op.like]: serviceC + '%' };
     if (companyP) where.companyP = { [Op.like]: companyP + '%' };
     if (serviceContent) where.serviceContent = { [Op.like]: serviceContent + '%' };
-    if (movingP) where.movingP = { [Op.like]: movingP + '%' };
     if (chargingS) where.chargingS = { [Op.like]: chargingS + '%' };
     if (serviceComm) where.serviceComm = { [Op.like]: serviceComm + '%' };
 

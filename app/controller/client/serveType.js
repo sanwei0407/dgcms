@@ -120,8 +120,14 @@ class ServerTypeController extends Controller {
         const offset = (page - 1) * limit;
         try {
             const res = await ctx.model.ServeType.findAndCountAll({
+                where: {
+                    isDelete: 0
+                },
                 limit,
-                offset
+                offset,
+                attributes: {
+                    exclude: ['isDelete'],
+                },
             })
             ctx.body = {
                 success: true,
