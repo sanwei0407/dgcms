@@ -22,7 +22,7 @@ module.exports = app => {
       allowNull: true,
     },
     creatime: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     sex: {
