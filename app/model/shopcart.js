@@ -30,7 +30,12 @@ module.exports = app => {
     createtime: {
       type: DataTypes.DATE,
       allowNull: true
-    }
+    },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
+    },
   }, {
     tableName: 'shop_cart'
   });

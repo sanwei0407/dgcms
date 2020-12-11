@@ -7,7 +7,8 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true
     },
     orderid: {
       type: DataTypes.STRING(64),
@@ -44,7 +45,12 @@ module.exports = app => {
     createtime: {
       type: DataTypes.DATE,
       allowNull: true
-    }
+    },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
+    },
   }, {
     tableName: 'shop_orderitem'
   });
