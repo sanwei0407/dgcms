@@ -8,6 +8,7 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     username: {
       type: DataTypes.STRING(50),
@@ -19,10 +20,10 @@ module.exports = app => {
     },
     phone: {
       type: DataTypes.STRING(20),
-      allowNull: true,
+      allowNull: false,
     },
     creatime: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     sex: {

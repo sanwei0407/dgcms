@@ -3,31 +3,34 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('servetype', {
+  const Model = app.model.define('serveType', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
+    // 服务类型
     serve: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
     },
+    // 所属服务类型
     Pserve: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
     },
     isDelete: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
-    tableName: 'servetype'
+    tableName: 'serveType',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
