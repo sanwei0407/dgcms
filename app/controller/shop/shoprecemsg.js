@@ -152,7 +152,7 @@ class ArticleController extends Controller{
             if (res) {
                 return ctx.body = { success: true, data: res };
             }
-            ctx.body = { success: false, info: '该收货信息不存在'};
+            ctx.body = { success: false, info: '该收货信息不存在' };
         } catch (e) {
           ctx.body = { success: false, info: '查询出错', e }
         }
