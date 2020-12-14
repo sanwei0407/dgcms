@@ -46,6 +46,14 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
+    workingYears:{
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    educationRequirements:{
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
     isdelete: {
       type: DataTypes.INTEGER,
       allowNull: true,

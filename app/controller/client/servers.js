@@ -11,13 +11,13 @@ class ServersController extends Controller {
     if (!serviceArea) return ctx.body = { success: false, info: '请填写服务区域' };
     if (!contacts) return ctx.body = { success: false, info: '请填写联系人' };
     if (!businessA) return ctx.body = { success: false, info: '请填写商家地址' };
-    if (!serviceF) return ctx.body = { success: false, info: '请填写服务特色' };
-    if (!serviceC) return ctx.body = { success: false, info: '请填写服务类别' };
-    if (!companyP) return ctx.body = { success: false, info: '请填公司简介' };
+    // if (!serviceF) return ctx.body = { success: false, info: '请填写服务特色' };
+    // if (!serviceC) return ctx.body = { success: false, info: '请填写服务类别' };
+    // if (!companyP) return ctx.body = { success: false, info: '请填公司简介' };
     if (!serviceContent) return ctx.body = { success: false, info: '请填写服务内容' };
-    if (!movingP) return ctx.body = { success: false, info: '请填写搬家流程' };
-    if (!chargingS) return ctx.body = { success: false, info: '请填写收费标准' };
-    if (!serviceComm) return ctx.body = { success: false, info: '请填写服务承诺' };
+    // if (!movingP) return ctx.body = { success: false, info: '请填写搬家流程' };
+    // if (!chargingS) return ctx.body = { success: false, info: '请填写收费标准' };
+    // if (!serviceComm) return ctx.body = { success: false, info: '请填写服务承诺' };
     if (!title) return ctx.body = { success: false, info: '请填写标题' };
 
 

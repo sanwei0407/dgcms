@@ -6,7 +6,7 @@ class jodController extends Controller {
   // 添加岗位信息
   async addJod() {
     const { ctx } = this;
-    const { Salary, post, workA, workAGPS, title, jodC, jobR, workingH, phone } = ctx.request.body;
+    const { Salary, post, workA, workAGPS, title, jodC, jobR, workingH, phone,educationRequirements,workingYears } = ctx.request.body;
     if (!Salary) return ctx.body = { success: false, info: '请填写工作薪资' };
     if (!post) return ctx.body = { success: false, info: '请填写工作岗位' };
     if (!workA) return ctx.body = { success: false, info: '请填写工作地址' };
@@ -24,7 +24,8 @@ class jodController extends Controller {
         jodC, // 工作内容
         jobR, // 职位要求
         workingH, // 工作时间
-        companyP, // 公司概况
+        educationRequirements,//学历要求
+        workingYears, // 工作
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
