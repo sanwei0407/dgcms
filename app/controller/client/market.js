@@ -6,7 +6,7 @@ class marketController extends Controller {
   // 添加跳蚤市场信息接口
   async addMarket() {
     const { ctx } = this;
-    const { Price, condition, region, contacts,phone, pictureD, tradeN, commodityD, storeInformation, } = ctx.request.body;
+    const { Price, condition, region, title,contacts,phone, pictureD, tradeN, commodityD, storeInformation, } = ctx.request.body;
     if (!Price) return ctx.body = { success: false, info: '请填写价格' };
     if (!condition) return ctx.body = { success: false, info: '请填写成色' };
     if (!region) return ctx.body = { success: false, info: '请填写区域' };
@@ -15,6 +15,8 @@ class marketController extends Controller {
     if (!tradeN) return ctx.body = { success: false, info: '请填写服务类别' };
     if (!commodityD) return ctx.body = { success: false, info: '请填写商品详情' };
     if (!storeInformation) return ctx.body = { success: false, info: '请填写店铺名称' };
+    if (!title) return ctx.body = { success: false, info: '请填写标题' };
+
     try {
       await ctx.model.Market.create({
         Price, // 价格
@@ -76,7 +78,7 @@ class marketController extends Controller {
   // 查找所有调整市场接口
   async findAllMarket() {
     const { ctx, app } = this;
-    let { Price, condition, region, contacts,phone, pictureD, tradeN, commodityD, storeInformation, limit, page } = ctx.request.body;
+    let { Price, condition, region,title, contacts,phone, pictureD, tradeN, commodityD, storeInformation, limit, page } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = { isdelete: 0 };
     if (Price) where.Price = { [Op.like]: Price + '%' };
@@ -88,6 +90,8 @@ class marketController extends Controller {
     if (commodityD) where.commodityDetails = { [Op.like]: commodityD + '%' };
     if (storeInformation) where.storeInformation = { [Op.like]: storeInformation + '%' };
     if (phone) where.phone = { [Op.like]: phone + '%' };
+    if (title) where.title = { [Op.like]: title + '%' };
+
 
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
@@ -111,7 +115,7 @@ class marketController extends Controller {
   // 修改跳蚤市场信息接口
   async editMarket() {
     const { ctx } = this;
-    const { Price, condition, region, contacts,phone, pictureD, tradeN, commodityD, storeInformation, id } = ctx.request.body;
+    const { Price, condition, region,title, contacts,phone, pictureD, tradeN, commodityD, storeInformation, id } = ctx.request.body;
     const update = {};
     if (Price) update.Price = Price;
     if (condition) update.condition = condition;
@@ -122,6 +126,8 @@ class marketController extends Controller {
     if (commodityD) update.commodityD = commodityD;
     if (storeInformation) update.storeInformation = storeInformation;
     if (phone) update.phone = phone;
+    if (title) update.title = title;
+
 
     if (!id) return ctx.body = { success: false, info: '无该id或者未输入id' };
     try {

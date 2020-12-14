@@ -46,9 +46,13 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    title: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     isdelete: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false
     }
   }, {
     tableName: 'market'

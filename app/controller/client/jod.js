@@ -6,7 +6,7 @@ class jodController extends Controller {
   // 添加岗位信息
   async addJod() {
     const { ctx } = this;
-    const { Salary, post, workA,workAGPS, jodC, jobR, workingH, companyP,phone } = ctx.request.body;
+    const { Salary, post, workA,workAGPS,title, jodC, jobR, workingH, companyP,phone } = ctx.request.body;
     if (!Salary) return ctx.body = { success: false, info: '请填写工作薪资' };
     if (!post) return ctx.body = { success: false, info: '请填写工作岗位' };
     if (!workA) return ctx.body = { success: false, info: '请填写工作地址' };
@@ -14,6 +14,7 @@ class jodController extends Controller {
     if (!jobR) return ctx.body = { success: false, info: '请填写职位要求' };
     if (!workingH) return ctx.body = { success: false, info: '请填写工作时间' };
     if (!companyP) return ctx.body = { success: false, info: '请填写公司概况' };
+    if (!title) return ctx.body = { success: false, info: '请填写标题' };
     try {
       await ctx.model.Jod.create({
         Salary, // 工作薪资
@@ -88,6 +89,8 @@ class jodController extends Controller {
     if (jobR) where.jobRequirements = { [Op.like]: jobR + '%' };
     if (workingH) where.workingHours = { [Op.like]: +workingH + '%' };
     if (companyP) where.companyProfile = { [Op.like]: companyP + '%' };
+    if (title) where.title = { [Op.like]: title + '%' };
+
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
@@ -112,7 +115,7 @@ class jodController extends Controller {
   async editJod() {
     console.log("a");
     const { ctx } = this;
-    const { Salary, post, workA,workAGPS, jodC, jobR, workingH, companyP, id,phone } = ctx.request.body;
+    const { Salary, post, workA,workAGPS,title, jodC, jobR, workingH, companyP, id,phone } = ctx.request.body;
     const update = {};
     if (Salary) update.Salary = Salary;
     if (post) update.post = post;
@@ -123,6 +126,8 @@ class jodController extends Controller {
     if (companyP) update.companyP = companyP;
     if(workAGPS) update.workAGPS = workAGPS;
     if(phone) update.phone = phone;
+    if(title) update.phone = title;
+
 
     if (!id) return ctx.body = { success: false, info: '无该id或者未输入id' };
     try {
