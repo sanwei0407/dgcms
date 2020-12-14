@@ -190,4 +190,39 @@ module.exports = app => {
   router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
   router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
 
+  // 电商用户接口
+  router.post('/shopUserLogin', controller.shop.shopuser.shopUserLogin);// 用户登录
+  router.post('/shopUserAdd', controller.shop.shopuser.shopUserAdd);// 用户注册
+  router.post('/shopUsersUpdate', controller.shop.shopuser.shopUsersUpdate);// 用户信息修改
+  router.post('/shopUserFind', controller.shop.shopuser.shopUserFind);// 用户列表查询
+  router.post('/shopUserDel', controller.shop.shopuser.shopUserDel);// 用户删除
+
+  // 电商订单明细接口
+  router.post('/addOrderit', controller.shop.orderitem.addOrderit); // 添加订单明细
+  router.post('/delOrderit', controller.shop.orderitem.delOrderit); // 删除订单明细表
+  router.post('/findOitList', controller.shop.orderitem.findOitList); // 查找订单明细表
+  router.post('/findOnelist', controller.shop.orderitem.findOnelist); // 查找单个订单明细
+  router.post('/reviceOit', controller.shop.orderitem.reviceOit); // 编辑订单明细
+
+  // 电商购物车接口
+  router.post('/addCar', controller.shop.shopcart.addCar); // 添加购物车
+  router.post('/delCar', controller.shop.shopcart.delCar); // 删除购物车
+  router.post('/findCartList', controller.shop.shopcart.findCartList); // 查找购物车
+  router.post('/findOnecart', controller.shop.shopcart.findOnecart); // 查询单个购物车表
+  router.post('/reviceCart', controller.shop.shopcart.reviceCart); // 编辑购物车信息
+
+  // 电商商品类别接口
+  router.post('/addClassify', controller.shop.shopclassify.addClassify); // 编辑购物车信息
+  router.post('/delClassify', controller.shop.shopclassify.delClassify); // 删除商品类别
+  router.post('/findClassify', controller.shop.shopclassify.findClassify); // 查找商品类别
+  router.post('/findOneify', controller.shop.shopclassify.findOneify); // 查询单个商品类别
+  router.post('/reviceify', controller.shop.shopclassify.reviceify); // 编辑商品类别
+
+  // 电商收货信息接口
+  router.post('/addrece', controller.shop.shoprecemsg.addrece); // 添加收货人信息
+  router.post('/delrece', controller.shop.shoprecemsg.delrece); // 删除收货人信息
+  router.post('/findrece', controller.shop.shoprecemsg.findrece); // 查找收货人信息
+  router.post('/findOnerece', controller.shop.shoprecemsg.findOnerece); // 查找单个收货人信息
+  router.post('/reviceRece', controller.shop.shoprecemsg.reviceRece); // 编辑收货人信息
+
 };

@@ -36,6 +36,7 @@ class ArticleController extends Controller {
                 quantity,
                 totalprice,
                 createtime: Date.now(),
+                isDelete: 0,
             });
             ctx.body = {
                 success: true,
@@ -179,9 +180,8 @@ class ArticleController extends Controller {
                     where: {
                         id,
                     },
-                }
-            );
-            ctx.body = { success: true, msg: '修改成功'};
+                });
+            ctx.body = { success: true, msg: '修改成功', data: res };
         } catch (e) {
             console.log(e);
             ctx.body = {

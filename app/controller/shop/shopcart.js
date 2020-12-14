@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 class ArticleController extends Controller {
 
-    // @添加 购物车
+    // @添加购物车
     // carid-购物车id userid-用户id proid-商品id quantity-商品数量
     // checked-是否勾选 1.勾选 2.未勾选 createtime-创建时间
 
@@ -98,6 +98,61 @@ class ArticleController extends Controller {
             ctx.body = { success: true, data: res };
         } catch (e) {
             ctx.body = { success: false, info: '查询失败',e };
+        }
+    }
+
+    // @查询单个购物车表
+    // carid-购物车id userid-用户id proid-商品id quantity-商品数量
+    // checked-是否勾选 1.勾选 2.未勾选 createtime-创建时间
+    async findOnecart() {
+        const { ctx } = this;
+        const { carid } = ctx.request.body;
+        if (!carid) return ctx.body = { success: false, info: '该购物车不存在'};
+        try {
+            const res = await ctx.model.Shopcart.findByPk(carid,{ raw: true });
+            if (res) {
+                return ctx.body = { success: true, data: res};
+            }
+            ctx.body = { success: false, info:'该购物车不存在'};
+        } catch (e) {
+            ctx.body = {success: false, info: '查询出错' ,e }
+        }
+    }
+
+    // @编辑购物车信息
+    // carid-购物车id userid-用户id proid-商品id quantity-商品数量
+    // checked-是否勾选 1.勾选 2.未勾选 createtime-创建时间
+    async reviceCart() {
+        const { ctx } = this;
+        let {
+            carid,
+            userid,
+            proid,
+            quantity,
+            checked,
+        } = ctx.request.body;
+        const update = {};
+        if (userid) update.userid = userid;
+        if (proid) update.proid = proid;
+        if (quantity) update.quantity = quantity;
+        if (checked) update.checked = checked;
+        if (!carid) return ctx.body = { success: false, msg: '该购物车不存在'};
+        try {
+            const res = await ctx.model.Article.update(
+                update,
+                {
+                    where: {
+                        carid,
+                    },
+                }
+            );
+            ctx.body = { success: true, msg: '修改成功',  };
+        } catch (e) {
+            console.log(e);
+            ctx.body = {
+                success: false,
+                msg: '修改成功',
+            };
         }
     }
 

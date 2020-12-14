@@ -7,35 +7,41 @@ module.exports = app => {
     cateid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     parentid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     classname: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     status: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     sortorder: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     createtime: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
+    isDelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0',
+    },
   }, {
-    tableName: 'shop_classify'
+    tableName: 'shop_classify',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

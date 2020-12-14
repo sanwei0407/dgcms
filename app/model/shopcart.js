@@ -8,41 +8,41 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: true,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
 
     },
     userid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     proid: {
       type: DataTypes.STRING(64),
-      allowNull: true
+      allowNull: true,
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     checked: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     createtime: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
     },
     isDelete: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '0'
+      defaultValue: '0',
     },
   }, {
-    tableName: 'shop_cart'
+    tableName: 'shop_cart',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
