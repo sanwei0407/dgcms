@@ -78,7 +78,7 @@ class jodController extends Controller {
   // 查找所有岗位信息
   async findAllJod() {
     const { ctx, app } = this;
-    let {title, Salary, post, workA, jodC, jobR, workingH,phone, companyP, limit, page } = ctx.request.body;
+    let {title, Salary, post, workA, jodC, jobR, workingH,phone, limit, page } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = { isdelete: 0 };
     if(phone) where.phone = phone;
@@ -88,7 +88,6 @@ class jodController extends Controller {
     if (jodC) where.jodCentent = { [Op.like]: jodC + '%' };
     if (jobR) where.jobRequirements = { [Op.like]: jobR + '%' };
     if (workingH) where.workingHours = { [Op.like]: +workingH + '%' };
-    if (companyP) where.companyProfile = { [Op.like]: companyP + '%' };
     if (title) where.title = { [Op.like]: title + '%' };
 
     limit = limit ? limit * 1 : 20;
