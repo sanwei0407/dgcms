@@ -66,7 +66,7 @@ module.exports = app => {
       defaultValue: '0'
     },
     EnterpriseDesc: {
-      type: DataTypes.LONGTEXT,
+      type: DataTypes.TEXT,
       allowNull: true,
       
     }
