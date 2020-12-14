@@ -36,7 +36,7 @@ module.exports = app => {
   router.post('/editGroup', controller.admin.group.editGroup); // 编辑角色的接口
 
   // 前后台共用用户的接口--common
-  router.post('/common/addUser', controller.common.addUser); // 用户注册（增加）的接口
+  router.post('/common/addUser', controller.common.addUser); // 用户注册登录（增加）的接口
   router.post('/common/delUser', controller.common.delUser); // 用户删除的接口
 
   // 后台用户的接口
@@ -47,7 +47,7 @@ module.exports = app => {
   // 用户的接口
   router.post('/editUser', controller.client.user.editUser); // 用户编辑的接口
   router.post('/findOneUser', controller.client.user.findOneUser); // 查询单个用户信息的接口
-  router.post('/userLogin', controller.client.user.userLogin); // 用户登录的接口
+  // router.post('/userLogin', controller.client.user.userLogin); // 用户登录的接口
 
   // 文章接口
   router.post('/addArt', controller.admin.article.addArt); // 添加文章
@@ -189,13 +189,6 @@ module.exports = app => {
   router.post('/shopProductUpdate', controller.shop.shopproduct.shopProductUpdate);// 修改商品信息
   router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
   router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
-
-  // 电商用户接口
-  router.post('/shopUserLogin', controller.shop.shopuser.shopUserLogin);// 用户登录
-  router.post('/shopUserAdd', controller.shop.shopuser.shopUserAdd);// 用户注册
-  router.post('/shopUsersUpdate', controller.shop.shopuser.shopUsersUpdate);// 用户信息修改
-  router.post('/shopUserFind', controller.shop.shopuser.shopUserFind);// 用户列表查询
-  router.post('/shopUserDel', controller.shop.shopuser.shopUserDel);// 用户删除
 
   // 电商订单明细接口
   router.post('/addOrderit', controller.shop.orderitem.addOrderit); // 添加订单明细

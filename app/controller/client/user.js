@@ -71,40 +71,40 @@ class UserController extends Controller {
   // @last update 2020年11月11日 15:20
   // @用户登录的接口
   // @userName-用户名 pwd-用户密码 phone-手机号码 qq-qq号 （可以通过用户名/手机号码/qq其中一个进行登录）
-  async userLogin() {
-    const { ctx, app } = this;
-    const { userName, pwd, phone, qq } = ctx.request.body;
-    const { Op } = app.Sequelize;
-    const password = utils.md5(pwd);
-    const _w = {};
-    if (userName) _w.userName = { [Op.like]: '%' + userName + '%' };
-    if (phone) _w.phone = { [Op.like]: '%' + phone + '%' };
-    if (qq) _w.qq = { [Op.like]: qq + '%' };
-    try {
-      const res = await ctx.model.User.findOne({
-        where: _w,
-      });
-      if (password === res.dataValues.pwd) {
-        ctx.body = {
-          success: true,
-          data: {
-            userName: res.userName,
-            state: res.state,
-            phone: res.phone,
-            qq: res.qq,
-            wxNickName: res.wxNickName,
-            wxCity: res.wxCity,
-            wxSex: res.wxSex,
-          },
-          info: '登录成功',
-        };
-      } else {
-        ctx.body = { success: false, info: '用户密码不匹配' };
-      }
-    } catch (e) {
-      ctx.body = { success: false, info: '用户密码不匹配' };
-    }
-  }
+  // async userLogin() {
+  //   const { ctx, app } = this;
+  //   const { userName, pwd, phone, qq } = ctx.request.body;
+  //   const { Op } = app.Sequelize;
+  //   const password = utils.md5(pwd);
+  //   const _w = {};
+  //   if (userName) _w.userName = { [Op.like]: '%' + userName + '%' };
+  //   if (phone) _w.phone = { [Op.like]: '%' + phone + '%' };
+  //   if (qq) _w.qq = { [Op.like]: qq + '%' };
+  //   try {
+  //     const res = await ctx.model.User.findOne({
+  //       where: _w,
+  //     });
+  //     if (password === res.dataValues.pwd) {
+  //       ctx.body = {
+  //         success: true,
+  //         data: {
+  //           userName: res.userName,
+  //           state: res.state,
+  //           phone: res.phone,
+  //           qq: res.qq,
+  //           wxNickName: res.wxNickName,
+  //           wxCity: res.wxCity,
+  //           wxSex: res.wxSex,
+  //         },
+  //         info: '登录成功',
+  //       };
+  //     } else {
+  //       ctx.body = { success: false, info: '用户密码不匹配' };
+  //     }
+  //   } catch (e) {
+  //     ctx.body = { success: false, info: '用户密码不匹配' };
+  //   }
+  // }
 
 
 }
