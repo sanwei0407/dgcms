@@ -47,7 +47,6 @@ module.exports = app => {
   // 用户的接口
   router.post('/editUser', controller.client.user.editUser); // 用户编辑的接口
   router.post('/findOneUser', controller.client.user.findOneUser); // 查询单个用户信息的接口
-  // router.post('/userLogin', controller.client.user.userLogin); // 用户登录的接口
 
   // 文章接口
   router.post('/addArt', controller.admin.article.addArt); // 添加文章

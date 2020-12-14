@@ -11,7 +11,7 @@ module.exports = app => {
       autoIncrement: true,
     },
     parentid: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.INTEGER(64),
       allowNull: true,
     },
     classname: {

@@ -45,6 +45,7 @@ class CommonController extends Controller {
             ctx.body = {
               success: true,
               data: {
+                uid: res.uid,
                 userName: res.userName,
                 state: res.state,
                 phone: res.phone,
