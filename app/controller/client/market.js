@@ -10,9 +10,9 @@ class marketController extends Controller {
     if (!Price) return ctx.body = { success: false, info: '请填写价格' };
     if (!condition) return ctx.body = { success: false, info: '请填写成色' };
     if (!region) return ctx.body = { success: false, info: '请填写区域' };
-    // if (!pictureD) return ctx.body = { success: false, info: '请添加图片' };
+    if (!pictureD) return ctx.body = { success: false, info: '请添加图片' };
     if (!title) return ctx.body = { success: false, info: '请填写标题' };
-
+    
     try {
       await ctx.model.Market.create({
         Price, // 价格
