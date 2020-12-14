@@ -10,11 +10,7 @@ class marketController extends Controller {
     if (!Price) return ctx.body = { success: false, info: '请填写价格' };
     if (!condition) return ctx.body = { success: false, info: '请填写成色' };
     if (!region) return ctx.body = { success: false, info: '请填写区域' };
-    if (!contacts) return ctx.body = { success: false, info: '请填写联系人' };
-    if (!pictureD) return ctx.body = { success: false, info: '请添加图片' };
-    if (!tradeN) return ctx.body = { success: false, info: '请填写服务类别' };
-    if (!commodityD) return ctx.body = { success: false, info: '请填写商品详情' };
-    if (!storeInformation) return ctx.body = { success: false, info: '请填写店铺名称' };
+    // if (!pictureD) return ctx.body = { success: false, info: '请添加图片' };
     if (!title) return ctx.body = { success: false, info: '请填写标题' };
 
     try {
@@ -28,10 +24,13 @@ class marketController extends Controller {
         tradeN, // 商品名称
         commodityD, // 商品详情
         storeInformation, // 店铺名称
+        title,
+        isdelete: 0,
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
-      ctx.body = { success: false, info: '添加失败', e };
+      console.log(e)
+      ctx.body = { success: false, info: '添加失败' };
     }
   }
 
