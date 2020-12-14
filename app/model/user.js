@@ -59,6 +59,16 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: '0'
+    },
+    isEnterprise: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: '0'
+    },
+    EnterpriseDesc: {
+      type: DataTypes.LONGTEXT,
+      allowNull: true,
+      
     }
   }, {
     tableName: 'user'
