@@ -10,7 +10,7 @@ class UserController extends Controller {
   // @userName-用户名 pwd-用户密码 phone-手机号码 qq-qq号 wxNickName-微信nickName wxCity-微信城市 wxSex-微信性别 uid-用户id
   async AdEditUser() {
     const { ctx } = this;
-    let { userName, pwd, phone, qq, wxNickName, wxCity, wxSex, uid } = ctx.request.body;
+    let { userName, pwd, phone, qq, wxNickName, wxCity, wxSex, uid,heardPhoto } = ctx.request.body;
     const update = {};
     if (userName) update.userName = userName;
     if (pwd) update.pwd = utils.md5(pwd);
@@ -19,6 +19,7 @@ class UserController extends Controller {
     if (wxNickName) update.wxNickName = wxNickName;
     if (wxCity) update.wxCity = wxCity;
     if (wxSex) update.wxSex = wxSex;
+    if (heardPhoto) update.heardPhoto = heardPhoto;
 
     // 数据过滤
     if (!userName) return ctx.body = { success: false, info: '必须填写真实姓名' };

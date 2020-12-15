@@ -14,6 +14,10 @@ module.exports = app => {
       type: DataTypes.STRING(50),
       allowNull: true
     },
+    heardPhoto: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     pwd: {
       type: DataTypes.STRING(32),
       allowNull: true
