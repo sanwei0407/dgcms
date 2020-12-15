@@ -8,11 +8,11 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement:true
+      autoIncrement: true,
     },
     userName: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     heardPhoto: {
       type: DataTypes.STRING(255),
@@ -20,67 +20,66 @@ module.exports = app => {
     },
     pwd: {
       type: DataTypes.STRING(32),
-      allowNull: true
+      allowNull: true,
     },
     state: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     phone: {
       type: DataTypes.STRING(11),
-      allowNull: true
+      allowNull: true,
     },
     addTime: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: true,
     },
     qq: {
       type: DataTypes.STRING(20),
-      allowNull: true
+      allowNull: true,
     },
     openId: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     wxNickName: {
       type: DataTypes.STRING(50),
-      allowNull: true
+      allowNull: true,
     },
     wxCity: {
       type: DataTypes.STRING(40),
-      allowNull: true
+      allowNull: true,
     },
     wxSex: {
       type: DataTypes.STRING(10),
-      allowNull: true
+      allowNull: true,
     },
     isDelete: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '0'
+      defaultValue: '0',
     },
     vipIntegral: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: '0'
+      defaultValue: '0',
     },
     isEnterprise: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: '0'
+      defaultValue: '0',
     },
     EnterpriseDesc: {
       type: DataTypes.TEXT,
       allowNull: true,
-      
-    }
+    },
   }, {
-    tableName: 'user'
+    tableName: 'user',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

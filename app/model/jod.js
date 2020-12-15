@@ -8,52 +8,64 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     Salary: {
       type: DataTypes.DECIMAL,
-      allowNull: true
+      allowNull: true,
     },
     post: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     workA: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     workAGPS: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     jodC: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     jobR: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     workingH: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     title: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+    },
+    welfare: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    workingYears:{
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    educationRequirements:{
+      type: DataTypes.STRING(255),
+      allowNull: true,
     },
     isdelete: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: '0'
-    }
+      defaultValue: '0',
+    },
   }, {
-    tableName: 'jod'
+    tableName: 'jod',
   });
 
-  Model.associate = function () {
+  Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
