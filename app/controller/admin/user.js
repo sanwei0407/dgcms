@@ -70,6 +70,7 @@ class UserController extends Controller {
           exclude: [ 'pwd', 'openId' ],
         },
       });
+      console.log('res',res)
       ctx.body = { success: true, data: res };
     } catch (e) {
       ctx.body = { success: false, info: '查询失败', e };

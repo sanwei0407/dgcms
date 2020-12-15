@@ -54,6 +54,7 @@ class CommonController extends Controller {
                 wxCity: res.wxCity,
                 wxSex: res.wxSex,
                 openId: res.openId,
+                heardPhoto: res.heardPhoto,
               },
               info: '登录成功',
             };

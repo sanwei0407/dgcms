@@ -6,7 +6,8 @@ class marketController extends Controller {
   // 添加跳蚤市场信息接口
   async addMarket() {
     const { ctx } = this;
-    const { Price, condition, region, title,contacts,phone, pictureD, tradeN, commodityD, storeInformation, } = ctx.request.body;
+    const { Price, condition, region, title,contacts,phone, pictureD, tradeN, commodityD, storeInformation,uid } = ctx.request.body;
+    if(!uid) return ctx.body = {success: false, info: '请先登录'}
     if (!Price) return ctx.body = { success: false, info: '请填写价格' };
     if (!condition) return ctx.body = { success: false, info: '请填写成色' };
     if (!region) return ctx.body = { success: false, info: '请填写区域' };
@@ -18,7 +19,8 @@ class marketController extends Controller {
         Price, // 价格
         condition, // 成色
         region, // 区域
-        contacts, // 联系人
+        contacts, // 联系人的用户名
+        uid, // 联系人的用户id
         phone, // 联系人手机号码
         pictureD, // 图片展示
         tradeN, // 商品名称
@@ -114,8 +116,10 @@ class marketController extends Controller {
   // 修改跳蚤市场信息接口
   async editMarket() {
     const { ctx } = this;
-    const { Price, condition, region,title, contacts,phone, pictureD, tradeN, commodityD, storeInformation, id } = ctx.request.body;
+    const { Price, condition, region,title, contacts,phone, pictureD, tradeN, commodityD, storeInformation, id,uid } = ctx.request.body;
     const update = {};
+    if(!uid) return ctx.body = { success:false,info: '请先登录' }
+    update.uid = uid;
     if (Price) update.Price = Price;
     if (condition) update.condition = condition;
     if (region) update.region = region;
@@ -130,7 +134,7 @@ class marketController extends Controller {
 
     if (!id) return ctx.body = { success: false, info: '无该id或者未输入id' };
     try {
-      const res = await ctx.model.Market.update(update, {
+      const res = await ctx.model.Market.update({...update}, {
         where: {
           id,
         },
