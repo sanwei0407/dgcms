@@ -217,4 +217,6 @@ module.exports = app => {
   router.post('/findOnerece', controller.shop.shoprecemsg.findOnerece); // 查找单个收货人信息
   router.post('/reviceRece', controller.shop.shoprecemsg.reviceRece); // 编辑收货人信息
 
+  // 余额信息接口
+  router.post('/journalAdd', controller.shop.journal.journalAdd); // 添加余额变化信息
 };
