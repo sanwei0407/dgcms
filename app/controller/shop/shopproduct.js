@@ -53,17 +53,13 @@ class ShopproductController extends Controller {
   // 查询商品列表
   async shopProductFind() {
     const { ctx, app } = this;
-    let { cateid, proname, subtitle, mainimage, detail, price, stock, status, limit, page } = ctx.request.body;
+    let { cateid, proname, subtitle, price, limit, page } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = {};
     if (cateid) where.cateid = { [Op.like]: '%' + cateid + '%' };
     if (proname) where.proname = { [Op.like]: '%' + proname + '%' };
     if (subtitle) where.subtitle = { [Op.like]: '%' + subtitle + '%' };
-    if (mainimage) where.mainimage = { [Op.like]: '%' + mainimage + '%' };
-    if (status) where.status = { [Op.like]: '%' + status + '%' };
-    if (detail) where.detail = { [Op.like]: '%' + detail + '%' };
     if (price) where.price = { [Op.like]: price + '%' };
-    if (stock) where.stock = { [Op.like]: '%' + stock + '%' };
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
@@ -95,7 +91,7 @@ class ShopproductController extends Controller {
       }
       ctx.body = { success: false, info: '该用户id不存在' };
     } catch (e) {
-      ctx.body = { success: false, info: '查询出错 ' };
+      ctx.body = { success: false, info: '查询出错' };
     }
   }
 
@@ -121,6 +117,46 @@ class ShopproductController extends Controller {
       ctx.body = { success: true, info: '修改成功', data: res };
     } catch (e) {
       ctx.body = { success: false, info: '修改失败', e };
+    }
+  }
+
+  // 查询商品列表(前端用)
+  async appProductFind() {
+    const { ctx, app } = this;
+    const { cateid, proname, subtitle, price } = ctx.request.body;
+    const { Op } = app.Sequelize;
+    const where = {};
+    if (cateid) where.cateid = { [Op.like]: '%' + cateid + '%' };
+    if (proname) where.proname = { [Op.like]: '%' + proname + '%' };
+    if (subtitle) where.subtitle = { [Op.like]: '%' + subtitle + '%' };
+    if (price) where.price = { [Op.like]: price + '%' };
+    try {
+      const res = await ctx.model.Shopproduct.findAndCountAll({
+        where,
+      });
+      ctx.body = { success: true, info: '查询成功', data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询失败', e };
+    }
+  }
+
+  // 根据id查询详细信息(前端用)
+  async appProductFindOne() {
+    const { ctx } = this;
+    const { proid } = ctx.request.body;
+    if (!proid) return ctx.body = { success: false, info: '商品id不正确' };
+    try {
+      const res = await ctx.model.Shopproduct.findOne({
+        where: {
+          proid,
+        },
+      });
+      if (res) {
+        return ctx.body = { success: true, data: res };
+      }
+      ctx.body = { success: false, info: '该用户id不存在' };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询出错' };
     }
   }
 }

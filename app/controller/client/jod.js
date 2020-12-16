@@ -6,14 +6,13 @@ class jodController extends Controller {
   // 添加岗位信息
   async addJod() {
     const { ctx } = this;
-    const { Salary, post, workA,workAGPS,title, jodC, jobR, workingH, companyP,phone } = ctx.request.body;
+    const { Salary, post, workA, workAGPS, title, jodC, jobR, workingH,educationRequirements,workingYears,phone,uid } = ctx.request.body;
     if (!Salary) return ctx.body = { success: false, info: '请填写工作薪资' };
     if (!post) return ctx.body = { success: false, info: '请填写工作岗位' };
     if (!workA) return ctx.body = { success: false, info: '请填写工作地址' };
     if (!jodC) return ctx.body = { success: false, info: '请填写工作内容' };
     if (!jobR) return ctx.body = { success: false, info: '请填写职位要求' };
     if (!workingH) return ctx.body = { success: false, info: '请填写工作时间' };
-    if (!companyP) return ctx.body = { success: false, info: '请填写公司概况' };
     if (!title) return ctx.body = { success: false, info: '请填写标题' };
     try {
       await ctx.model.Jod.create({
@@ -22,10 +21,12 @@ class jodController extends Controller {
         workA, // 工作地址
         workAGPS, // 地址详细gps信息
         phone, // 联系号码
+        uid,  // 发布人的id
         jodC, // 工作内容
         jobR, // 职位要求
         workingH, // 工作时间
-        companyP, // 公司概况
+        educationRequirements,//学历要求
+        workingYears, // 工作
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
@@ -78,10 +79,11 @@ class jodController extends Controller {
   // 查找所有岗位信息
   async findAllJod() {
     const { ctx, app } = this;
-    let {title, Salary, post, workA, jodC, jobR, workingH,phone, limit, page } = ctx.request.body;
+    let { title, Salary, post, workA, jodC, jobR, workingH,  limit, page,phone,uid } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = { isdelete: 0 };
-    if(phone) where.phone = phone;
+    if(uid) where.uid = uid
+    if (phone) where.phone = phone;
     if (Salary) where.Salary = { [Op.like]: Salary + '%' };
     if (post) where.post = { [Op.like]: post + '%' };
     if (workA) where.workA = { [Op.like]: workA + '%' };
@@ -112,9 +114,9 @@ class jodController extends Controller {
 
   // 修改工作信息
   async editJod() {
-    console.log("a");
+    console.log('a');
     const { ctx } = this;
-    const { Salary, post, workA,workAGPS,title, jodC, jobR, workingH, companyP, id,phone } = ctx.request.body;
+    const { Salary, post, workA, workAGPS, title, jodC, jobR, workingH, companyP, id, phone } = ctx.request.body;
     const update = {};
     if (Salary) update.Salary = Salary;
     if (post) update.post = post;
@@ -123,9 +125,9 @@ class jodController extends Controller {
     if (jobR) update.jobR = jobR;
     if (workingH) update.workingH = workingH;
     if (companyP) update.companyP = companyP;
-    if(workAGPS) update.workAGPS = workAGPS;
-    if(phone) update.phone = phone;
-    if(title) update.phone = title;
+    if (workAGPS) update.workAGPS = workAGPS;
+    if (phone) update.phone = phone;
+    if (title) update.phone = title;
 
 
     if (!id) return ctx.body = { success: false, info: '无该id或者未输入id' };

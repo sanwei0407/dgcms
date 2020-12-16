@@ -49,7 +49,7 @@ module.exports = app => {
       defaultValue: ''
     },
     serviceComm: {
-      type: DataTypes.STRING(255),
+      type:DataTypes.STRING(255),
       allowNull: true
     },
     isdelete: {

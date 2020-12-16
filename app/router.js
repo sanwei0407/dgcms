@@ -47,7 +47,6 @@ module.exports = app => {
   // 用户的接口
   router.post('/editUser', controller.client.user.editUser); // 用户编辑的接口
   router.post('/findOneUser', controller.client.user.findOneUser); // 查询单个用户信息的接口
-  // router.post('/userLogin', controller.client.user.userLogin); // 用户登录的接口
 
   // 文章接口
   router.post('/addArt', controller.admin.article.addArt); // 添加文章
@@ -177,6 +176,7 @@ module.exports = app => {
   // 电商订单接口
   router.post('/shopOrdersAdd', controller.shop.shoporders.shopOrdersAdd);// 创建订单
   router.post('/shopOrdersFind', controller.shop.shoporders.shopOrdersFind);// 查询所有订单
+  router.post('/appOrdersFind', controller.shop.shoporders.appOrdersFind);// 查询所有订单（前端用）
   router.post('/shopOrdersDel', controller.shop.shoporders.shopOrdersDel);// 软删除订单
   router.post('/shopOrdersUpdate', controller.shop.shoporders.shopOrdersUpdate);// 修改订单
 
@@ -188,7 +188,9 @@ module.exports = app => {
   router.post('/shopProductDel', controller.shop.shopproduct.shopProductDel);// 删除商品
   router.post('/shopProductUpdate', controller.shop.shopproduct.shopProductUpdate);// 修改商品信息
   router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
+  router.post('/appProductFind', controller.shop.shopproduct.appProductFind);// 查询全部商品（前端用）
   router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
+  router.post('/appProductFindOne', controller.shop.shopproduct.appProductFindOne);// 根据proid查询商品信息（前端用）
 
   // 电商订单明细接口
   router.post('/addOrderit', controller.shop.orderitem.addOrderit); // 添加订单明细
@@ -217,5 +219,9 @@ module.exports = app => {
   router.post('/findrece', controller.shop.shoprecemsg.findrece); // 查找收货人信息
   router.post('/findOnerece', controller.shop.shoprecemsg.findOnerece); // 查找单个收货人信息
   router.post('/reviceRece', controller.shop.shoprecemsg.reviceRece); // 编辑收货人信息
+
+  // 余额信息接口
+  router.post('/journalAdd', controller.shop.journal.journalAdd); // 添加余额变化信息
+  router.post('/journalFind', controller.shop.journal.journalFind); // 查询余额变化信息
 
 };

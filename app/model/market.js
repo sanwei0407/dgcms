@@ -10,6 +10,10 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true
     },
+    uid: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
     Price: {
       type: DataTypes.DECIMAL,
       allowNull: true

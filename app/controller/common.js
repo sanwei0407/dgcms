@@ -45,6 +45,7 @@ class CommonController extends Controller {
             ctx.body = {
               success: true,
               data: {
+                uid: res.uid,
                 userName: res.userName,
                 state: res.state,
                 phone: res.phone,
@@ -53,6 +54,7 @@ class CommonController extends Controller {
                 wxCity: res.wxCity,
                 wxSex: res.wxSex,
                 openId: res.openId,
+                heardPhoto: res.heardPhoto,
               },
               info: '登录成功',
             };
