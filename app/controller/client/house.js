@@ -6,7 +6,9 @@ class houseController extends Controller {
   // 增加房屋租聘信息
   async addHouse() {
     const { ctx } = this;
-    const { Price, pictureDi, leasingM, houseT, floor, detailedA, indoorF, communalF, houseH, housingD, architecturalA, buildingT, propertyC, propertyCosts, businessD } = ctx.request.body;
+    const { Price, pictureDi, leasingM, houseT, floor, detailedA, indoorF, communalF, houseH, housingD, architecturalA, buildingT, propertyC, propertyCosts, businessD,uid,phone } = ctx.request.body;
+    if(!uid) return ctx.body = { success:false, info: '请登录' }
+    if(!phone) return ctx.body = { success: false, info: '请填写手机号码' }
     if (!Price) return ctx.body = { success: false, info: '请填写价格' };
     if (!pictureDi) return ctx.body = { success: false, info: '请添加图片' };
     if (!leasingM) return ctx.body = { success: false, info: '请填写租聘方式' };
@@ -39,6 +41,8 @@ class houseController extends Controller {
         propertyC, // 物业公司
         propertyCosts, // 物业费用
         businessD, // 所属商圈
+        uid,
+        phone
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
