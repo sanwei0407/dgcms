@@ -14,12 +14,33 @@ class JournalController extends Controller {
         uid,
         beforfee,
         changefee,
-        afterfee: beforfee * 1 - changefee * 1,
+        afterfee: beforfee * 1 + changefee * 1,
         addTime: Date.now(),
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
       ctx.body = { success: false, info: '添加失败' };
+    }
+  }
+  // 查询订单
+  async journalFind() {
+    const { ctx } = this;
+    let { uid, addTime, limit, page } = ctx.request.body;
+    const where = {};
+    if (uid) where.uid = uid;
+    if (addTime) where.addTime = addTime;
+    limit = limit ? limit * 1 : 20;
+    page = page ? page : 1;
+    const offset = (page - 1) * limit;
+    try {
+      const res = await ctx.model.Journal.findAndCountAll({
+        where,
+        limit,
+        offset,
+      });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询失败', e };
     }
   }
 
