@@ -5,7 +5,7 @@ const pinyin4js = require('pinyin4js');
 
 class AdminController extends Controller {
   // @author zbx
-  // @last update 2020年11月10日 16:15
+  // @last update 2020年12月16日 17:30
   // @管理员注册（增加）的接口
   // userName-用户名 pwd-用户密码 addTime-注册时间 groupId-用户组id phone-用户手机号码 smscode-验证码
   async addAdmin() {
@@ -33,7 +33,7 @@ class AdminController extends Controller {
         },
       });
       if (res[0]) {
-        ctx.body = { success: false, msg: '该账户已注册' };
+        ctx.body = { success: false, info: '该账户已注册' };
         return;
       }
       const password = utils.md5(pwd);
@@ -46,7 +46,6 @@ class AdminController extends Controller {
           addTime: Date.now(), // 注册时间
         });
         ctx.body = { success: true, info: '添加成功' };
-        // await app.redis.del(phone);
       } catch (e) {
         ctx.body = { success: false, info: '添加失败' };
         console.log(e);
@@ -184,7 +183,7 @@ class AdminController extends Controller {
         // console.log('菜单对应的路径：', TreeDate);
         ctx.body = {
           success: true,
-          msg: '登录成功',
+          info: '登录成功',
           data: {
             userName: res.userName,
             groupId: res.groupId,
@@ -195,13 +194,13 @@ class AdminController extends Controller {
       if (pwdd !== res.pwd) { // 密码错误
         ctx.body = {
           success: false,
-          msg: '密码错误',
+          info: '密码错误',
         };
       }
     } catch (e) {
       ctx.body = {
         success: false,
-        msg: '用户名不存在' + e,
+        info: '用户名不存在',
       };
       console.log('error!!!' + e);// 输出报错
     }
@@ -221,25 +220,26 @@ class AdminController extends Controller {
           aid,
         },
       });
-      ctx.body = { success: true, msg: '删除成功' };
+      ctx.body = { success: true, info: '删除成功' };
     } catch (e) {
       console.log(e);
     }
 
   }
 
-  // @author undefined(罗铿）
-  // @lastUpdata 2020.11.10 14:44
+  // @author 罗铿 + zbx
+  // @lastUpdata 2020.12.16 22:37
   // @管理员修改（编辑）密码
-  // @userName 用户名 pwd 密码 phone 手机号码
   async editAdmin() {
     const { ctx } = this;
-    const { aid, userName, pwd, phone } = ctx.request.body;
+    const { aid, userName, pwd, phone, groupId } = ctx.request.body;
     const update = {};
     if (userName) update.username = userName;
     if (pwd) update.pwd = utils.md5(pwd);
     if (phone) update.phone = phone;
+    if (groupId) update.groupId = groupId;
     // 数据过滤
+    if (!userName) return ctx.body = { success: false, info: '用户名未填写' };
     if (!phone) return ctx.body = { success: false, info: '手机号未填写' };
     if (!pwd) return ctx.body = { success: false, info: '密码未填写' };
     // 手机号码检验
@@ -247,7 +247,6 @@ class AdminController extends Controller {
       ctx.body = { success: false, info: '请输入正确的手机号' };
       return;
     }
-
     try {
       const res = await ctx.model.Admin.findOne({
         where: {
@@ -264,10 +263,10 @@ class AdminController extends Controller {
           },
         }
       );
-      ctx.body = { success: true, msg: '修改成功', update };
+      ctx.body = { success: true, info: '修改成功', update };
     } catch (e) {
       console.log(e);
-      ctx.body = { success: false, msg: '修改失败了', e };
+      ctx.body = { success: false, info: '修改失败了', e };
     }
   }
 
@@ -290,13 +289,35 @@ class AdminController extends Controller {
         where,
         limit,
         offset,
-        attributes: {
-          exclude: [ 'pwd' ],
-        },
+        // attributes: {
+        //   exclude: [ 'pwd' ],
+        // },
       });
       ctx.body = { success: true, data: res };
     } catch (e) {
       ctx.body = { success: false, info: '查询失败', e };
+    }
+  }
+
+  // @author zbx
+  // @last update 2020年12月16日 23:03
+  // @通过groupId来查询管理员表中是否还存在groupId这个角色名称
+  async findOneAdmin() {
+    const { ctx } = this;
+    const { groupId } = ctx.request.body;
+    try {
+      const where = {};
+      if (groupId) where.groupId = groupId;
+      const res = await ctx.model.Admin.findAndCountAll({
+        where,
+        raw: true,
+        attributes: {
+          exclude: [ 'pwd', 'addTime' ],
+        },
+      });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询出错 ' };
     }
   }
 
