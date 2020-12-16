@@ -13,7 +13,7 @@ class jodController extends Controller {
     if (!jodC) return ctx.body = { success: false, info: '请填写工作内容' };
     if (!jobR) return ctx.body = { success: false, info: '请填写职位要求' };
     if (!workingH) return ctx.body = { success: false, info: '请填写工作时间' };
-    if (!title) return ctx.body = { success: false, info: '请填写标题' };
+    // if (!title) return ctx.body = { success: false, info: '请填写标题' };
     try {
       await ctx.model.Jod.create({
         Salary, // 工作薪资
