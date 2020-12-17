@@ -8,61 +8,65 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement:true
+      autoIncrement: true,
     },
     category: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     serviceArea: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     contacts: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
     },
     businessA: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     serviceF: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     companyP: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     serviceContent: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
     },
     title: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
     },
-    
+
     chargingS: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      defaultValue: ''
+      defaultValue: '',
     },
     serviceComm: {
-      type:DataTypes.STRING(255),
-      allowNull: true
+      type: DataTypes.STRING(255),
+      allowNull: true,
     },
     isdelete: {
       type: DataTypes.STRING(255),
-      allowNull: true
-    }
+      allowNull: true,
+    },
+    cover: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
   }, {
-    tableName: 'servers'
+    tableName: 'servers',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };
