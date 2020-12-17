@@ -27,6 +27,7 @@ class jodController extends Controller {
         workingH, // 工作时间
         educationRequirements,//学历要求
         workingYears, // 工作
+        title
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {

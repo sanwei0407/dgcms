@@ -12,11 +12,11 @@ module.exports = app => {
     },
     uid: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     phone: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     Salary: {
       type: DataTypes.DECIMAL,
@@ -48,7 +48,7 @@ module.exports = app => {
     },
     title: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     welfare: {
       type: DataTypes.STRING(255),
