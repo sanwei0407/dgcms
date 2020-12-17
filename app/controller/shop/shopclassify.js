@@ -72,9 +72,8 @@ class ArticleController extends Controller {
   // cateid-类别编号 parentid-父类别编号 classname-类别名称
   // status-使用状态 1.可用 0.不可用 sortorder-类别排序 createtime-创建时间
   async findClassify() {
-    const { ctx, app } = this;
+    const { ctx } = this;
     let { page, limit } = ctx.request.body;
-    const { Op } = app.Sequelize;
     const where = { isDelete: 0 };
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
