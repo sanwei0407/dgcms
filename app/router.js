@@ -147,6 +147,16 @@ module.exports = app => {
   router.post('/findAllJod', controller.client.jod.findAllJod);// 查找所有招聘信息
   router.post('/findOneJod', controller.client.jod.findOneJod); // 查询单个招聘信息接口
   router.post('/editJod', controller.client.jod.editJod);// 编辑招聘信息
+  // 招聘类型接口
+  router.post('/addJobType', controller.client.jobtype.addJobType);// 编辑招聘类型信息
+  router.post('/delJobType', controller.client.jobtype.delJobType);// 删除招聘类型信息 软删除
+  router.post('/destroyJobType', controller.client.jobtype.destroyJobType);// 删除招聘类型信息 直接删除
+  router.post('/getJobTypeList', controller.client.jobtype.getJobTypeList);// 获取全部的分类
+  router.post('/updateJobType', controller.client.jobtype.updateJobType);// 修改分类信息
+
+
+
+
 
   // 跳蚤市场信息接口
   router.post('/addMarket', controller.client.market.addMarket);// 添加跳蚤市场信息
@@ -154,6 +164,11 @@ module.exports = app => {
   router.post('/findAllMarket', controller.client.market.findAllMarket);// 查找跳蚤市场信息
   router.post('/findOneMarket', controller.client.market.findOneMarket); // 查询单个跳蚤市场信息
   router.post('/editMarket', controller.client.market.editMarket); // 编辑跳蚤市场信息
+  // 二手商品类型的接口
+  router.post('/addMarketType', controller.client.marketType.addMarketType); // 增加二手分类
+  router.post('/delMarketType', controller.client.marketType.delMarketType); // 删除二手分类
+  router.post('/updateMarketType', controller.client.marketType.updateMarketType); // 修改二手分类信息
+  router.post('/getMarketType', controller.client.marketType.getMarketType); // 获取二手分类列表
 
   // 房屋租聘信息接口
   router.post('/addHouse', controller.client.house.addHouse);// 添加房屋租聘信息
