@@ -6,7 +6,7 @@ class ServersController extends Controller {
   //  添加服务信息
   async addServers() {
     const { ctx } = this;
-    const { category, serviceArea, contacts,title, businessA, serviceF, serviceC, companyP, serviceContent, movingP, chargingS, serviceComm } = ctx.request.body;
+    const { category, cover, serviceArea, contacts, title, businessA, serviceF, serviceC, companyP, serviceContent, movingP, chargingS, serviceComm } = ctx.request.body;
     if (!category) return ctx.body = { success: false, info: '请填类别' };
     if (!serviceArea) return ctx.body = { success: false, info: '请填写服务区域' };
     if (!contacts) return ctx.body = { success: false, info: '请填写联系人' };
@@ -19,7 +19,7 @@ class ServersController extends Controller {
     // if (!chargingS) return ctx.body = { success: false, info: '请填写收费标准' };
     // if (!serviceComm) return ctx.body = { success: false, info: '请填写服务承诺' };
     if (!title) return ctx.body = { success: false, info: '请填写标题' };
-
+    if (!cover) return ctx.body = { success: false, info: '传入封面照片' };
 
     try {
       await ctx.model.Servers.create({
@@ -34,7 +34,8 @@ class ServersController extends Controller {
         movingP, // 搬家流程
         chargingS, // 收费标准
         serviceComm, // 服务承诺
-        title,
+        title,  // 招聘标题
+        cover, // 封面照片
       });
       ctx.body = { success: true, info: '添加成功' };
     } catch (e) {
@@ -83,7 +84,7 @@ class ServersController extends Controller {
   // 查找所有服务信息
   async findAllServers() {
     const { ctx, app } = this;
-    let { limit, page, category, serviceArea,title, contacts, businessA, serviceF, companyP, serviceContent, chargingS, serviceComm } = ctx.request.body;
+    let { limit, page, category, serviceArea, title, contacts, businessA, serviceF, companyP, serviceContent, chargingS, serviceComm } = ctx.request.body;
     const { Op } = app.Sequelize;
     const where = { isdelete: 0 };
     if (category) where.category = { [Op.like]: category + '%' };
@@ -120,7 +121,7 @@ class ServersController extends Controller {
   // 修改服务信息
   async editServers() {
     const { ctx } = this;
-    const { category, serviceArea, contacts, businessA,title, serviceF, serviceC, companyP, serviceContent, movingP, chargingS, serviceComm, id } = ctx.request.body;
+    const { category, serviceArea, contacts, businessA, title, serviceF, serviceC, companyP, serviceContent, movingP, chargingS, serviceComm, id } = ctx.request.body;
     const update = {};
     if (category) update.category = category;
     if (serviceArea) update.serviceArea = serviceArea;

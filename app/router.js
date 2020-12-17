@@ -19,6 +19,7 @@ module.exports = app => {
   router.post('/loginAdmin', controller.admin.admin.loginAdmin); // 管理员登录接口
   router.post('/addAdmin', controller.admin.admin.addAdmin); // 管理员注册(增加)的接口
   router.post('/findAdmin', controller.admin.admin.findAdmin); // 管理员(查询)的接口
+  router.post('/findOneAdmin', controller.admin.admin.findOneAdmin); // 通过groupId查询管理员数据中是否还存在
   router.post('/smsCode', controller.admin.admin.smscode); // 发送短信验证码（暂时不用）
   router.post('/checkSms', controller.admin.admin.checkSms); // 校验短信验证码（暂时不用）
   router.post('/delAdmin', controller.admin.admin.delAdmin); // 校验短信验证码（暂时不用）
@@ -26,12 +27,13 @@ module.exports = app => {
   // 管理员的权限接口
   router.post('/addRole', controller.admin.role.addRole); // 增加权限的接口
   router.post('/findRole', controller.admin.role.findRole); // 查询权限的接口
-  router.post('/findPath', controller.admin.role.findPath); // 通过路径查询该路径的详情
+  router.post('/findPid', controller.admin.role.findPid); // 通过id号找对应自己的pid(父亲找儿子)
   router.post('/findOneRole', controller.admin.role.findOneRole); // 通过id查询权限详情的接口
   router.post('/delRole', controller.admin.role.delRole); // 删除权限的接口
   router.post('/addGroup', controller.admin.group.addGroup); // 增加角色的接口
   router.post('/findGroup', controller.admin.group.findGroup); // 查询角色的接口
   router.post('/findOneGroup', controller.admin.group.findOneGroup); // 通过groupId查询角色详情的接口
+  router.post('/findNameGroup', controller.admin.group.findNameGroup); // 通过name查询角色详情的接口
   router.post('/delGroup', controller.admin.group.delGroup); // 删除角色的接口
   router.post('/editGroup', controller.admin.group.editGroup); // 编辑角色的接口
 
@@ -145,6 +147,16 @@ module.exports = app => {
   router.post('/findAllJod', controller.client.jod.findAllJod);// 查找所有招聘信息
   router.post('/findOneJod', controller.client.jod.findOneJod); // 查询单个招聘信息接口
   router.post('/editJod', controller.client.jod.editJod);// 编辑招聘信息
+  // 招聘类型接口
+  router.post('/addJobType', controller.client.jobtype.addJobType);// 编辑招聘类型信息
+  router.post('/delJobType', controller.client.jobtype.delJobType);// 删除招聘类型信息 软删除
+  router.post('/destroyJobType', controller.client.jobtype.destroyJobType);// 删除招聘类型信息 直接删除
+  router.post('/getJobTypeList', controller.client.jobtype.getJobTypeList);// 获取全部的分类
+  router.post('/updateJobType', controller.client.jobtype.updateJobType);// 修改分类信息
+
+
+
+
 
   // 跳蚤市场信息接口
   router.post('/addMarket', controller.client.market.addMarket);// 添加跳蚤市场信息
@@ -152,6 +164,11 @@ module.exports = app => {
   router.post('/findAllMarket', controller.client.market.findAllMarket);// 查找跳蚤市场信息
   router.post('/findOneMarket', controller.client.market.findOneMarket); // 查询单个跳蚤市场信息
   router.post('/editMarket', controller.client.market.editMarket); // 编辑跳蚤市场信息
+  // 二手商品类型的接口
+  router.post('/addMarketType', controller.client.marketType.addMarketType); // 增加二手分类
+  router.post('/delMarketType', controller.client.marketType.delMarketType); // 删除二手分类
+  router.post('/updateMarketType', controller.client.marketType.updateMarketType); // 修改二手分类信息
+  router.post('/getMarketType', controller.client.marketType.getMarketType); // 获取二手分类列表
 
   // 房屋租聘信息接口
   router.post('/addHouse', controller.client.house.addHouse);// 添加房屋租聘信息

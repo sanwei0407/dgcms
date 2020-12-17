@@ -61,72 +61,46 @@ class AdminController extends Controller {
       ctx.body = { success: false, info: '查询失败', e };
     }
   }
-
   // @author zbx
-  // @last update 2020年11月24日 14:30
-  // @通过路径查询该路径的详情
-  async findPath() {
+  // @last update 2020年12月16日 09:30
+  // @通过pid号查询对应的信息
+  async findPid() {
     const { ctx, app } = this;
-    const { path, userName } = ctx.request.body;
+    const { groupId } = ctx.request.body;
     const { Op } = app.Sequelize;
     try {
-      // 通过当前角色名称---获取到对应到权限roles
-      const name = await ctx.model.Admin.findOne({
+      // 登录时---通过groupId---获取到对应到roles
+      const role = await ctx.model.Group.findOne({
         where: {
-          userName,
-        },
-        attributes: {
-          exclude: [ 'pwd' ],
+          groupId,
         },
       });
-      const groupId = name.dataValues.groupId;
-      const groupRole = await ctx.model.Group.findByPk(groupId, { raw: true });
-      const rolesArr = groupRole.roles.split(',').filter(r => r !== ',').map(Number);
-      // 通过当前页面到路径--获取当前页面所拥有的按钮，如：['删除'，'编辑']
-      const where = {};
-      if (path) where.path = path;
-      const res = await ctx.model.Role.findOne({
-        where,
-        raw: true,
-      });
-      const box = {};
-      box.pid = res.id;
-      const resAction = await ctx.model.Role.findAndCountAll({
-        where: box,
-        raw: true,
-      });
-      const actionId = []; // 当前页面的按钮属性的----id值
-      for (const item of resAction.rows) {
-        actionId.push(item.id);
-      }
-      const _yes = []; // 存放页面中有的按钮权限的id
-      for (const item of actionId) {
-        if (rolesArr.includes(item)) {
-          // console.log('存在', item);
-          _yes.push(item);
-        }
-      }
-      const resRole = await ctx.model.Role.findAll({ where: {
+      console.log('roles', role.dataValues.roles);
+      const rolesArr = role.dataValues.roles.split(',').filter(r => r !== ',').map(Number);
+      // 通过roles ---获取到对应的role表格
+      const tt = await ctx.model.Role.findAll({ where: {
         id: {
-          [Op.in]: _yes,
+          [Op.in]: rolesArr,
         },
       },
       raw: true,
       });
-      console.log('resRole', resRole);
-      const actionArr = []; // 当前页面的按钮属性集合
-      for (const item of resRole) {
-        console.log('item.name', item.name);
-        actionArr.push(item.name);
+      for (const item of tt) {
+        if (item.pid > 0) {
+          const parent = tt.find(r => r.id === item.pid); // 找（父亲）等于pid的id
+          if (parent) {
+            if (!parent.children) parent.children = [];
+            parent.children.push(item);
+          }
+        }
       }
-      res.action = actionArr;
-      ctx.body = { success: true, data: res };
+      const TreeDate = tt.filter(r => r.pid === 1);
+      console.log('数据', TreeDate);
+      ctx.body = { success: true, data: TreeDate };
     } catch (e) {
-      ctx.body = { success: false, info: '查询失败' };
-      console.log(e);
+      ctx.body = { success: false, info: '查询出错 ' };
     }
   }
-
   // @author zbx
   // @last update 2020年11月25日 14:50
   // @通过id号获取当前角色的详情的接口
