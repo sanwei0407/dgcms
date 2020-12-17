@@ -191,20 +191,31 @@ class ServerTypeController extends Controller {
     // 得到服务类型列表
     async getServeTypeList() {
         const {
-            ctx
+            ctx,
+            app
         } = this;
         let {
+            serve,
+            Pserve,
             limit,
             page
         } = ctx.request.body
+        const { Op } = app.Sequelize;
+        const where = { isDelete: 0 }
+        if(serve) where.serve = {
+            [Op.like]: '%' + serve + '%'
+        };
+
+        if(Pserve) where.Pserve = {
+            [Op.like]: '%' + Pserve + '%'
+        };
+
         limit = limit ? limit * 1 : 20;
         page = page ? page : 1;
         const offset = (page - 1) * limit;
         try {
             const res = await ctx.model.Servetype.findAndCountAll({
-                where: {
-                    isDelete: 0
-                },
+                where,
                 limit,
                 offset,
                 attributes: {
