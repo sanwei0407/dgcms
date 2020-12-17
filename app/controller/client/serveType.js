@@ -132,7 +132,7 @@ class ServerTypeController extends Controller {
             id
         } = ctx.request.body;
         try {
-            const res = await ctx.model.ServeType.update({
+            const res = await ctx.model.Servetype.update({
                 isDelete: 1,
             }, {
                 where: {
@@ -168,7 +168,7 @@ class ServerTypeController extends Controller {
         }
 
         try {
-            const res = await ctx.model.ServeType.update({
+            const res = await ctx.model.Servetype.update({
                 serve,
                 Pserve
             }, {
@@ -201,7 +201,7 @@ class ServerTypeController extends Controller {
         page = page ? page : 1;
         const offset = (page - 1) * limit;
         try {
-            const res = await ctx.model.ServeType.findAndCountAll({
+            const res = await ctx.model.Servetype.findAndCountAll({
                 where: {
                     isDelete: 0
                 },
@@ -219,7 +219,8 @@ class ServerTypeController extends Controller {
             console.log(e)
             ctx.body = {
                 success: false,
-                msg: '查询失败'
+                msg: '查询失败',
+                error: e,
             }
         }
     }
