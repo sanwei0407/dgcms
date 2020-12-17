@@ -48,7 +48,7 @@ module.exports = app => {
     },
     isDelete: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       defaultValue: '0',
     },
   }, {
