@@ -17,7 +17,7 @@ class ShopOrdersController extends Controller {
     if (!endtime) return ctx.body = { success: false, info: '请填写订单完成时间' };
     if (!closetime) return ctx.body = { success: false, info: '请填写交易关闭时间' };
     try {
-      ctx.model.Shoporders.create({
+      const res = await ctx.model.Shoporders.create({
         userid,
         shoppingid,
         payment,
@@ -31,6 +31,7 @@ class ShopOrdersController extends Controller {
         createtime: Date.now(),
         isDelete: '0',
       });
+      console.log(res)
       ctx.body = { success: true, info: '创建订单成功' };
     } catch (e) {
       ctx.body = { success: false, info: '创建订单失败' };
@@ -115,6 +116,23 @@ class ShopOrdersController extends Controller {
       ctx.body = { success: true, info: '修改成功', data: res };
     } catch (e) {
       ctx.body = { success: false, info: '修改失败', e };
+    }
+  }
+
+  // 查询订单（前端用）
+  async appOrdersFind() {
+    const { ctx } = this;
+    const where = { isDelete: 0 };
+    try {
+      const res = await ctx.model.Shoporders.findAndCountAll({
+        where,
+        attributes: {
+          exclude: [ 'isDelete' ],
+        },
+      });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询失败', e };
     }
   }
 }

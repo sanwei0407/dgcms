@@ -19,6 +19,7 @@ module.exports = app => {
   router.post('/loginAdmin', controller.admin.admin.loginAdmin); // 管理员登录接口
   router.post('/addAdmin', controller.admin.admin.addAdmin); // 管理员注册(增加)的接口
   router.post('/findAdmin', controller.admin.admin.findAdmin); // 管理员(查询)的接口
+  router.post('/findOneAdmin', controller.admin.admin.findOneAdmin); // 通过groupId查询管理员数据中是否还存在
   router.post('/smsCode', controller.admin.admin.smscode); // 发送短信验证码（暂时不用）
   router.post('/checkSms', controller.admin.admin.checkSms); // 校验短信验证码（暂时不用）
   router.post('/delAdmin', controller.admin.admin.delAdmin); // 校验短信验证码（暂时不用）
@@ -26,12 +27,13 @@ module.exports = app => {
   // 管理员的权限接口
   router.post('/addRole', controller.admin.role.addRole); // 增加权限的接口
   router.post('/findRole', controller.admin.role.findRole); // 查询权限的接口
-  router.post('/findPath', controller.admin.role.findPath); // 通过路径查询该路径的详情
+  router.post('/findPid', controller.admin.role.findPid); // 通过id号找对应自己的pid(父亲找儿子)
   router.post('/findOneRole', controller.admin.role.findOneRole); // 通过id查询权限详情的接口
   router.post('/delRole', controller.admin.role.delRole); // 删除权限的接口
   router.post('/addGroup', controller.admin.group.addGroup); // 增加角色的接口
   router.post('/findGroup', controller.admin.group.findGroup); // 查询角色的接口
   router.post('/findOneGroup', controller.admin.group.findOneGroup); // 通过groupId查询角色详情的接口
+  router.post('/findNameGroup', controller.admin.group.findNameGroup); // 通过name查询角色详情的接口
   router.post('/delGroup', controller.admin.group.delGroup); // 删除角色的接口
   router.post('/editGroup', controller.admin.group.editGroup); // 编辑角色的接口
 
@@ -191,6 +193,7 @@ module.exports = app => {
   // 电商订单接口
   router.post('/shopOrdersAdd', controller.shop.shoporders.shopOrdersAdd);// 创建订单
   router.post('/shopOrdersFind', controller.shop.shoporders.shopOrdersFind);// 查询所有订单
+  router.post('/appOrdersFind', controller.shop.shoporders.appOrdersFind);// 查询所有订单（前端用）
   router.post('/shopOrdersDel', controller.shop.shoporders.shopOrdersDel);// 软删除订单
   router.post('/shopOrdersUpdate', controller.shop.shoporders.shopOrdersUpdate);// 修改订单
 
@@ -202,7 +205,9 @@ module.exports = app => {
   router.post('/shopProductDel', controller.shop.shopproduct.shopProductDel);// 删除商品
   router.post('/shopProductUpdate', controller.shop.shopproduct.shopProductUpdate);// 修改商品信息
   router.post('/shopProductFind', controller.shop.shopproduct.shopProductFind);// 查询全部商品
+  router.post('/appProductFind', controller.shop.shopproduct.appProductFind);// 查询全部商品（前端用）
   router.post('/shopProductFindOne', controller.shop.shopproduct.shopProductFindOne);// 根据proid查询商品信息
+  router.post('/appProductFindOne', controller.shop.shopproduct.appProductFindOne);// 根据proid查询商品信息（前端用）
 
   // 电商订单明细接口
   router.post('/addOrderit', controller.shop.orderitem.addOrderit); // 添加订单明细
@@ -234,4 +239,6 @@ module.exports = app => {
 
   // 余额信息接口
   router.post('/journalAdd', controller.shop.journal.journalAdd); // 添加余额变化信息
+  router.post('/journalFind', controller.shop.journal.journalFind); // 查询余额变化信息
+
 };

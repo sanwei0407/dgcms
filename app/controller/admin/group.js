@@ -4,23 +4,13 @@ const Controller = require('egg').Controller;
 
 class AdminController extends Controller {
   // @author zbx
-  // @last update 2020年11月24日 21:15
+  // @last update 2020年12月16日 23：35
   // @增加角色（用户组）的接口
   async addGroup() {
     const { ctx, app } = this;
-    const Op = app.Sequelize;
+    const { Op } = app.Sequelize;
     const { name } = ctx.request.body;
-    // try {
-    //   await ctx.model.Group.create({
-    //     name, // 名称
-    //   });
-    //   ctx.body = { success: true, info: '添加成功' };
-    // } catch (e) {
-    //   ctx.body = { success: false, info: '添加失败' };
-    //   console.log(e);
-    // }
     try {
-      // 账号信息的过滤（查看是否已注册）
       const res = await ctx.model.Group.findAll({
         where: {
           [Op.or]:
@@ -29,24 +19,17 @@ class AdminController extends Controller {
               ],
         },
       });
-      console.log('zbx', res);
       if (res[0]) {
-        ctx.body = { success: false, info: '该角色已存在！' };
+        ctx.body = { success: false, info: '该角色已注册' };
         return;
       }
-      try {
-        await ctx.model.Group.create({
-          name, // 名称
-        });
-        ctx.body = { success: true, info: '添加成功' };
-      } catch (e) {
-        ctx.body = { success: false, info: '添加失败' };
-        console.log(e);
-      }
+      const res2 = await ctx.model.Group.create({
+        name, // 名称
+      });
+      ctx.body = { success: true, info: '添加成功', data: res2 };
     } catch (e) {
+      ctx.body = { success: false, info: '添加失败' };
       console.log(e);
-      ctx.body = { success: false, info: '添加失败2' };
-      return;
     }
   }
   // @author zbx
@@ -81,9 +64,25 @@ class AdminController extends Controller {
   async findOneGroup() {
     const { ctx } = this;
     const { groupId } = ctx.request.body;
-    // if (!groupId) return ctx.body = { success: false, info: '用户组id不存在' };
     try {
       const res = await ctx.model.Group.findByPk(groupId, { raw: true });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询出错 ' };
+    }
+  }
+  // @author zbx
+  // @last update 2020年12月16日 17:10
+  // @通过管理员名称name获取当前角色的详情的接口
+  // @name-用户组名称name
+  async findNameGroup() {
+    const { ctx } = this;
+    const { name } = ctx.request.body;
+    try {
+      const res = await ctx.model.Group.findOne({
+        where: { name },
+        raw: true,
+      });
       ctx.body = { success: true, data: res };
     } catch (e) {
       ctx.body = { success: false, info: '查询出错 ' };
