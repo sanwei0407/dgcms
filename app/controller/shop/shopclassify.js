@@ -95,7 +95,7 @@ class ArticleController extends Controller {
     }
   }
 
-  // @查询单个商品类别
+  // @查询子商品类别
   // cateid-类别编号 parentid-父类别编号 classname-类别名称
   // status-使用状态 1.可用 0.不可用 sortorder-类别排序 createtime-创建时间
 
@@ -113,6 +113,35 @@ class ArticleController extends Controller {
       ctx.body = { success: false, info: '查询出错', e };
     }
   }
+
+  // 查找父类商品类别
+  // parentid-父类别编号 classname-类别名称
+  // status-使用状态 1.可用 0.不可用 sortorder-类别排序 createtime-创建时间
+
+  async findParentify () {
+    const { ctx, app } = this;
+    let { page, limit } = ctx.request.body;
+    const { Op } = app.Sequelize;
+    const where = { isDelete: 0 , parentid:0 };
+    limit = limit ? limit * 1 : 20;
+    page = page ? page : 1;
+    const offset = (page - 1) * limit;
+    try {
+      const res = await ctx.model.Shopclassify.findAndCountAll({
+        where,
+        limit,
+        offset,
+        attributes: {
+          exclude: [ 'parentid' ],
+        },
+      });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      ctx.body = { success: false, info: '查询失败' };
+      console.log(e);
+    }
+  }
+
 
   // @编辑商品类别
   // cateid-类别编号 parentid-父类别编号 classname-类别名称

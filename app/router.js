@@ -226,9 +226,10 @@ module.exports = app => {
   // 电商商品类别接口
   router.post('/addClassify', controller.shop.shopclassify.addClassify); // 编辑购物车信息
   router.post('/delClassify', controller.shop.shopclassify.delClassify); // 删除商品类别
-  router.post('/findClassify', controller.shop.shopclassify.findClassify); // 查找商品类别
+  router.post('/findClassify', controller.shop.shopclassify.findClassify); // 查找子商品类别
   router.post('/findOneify', controller.shop.shopclassify.findOneify); // 查询单个商品类别
   router.post('/reviceify', controller.shop.shopclassify.reviceify); // 编辑商品类别
+  router.post('/findParentify', controller.shop.shopclassify.findParentify); // 查找父商品类别
 
   // 电商收货信息接口
   router.post('/addrece', controller.shop.shoprecemsg.addrece); // 添加收货人信息

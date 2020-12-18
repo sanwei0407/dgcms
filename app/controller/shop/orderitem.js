@@ -169,7 +169,7 @@ class ArticleController extends Controller {
         if (proname) update.proname = proname;
         if (proimage) update.proimage = proimage;
         if (currentunitprice) update.currentunitprice = currentunitprice;
-        if (quantity) update.quantity = quantity;
+    if (quantity) update.quantity = quantity;
         if (totalprice) update.totalprice = totalprice;
         if (createtime) update.createtime = createtime;
         if (!id) return ctx.body = { success: false, msg: '该订单明细表不存在'};
