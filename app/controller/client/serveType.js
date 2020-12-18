@@ -132,7 +132,7 @@ class ServerTypeController extends Controller {
             id
         } = ctx.request.body;
         try {
-            const res = await ctx.model.ServeType.update({
+            const res = await ctx.model.Servetype.update({
                 isDelete: 1,
             }, {
                 where: {
@@ -168,7 +168,7 @@ class ServerTypeController extends Controller {
         }
 
         try {
-            const res = await ctx.model.ServeType.update({
+            const res = await ctx.model.Servetype.update({
                 serve,
                 Pserve
             }, {
@@ -191,20 +191,31 @@ class ServerTypeController extends Controller {
     // 得到服务类型列表
     async getServeTypeList() {
         const {
-            ctx
+            ctx,
+            app
         } = this;
         let {
+            serve,
+            Pserve,
             limit,
             page
         } = ctx.request.body
+        const { Op } = app.Sequelize;
+        const where = { isDelete: 0 }
+        if(serve) where.serve = {
+            [Op.like]: '%' + serve + '%'
+        };
+
+        if(Pserve) where.Pserve = {
+            [Op.like]: '%' + Pserve + '%'
+        };
+
         limit = limit ? limit * 1 : 20;
         page = page ? page : 1;
         const offset = (page - 1) * limit;
         try {
-            const res = await ctx.model.ServeType.findAndCountAll({
-                where: {
-                    isDelete: 0
-                },
+            const res = await ctx.model.Servetype.findAndCountAll({
+                where,
                 limit,
                 offset,
                 attributes: {
@@ -219,7 +230,8 @@ class ServerTypeController extends Controller {
             console.log(e)
             ctx.body = {
                 success: false,
-                msg: '查询失败'
+                msg: '查询失败',
+                error: e,
             }
         }
     }
