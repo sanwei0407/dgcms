@@ -193,23 +193,23 @@ class CommonController extends Controller {
         raw: true,
       });
       console.log('escape', path);
-      if(cate){
+      if (cate) {
         const _tp = cate.templateId;
         templateDir = _tp;
         // 列表页面处理流程
         await ctx.model.Article.belongsTo(ctx.model.Category, { targetKey: 'cid', foreignKey: 'cid' });
         const _article = await app.model.Article.findAll({ where: {
           cid: cate.cid,
-          
+
         }, include: [
           {
             model: ctx.model.Category,
           },
         ] });
-  
+
         app.locals.articleList = _article;
       }
-     
+
     }
 
     // 内容页处理流程
@@ -233,9 +233,8 @@ class CommonController extends Controller {
       ctx.locals.article = article;
     }
 
-    
-    if(templateDir) await ctx.render(templateDir); // 最终渲染
-   
+
+    if (templateDir) await ctx.render(templateDir); // 最终渲染
 
 
   }

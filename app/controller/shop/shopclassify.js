@@ -73,16 +73,10 @@ class ArticleController extends Controller {
   // status-使用状态 1.可用 0.不可用 sortorder-类别排序 createtime-创建时间
   async findClassify() {
     const { ctx } = this;
-    let { page, limit } = ctx.request.body;
     const where = { isDelete: 0 };
-    limit = limit ? limit * 1 : 20;
-    page = page ? page : 1;
-    const offset = (page - 1) * limit;
     try {
       const res = await ctx.model.Shopclassify.findAndCountAll({
         where,
-        limit,
-        offset,
         attributes: {
           exclude: [ 'isDelete' ],
         },

@@ -11,7 +11,7 @@ module.exports = app => {
       autoIncrement: true,
     },
     cateid: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     proname: {

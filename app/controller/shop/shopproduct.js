@@ -64,10 +64,16 @@ class ShopproductController extends Controller {
     page = page ? page : 1;
     const offset = (page - 1) * limit;
     try {
+      await ctx.model.Shopproduct.belongsTo(ctx.model.Shopclassify, { targetKey: 'cateid', foreignKey: 'cateid' });
       const res = await ctx.model.Shopproduct.findAndCountAll({
         where,
         limit,
         offset,
+        include: [
+          {
+            model: ctx.model.Shopclassify,
+          },
+        ],
       });
       ctx.body = { success: true, info: '查询成功', data: res };
     } catch (e) {
