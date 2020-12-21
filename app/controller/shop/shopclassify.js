@@ -2,7 +2,7 @@
 const utils = require('utility'); // 引入一个工具库
 const Controller = require('egg').Controller;
 
-class ArticleController extends Controller {
+class shopclassifyController extends Controller {
 
   // @添加商品类别
   // cateid-类别编号 parentid-父类别编号 classname-类别名称
@@ -16,6 +16,7 @@ class ArticleController extends Controller {
       classname,
       status,
       sortorder,
+      imgurl,
     } = ctx.request.body;
     if (!parentid) return ctx.body = { success: false, msg: '请输入父类别编号' };
     if (!classname) return ctx.body = { success: false, msg: '请输入类别名称' };
@@ -27,8 +28,8 @@ class ArticleController extends Controller {
         classname,
         status,
         sortorder,
+        imgurl,
         createtime: Date.now(),
-        isDelete: 0,
       });
       ctx.body = {
         success: true,
@@ -51,10 +52,7 @@ class ArticleController extends Controller {
       cateid,
     } = ctx.request.body;
     try {
-      await ctx.model.Shopclassify.update({
-        isDelete: 1,
-      },
-      {
+      await ctx.model.Shopclassify.destroy({
         where: {
           cateid,
         },
@@ -73,13 +71,10 @@ class ArticleController extends Controller {
   // status-使用状态 1.可用 0.不可用 sortorder-类别排序 createtime-创建时间
   async findClassify() {
     const { ctx } = this;
-    const where = { isDelete: 0 };
+    const where = {};
     try {
       const res = await ctx.model.Shopclassify.findAndCountAll({
         where,
-        attributes: {
-          exclude: [ 'isDelete' ],
-        },
       });
       ctx.body = { success: true, data: res };
     } catch (e) {
@@ -111,11 +106,10 @@ class ArticleController extends Controller {
   // parentid-父类别编号 classname-类别名称
   // status-使用状态 1.可用 0.不可用 sortorder-类别排序 createtime-创建时间
 
-  async findParentify () {
-    const { ctx, app } = this;
+  async findParentify() {
+    const { ctx } = this;
     let { page, limit } = ctx.request.body;
-    const { Op } = app.Sequelize;
-    const where = { isDelete: 0 , parentid:0 };
+    const where = { isDelete: 0, parentid: 0 };
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
@@ -147,14 +141,14 @@ class ArticleController extends Controller {
       classname,
       status,
       sortorder,
-      createtime,
+      imgurl,
     } = ctx.request.body;
     const update = {};
     if (parentid) update.parentid = parentid;
     if (classname) update.classname = classname;
     if (status) update.status = status;
     if (sortorder) update.sortorder = sortorder;
-    if (createtime) update.createtime = createtime;
+    if (imgurl) update.imgurl = imgurl;
     if (!cateid) return ctx.body = { success: false, msg: '该商品类别不存在' };
     try {
       const res = await ctx.model.Shopclassify.update(
@@ -173,11 +167,8 @@ class ArticleController extends Controller {
         msg: '修改失败',
       };
     }
-
-
   }
-
 }
 
 
-module.exports = ArticleController;
+module.exports = shopclassifyController;

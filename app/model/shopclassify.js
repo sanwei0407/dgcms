@@ -30,10 +30,9 @@ module.exports = app => {
       type: DataTypes.DATE,
       allowNull: true,
     },
-    isDelete: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: '0',
+    imgurl: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   }, {
     tableName: 'shop_classify',
