@@ -22,6 +22,7 @@ class shopclassifyController extends Controller {
     if (!classname) return ctx.body = { success: false, msg: '请输入类别名称' };
     if (!status) return ctx.body = { success: false, msg: '请输入使用状态' };
     if (!sortorder) return ctx.body = { success: false, msg: '请输入类别排序' };
+    if (!imgurl) return ctx.body = { success: false, msg: '请输入图片地址' };
     try {
       await ctx.model.Shopclassify.create({
         parentid,
