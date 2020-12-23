@@ -7,36 +7,35 @@ module.exports = app => {
     bid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      primaryKey: true
     },
     uid: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     beforfee: {
       type: DataTypes.DECIMAL,
-      allowNull: true,
-    },
-    afterfee: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
+      allowNull: true
     },
     changefee: {
       type: DataTypes.DECIMAL,
-      allowNull: true,
+      allowNull: true
+    },
+    afterfee: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     },
     addTime: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+      type: DataTypes.STRING(255),
+      allowNull: true
+    }
   }, {
-    tableName: 'journal',
+    tableName: 'journal'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

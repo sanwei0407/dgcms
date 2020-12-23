@@ -7,40 +7,39 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      primaryKey: true
     },
     url: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     name: {
       type: DataTypes.STRING(50),
-      allowNull: true,
+      allowNull: true
     },
     type: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     imgurl: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     order: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     isdelete: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'sponsor',
+    tableName: 'sponsor'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

@@ -7,8 +7,7 @@ module.exports = app => {
     aid: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement:true
+      primaryKey: true
     },
     userName: {
       type: DataTypes.STRING(50),

@@ -7,73 +7,72 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    uid: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    phone: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
+      primaryKey: true
     },
     Salary: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
+      type: DataTypes.STRING(10),
+      allowNull: true
     },
     post: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     workA: {
       type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    workAGPS: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     jodC: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     jobR: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     workingH: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
-    title: {
+    phone: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
-    welfare: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    workingYears:{
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    educationRequirements:{
-      type: DataTypes.STRING(255),
-      allowNull: true,
+    uid: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     isdelete: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: '0',
+      defaultValue: '0'
     },
+    workAGPS: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    title: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    welfare: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    workingYears: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    educationRequirements: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    }
   }, {
-    tableName: 'jod',
+    tableName: 'jod'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

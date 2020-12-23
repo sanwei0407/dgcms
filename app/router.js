@@ -242,4 +242,6 @@ module.exports = app => {
   router.post('/journalAdd', controller.shop.journal.journalAdd); // 添加余额变化信息
   router.post('/journalFind', controller.shop.journal.journalFind); // 查询余额变化信息
 
+  // 数据总数接口
+  router.post('/totaldata', controller.total.totaldata.findtotalUser); // 查询余额变化信息
 };

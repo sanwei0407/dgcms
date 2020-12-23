@@ -7,12 +7,7 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    uid: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
+      primaryKey: true
     },
     Price: {
       type: DataTypes.DECIMAL,
@@ -38,6 +33,10 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    title: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     tradeN: {
       type: DataTypes.STRING(255),
       allowNull: true
@@ -50,11 +49,12 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
     isdelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
+    },
+    uid: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
@@ -62,7 +62,7 @@ module.exports = app => {
     tableName: 'market'
   });
 
-  Model.associate = function () {
+  Model.associate = function() {
 
   }
 

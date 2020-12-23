@@ -7,12 +7,11 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement:true
+      primaryKey: true
     },
     uid: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true
     },
     phone: {
       type: DataTypes.STRING(255),
@@ -79,6 +78,11 @@ module.exports = app => {
       allowNull: true
     },
     isdelete: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: '0'
+    },
+    houseName: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
