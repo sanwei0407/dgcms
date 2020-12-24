@@ -1,0 +1,62 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/activity.css?version=233332">
+<div class="content">
+        <div  class="content1" style="height:300px;background:url(/public/img/p1.png) center center no-repeat;background-size:cover">
+
+        </div>
+        <div class="content2">
+            <div class="choose">
+                {% for item in subCates %}
+                  <div>
+                      <a href="{{item.seoUrl}}">{{item.name}}</a>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content3">
+            <div class="content31">
+                <div class="choose2">
+                    <div class="classify">活动类型:</div>
+                    <div class="classify-item">
+                      <a href="{{cate.seoUrl}}">
+                      全部
+                      </a>
+                    </div>
+                    {% for item in typeList %}
+                    <div class="classify-item">
+                      <a href="{{cate.seoUrl}}?type={{item.value}}">
+                          {{item.label}}
+                      </a>
+                    </div>
+                   {% endfor %}
+                </div>
+
+                <div class="choose2">
+                    <div class="classify">&#12288&#12288排序:</div>
+                    <div class="classify-item">默认</div>
+                    <div class="classify-item">最新活动</div>
+                    <div class="classify-item">人气最高</div>
+                </div>
+            </div>
+        </div>
+        <div class="content4">
+            <div class="con4">
+                   {% for item in activitys %}
+                <div class="content4-item">
+                    <a href="{{cate.seoUrl}}/{{item.id}}">
+                        <div><h3>{{item.title}}</h3></div>
+                        <div><h6></h6></div>
+                        <div class="img">
+                            <img src="{{item.cover}}">
+                        </div>
+                        <div><p>时间：{{item.sTime|time}} 至 {{item.eTime|time}}</p></div>
+                        <div><i ></i></div>
+                    </a>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+    {% include "./public/foot.nj" %}

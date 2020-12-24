@@ -1,0 +1,74 @@
+ {% include "./public/head.nj" %}
+ <link rel="stylesheet" href="/public/css/leader.css">
+ <div class="chart" style="background: url(/public/img/p2.png)  center  no-repeat;background-size: cover;height: 335px; ">
+
+    </div>
+    <div class="content">
+        <div class="content-left">
+            <div class="title">
+                领导班子
+            </div>
+            <div class="leader-item">
+                <div class="leader-photo">
+                    <img src="/public/img/918.png" alt="">
+                </div>
+                <div class="leaderInfo">
+                    李立骞：男，大专学历，1992年7月参加工作。现任梧州市群众艺术馆馆长、党支部书记，国家一级演员，梧州市舞蹈家协会副主席。
+                </div>
+            </div>
+            <div class="leader-item">
+                <div class="leader-photo">
+                    <img src="/public/img/919.png" alt="">
+                </div>
+                <div class="leaderInfo">
+                    欧佩琼：女，大专学历，1985年7月参加工作。现任梧州市群众艺术馆党支部副书记、副馆长，国家二级演员，中国音乐家协会会员、梧州市音乐家协会副主席。
+                </div>
+            </div>
+            <div class="leader-item">
+                <div class="leader-photo">
+                    <img src="/public/img/920.png" alt="">
+                </div>
+                <div class="leaderInfo">
+                    廖亮：男，大专学历，1997年7月参加工作。现任梧州市群众艺术馆副馆长，国家二级演员，广西儿童音乐学会副秘书长、梧州市戏剧曲艺家协会副主席。                </div>
+            </div>
+            <div class="leader-item">
+                <div class="leader-photo">
+                    <img src="/public/img/921.png" alt="">
+                </div>
+                <div class="leaderInfo">
+                    黄自林：男，大专学历，1991年1月参加工作，现任梧州市群众艺术馆副馆长、艺术研究院院长，国家二级编剧。广西作家协会会员，中国戏剧家协会会员，广西小小说学会副会长，梧州市作协第七、八、九届副主席，梧州市第十四届人大常委员会委员、科教文卫和民族委员会委员。                </div>
+            </div>
+            <div class="leader-item">
+                <div class="leader-photo">
+                    <img src="/public/img/922.png" alt="">
+                </div>
+                <div class="leaderInfo">
+                    李梅娜：  女，本科学历， 1998年7月参加工作。现任梧州市群众艺术馆副馆长，国家二级演员，梧州市舞蹈家协会副主席。                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="box">
+                <div class="box-title">
+                    <span>本馆概况</span>
+                    <span>SURVEY</span>
+                </div>
+               <a href='/benguangaikuang/jianjie'>
+                <div class="content-item2">
+
+                    本馆概况
+                </div>
+                </a>
+                       <a href='/benguangaikuang/banzi'>
+                <div class="content-item1">
+                    领导班子
+                </div>
+                </a>
+              <a href='/benguangaikuang/shezhi'>
+                  <div class="content-item2">
+                    部门设置
+                </div>
+              </a>
+            </div>
+        </div>
+    </div>
+     {% include "./public/foot.nj" %}

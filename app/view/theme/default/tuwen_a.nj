@@ -1,0 +1,34 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/artteam.css?345454">
+ <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
+
+    </div>
+    <div class="content">
+        <!--    面包屑-->
+            {% include "./public/innernav.nj" %}
+
+
+     {% for item in articleList %}
+        <div class="content-item">
+           <div class="artteam-img" style="background:url({{ item.cover}}) center center no-repeat;background-size:cover">
+
+           </div>
+           <div class="artteam-content">
+              <a href="./{{item.aid}}" >
+                 <div class="content-title">
+                {{ item.title }}
+                 </div>
+              </a>
+             <div class="contentInfo">
+               {{ item.contentSummary }}
+             </div>
+           </div>
+           <div class="viewD">
+               查看详情
+           </div>
+        </div>
+       {% endfor %}
+
+    </div>
+
+{% include "./public/foot.nj" %}

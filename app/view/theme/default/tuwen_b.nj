@@ -1,0 +1,70 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/artteam.css?23432">
+<link rel="stylesheet" href="/public/css/list_b.css">
+ <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
+
+    </div>
+
+        <div class="lb_wrap">
+            <!--    面包屑-->
+            {% include "./public/innernav.nj" %}
+        <div class="lbleft">
+             {% for item in articleList %}
+            <div class="lb_item">
+                <div class="lbimg" style="background:url({{ item.cover}}) center center no-repeat;background-size:cover">
+
+                </div>
+                <div class="lbtxt">
+                   <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                    <div class="lbtitle">
+                        {{item.title}}
+                    </div>
+                    <div class="lbct">
+                        {{ item.contentSummary|quiteHtml }}
+                     </div>
+                     </a>
+                    <div class="lbtime">
+                        发布时间： 2020-12-05     浏览量:{{item.reading}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="pages">
+                {% for item in pagation %}
+                    <a href="{{item.url}}" {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="lbrigth clr">
+            {% if cate.seoUrl === '/wenhuafuwu/fuwu' %}
+            <a class="applybox" href="/user/single">
+                个人志愿者报名
+            </a>
+            <a class="applybox" href="/user/team">
+                团队志愿者报名
+            </a>
+            {% endif %}
+
+            <div class="reBox">
+                <div class="retitle">热门动态</div>
+                <div class="relist">
+                     {% for item in hotList %}
+                    <div class="relist_item">
+                      <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                        <div class="reitem_title">{{item.title}}</div>
+                        </a>
+                        <div class="reitem_desc">
+                            <span>{{item.author}}</span>
+                            <span>{{item.addTime|time}}</span>
+                            <div style="clear:both"></div>
+                        </div>
+                    </div>
+                     {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% include "./public/foot.nj" %}

@@ -1,0 +1,61 @@
+  {% include "./public/head.nj" %}
+  <link rel="stylesheet" href="/public/css/detai_a.css">
+  <!-- 活动详情 -->
+    <div id="cententBody">
+        <!-- 菜单 -->
+        <!--    面包屑-->
+        {% include "./public/innernav.nj" %}
+        <!-- 左边主题内容 -->
+        <div class="left">
+            <div class="heard">
+                <!-- 标题 -->
+                <div class="title">
+                    <span>{{article.title}}</span>
+                </div>
+                <div class="from">
+                    来源：<span> 梧州群艺馆 </span> &nbsp&nbsp <span> 2020-12-11 </span> 发布&nbsp&nbsp&nbsp <span> 5 </span> 浏览
+                </div>
+            </div>
+
+            <div class="text">
+                <div class="textarea">
+                  {{ article.content|safe }}
+                </div>
+            </div>
+
+
+            <div class="more ">
+                <div class="left">
+                    <div> 我是图标</div>
+                    <div> <span>0</span> 赞 </div>
+                </div>
+                <div class="right">
+                    分享:
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 右边热门动态 -->
+        <div class="right">
+            <div class="reBox">
+                <div class="retitle">热门动态</div>
+                <div class="relist">
+                    {% for item in hotList %}
+                    <div class="relist_item">
+                        <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                            <div class="reitem_title">{{item.title}}</div>
+                        </a>
+                        <div class="reitem_desc">
+                            <span>{{item.author}}</span>
+                            <span>{{item.addTime|time}}</span>
+                            <div style="clear:both"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"> </div>
+    </div>
+    {% include "./public/foot.nj" %}

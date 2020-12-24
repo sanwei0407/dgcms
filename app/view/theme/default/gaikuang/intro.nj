@@ -1,0 +1,50 @@
+{% include "../public/head.nj" %}
+<link rel="stylesheet" href="/public/css/introduce.css">
+ <div class="chart" style="background: url(/public/img/p2.png)  center  no-repeat;background-size: cover;height: 335px; ">
+
+    </div>
+    <div class="content">
+        <div class="content-left">
+            <div class="title">
+                本馆详情
+            </div>
+            <div class="frist-img">
+                <img src="/public/img/947.jpg" alt="">
+            </div>
+            <div class="contentInfo">
+                梧州市群众艺术馆的前身是梧州市人民文化馆，于1952年9月挂牌成立，1984年7月更名为梧州市群众艺术馆，是公益性文化的副处级事业单位。以策划、组织、辅导、群众文化理论研究、地方戏剧研究、文艺创作，以开展各类群众性文化活动，丰富群众文化生活为工作重点，指导县（区）、乡镇及社区、学校等群众文化工作，辅导培训业余群众文化活动骨干为职责。
+
+                我馆由文艺创作辅导部、少儿艺术指导部、馆站调研编辑部、美术摄影部、活动培训部、办公室和市地方戏剧研究发展中心、市艺术研究院等组成。基本职能是开展公益性群众文化工作，培育和提高全民素质和审美水平。馆原址位于梧州市文化路1号，新馆址位于梧州市三龙大道。在上级部门领导的关怀支持下，经过全馆人员的共同努力，馆的基础条件得到了很大的改善，形成了较大规模的文化阵地。
+
+               本馆艺术门类设置齐全，音乐、舞蹈、美术、书法、摄影、戏剧（戏曲）、文学、理论研究等艺术人才配置合理。
+
+               近年来，在上级部门的正确领导下，开展了以“璀璨广场”为重要载体的群众性文化活动，取得显著成效，受到广大群众的喜爱和欢迎，并在区内引起良好的反响，2012年获广西“八桂群星奖”优秀项目称号。曾获广西文化厅授予的“全区文化工作先进单位”“全区公共文化服务体系建设先进集体”称号，连续多次荣获梧州市“双文明”建设先进单位。
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="box">
+                <div class="box-title">
+                    <span>本馆概况</span>
+                    <span>SURVEY</span>
+                </div>
+               <a href='/benguangaikuang/jianjie'>
+                <div class="content-item1">
+
+                    本馆概况
+                </div>
+                </a>
+                       <a href='/benguangaikuang/banzi'>
+                <div class="content-item2">
+                    领导班子
+                </div>
+                </a>
+              <a href='/benguangaikuang/shezhi'>
+                  <div class="content-item2">
+                    部门设置
+                </div>
+              </a>
+            </div>
+        </div>
+    </div>
+
+{% include "../public/foot.nj" %}

@@ -1,0 +1,184 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/book.css">
+   <div class="head">
+        <div class="mune_mask"></div>
+        <div class="show_banner" style="background:url(https://oss.culturalcloud.net/liuyang/202008/181740323fzu.png) no-repeat top">
+            <div class="show_box main">
+                <div class="p20">
+                    <div class="show_crumbs">
+                        <a href="#">首页</a><em>></em>
+                        <a href="/book">场馆预订</a><em>></em>{{placeinfo.title}}</div>
+                    <div class="info">
+                        <img src="{{placeinfo.cover}}" />
+                        <div class="r">
+                            <h1>{{placeinfo.title}}</h1>
+                            <div class="txt">
+                                类别：{{placeinfo.type|bookTypeStr}}<br />
+                                地址： {{placeinfo.address}}<br />
+                                面积：{{placeinfo.size}}㎡<br />
+                                容纳：{{placeinfo.peoples}}人<br />
+                                特色：
+                                {% for item in placeinfo.tags.split(',') %}
+                                   <b>{{item}}</b>
+                                {% endfor %}
+                                <br />
+                            </div>
+                            <div class="blank10"></div>
+                            <div class="blank10"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--head END-->
+        <div class="show_tabs">
+            <div class="hd">
+                <ul class="actab">
+                    <li class="on" data-id="0">场馆预订</li>
+                    <li  data-id="1">场馆详情</li>
+                    <li class="btn_map"  data-id="2">交通指南</li>
+                </ul>
+            </div>
+
+            <div class="bd">
+                <div class="main" >
+                    <div class="exhibition_show">
+                        <div class="tt">场馆预订<span>（请选择预订时间段）</span></div>
+                        <div class="activity_venues">
+                            <table cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>12.18（周五）</th>
+                                        <th>12.19（周六）</th>
+                                        <th>12.20（周日）</th>
+                                        <th>12.21（周一）</th>
+                                        <th>12.22（周二）</th>
+                                        <th>12.23（周三）</th>
+                                        <th>12.24（周四）</th>
+                                    </tr>
+                                <tbody>
+                                    <tr>
+                                        <td class="able" onclick="showWin('2020-12-18', '9:00-12:00')">
+                                            <span>9:00-12:00<br />
+                                                可预约</span></td>
+                                        <td><span>不可选</span></td>
+                                        <td><span>不可选</span></td>
+                                        <td class="able" onclick="showWin('2020-12-21', '9:00-12:00')">
+                                            <span>9:00-12:00<br />
+                                                可预约</span></td>
+                                        <td class="able" onclick="showWin('2020-12-22', '9:00-12:00')">
+                                            <span>9:00-12:00<br />
+                                                可预约</span></td>
+                                        <td class="able" onclick="showWin('2020-12-23', '9:00-12:00')">
+                                            <span>9:00-12:00<br />
+                                                可预约</span></td>
+                                        <td class="able" onclick="showWin('2020-12-24', '9:00-12:00')">
+                                            <span>9:00-12:00<br />
+                                                可预约</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="able" onclick="showWin('2020-12-18', '2:00-5:00')">
+                                            <span>2:00-5:00<br />
+                                                可预约</span></td>
+                                        <td><span>不可选</span></td>
+                                        <td><span>不可选</span></td>
+                                        <td class="able" onclick="showWin('2020-12-21', '2:00-5:00')">
+                                            <span>2:00-5:00<br />
+                                                可预约</span></td>
+                                        <td class="able" onclick="showWin('2020-12-22', '2:00-5:00')">
+                                            <span>2:00-5:00<br />
+                                                可预约</span></td>
+                                        <td class="able" onclick="showWin('2020-12-23', '2:00-5:00')">
+                                            <span>2:00-5:00<br />
+                                                可预约</span></td>
+                                        <td class="able" onclick="showWin('2020-12-24', '2:00-5:00')">
+                                            <span>2:00-5:00<br />
+                                                可预约</span></td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="main"  style="display: none">
+                    <div class="exhibition_show">
+                        <div class="tt">场馆详情</div>
+                        <div class="activity_show">
+<!--                            -->
+                            <div class="show">
+                                {{placeinfo.desc|safe}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 地图 -->
+                <div class="main"  style="display: none">
+                    <div class="exhibition_show">
+                        <div class="tt">交通指南</div>
+                        <div class="blank10"></div><div class="blank10"></div><div class="blank10"></div>
+                        <div id="allmap" style="width:100%;height:600px;"></div>
+                    </div>
+                </div>
+
+                <!--收藏/ 点赞/ 分享-->
+                <div class="favorite">
+                    <ul>
+                        <li>
+                                <p>收藏</p>
+                            </a></li>
+                        <li>
+                                <p>赞(<span id="ups">8</span>)</p>
+                            </a></li>
+                        <li>
+                            <p>分享</p>
+                            <div class="bdsharebuttonbox"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+       <!--    tab切换-->
+       <script>
+           let tabs = document.querySelectorAll(".actab li");
+           for(const item of tabs){
+               const mains = document.querySelectorAll(".bd .main")
+
+               item.addEventListener('click',(ev)=>{
+
+                   document.querySelector(".on").classList.remove('on')
+                   ev.target.classList.add('on')
+                   let num = parseInt(ev.target.dataset.id)
+                   for(const item of mains){
+                       item.style.display = 'none'
+                   }
+                   mains[num].style.display ='block'
+
+               })
+           }
+       </script>
+        <div class="blank10"></div>
+        <div class="blank10"></div>
+        <div class="blank10"></div>
+        <div class="blank10"></div>
+        <div class="blank10"></div>
+        <!--foot-->
+
+
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=C9g0EhBT47RZMItCfCtnMg3Zm5yNSmoA"></script>
+
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+	//添加地图类型控件
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+	map.setCurrentCity("梧州");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+</script>
+
+{% include "./public/foot.nj" %}

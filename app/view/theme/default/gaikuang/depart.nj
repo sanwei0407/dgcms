@@ -1,0 +1,81 @@
+  {% include "../public/head.nj" %}
+  <link rel="stylesheet" href="../public/css/department.css">
+  <div class="chart" style="background: url(/public/img/p2.png) center  no-repeat;background-size: cover;height: 335px; ">
+   
+    </div>
+    <div class="content">
+        <div class="content-left">
+            <div class="title">
+                部门设置
+            </div>
+            <div class="department">
+                <h1>办公室</h1>
+                
+
+      负责了解和掌握各部（室）工作情况，为领导决策服务，根据各时期工作需要做好上传下达工作。建立建全各项规章制度。处理好日常行政事务（包括公文处理、会议组织、财务管理、人事劳资、职称、后勤保障等项事务）。在党支部领导下建立建全党建目标管理责任制，搞好党务、工会、妇委会工作。
+
+ 
+
+
+<h1>文艺辅导部</h1>
+
+      负责策划、组织开展以“璀璨广场”为品牌的群众文化活动。深入企业、社区、部队、农村、校园进行培训辅导，推动基层文化建设，培养艺术人才。积极创作具有时代审美意义的文艺作品，推出群众文艺精品节目，并参加各类赛事。
+
+      抓好群艺艺术团舞蹈队、群艺少儿艺术团、群艺合唱团、群艺曲艺团、国标舞协会及老年大学艺术团等业余团队的建设。
+
+ 
+
+
+<h1>少儿艺术指导部</h1>
+
+      负责策划、组织各类少儿艺术活动。开展声乐、舞蹈、器乐等艺术培训班，促进全市少儿艺术教育，提升少儿综合素质。积极开展少儿艺术教育的理论研究，撰写理论文章,创作具有时代审美意义和教育意义的少儿文艺作品，选送优秀人才及优秀作品参加各类赛事。
+
+ 
+<h1>美术摄影部</h1>
+
+
+
+      负责策划、组织群众性的书画摄影展览、比赛、交流等活动,举办以少年儿童为主的美术书法培训班,努力完成市文化新闻出版局等上级部门主办的各类大型文艺演出及各类群众文化活动的舞美设计等工作。
+
+ 
+
+<h1>馆（站）调研编辑部</h1>
+
+
+      负责组织开展群众文化理论的研究,积极投身基层文化馆（站）联络工作，并深入社区、街道、乡镇和企业等基层进行调查研究、指导开展丰富多彩的群众文化活动,努力完成每年两期《鸳江文化》。积极配合文化新闻出版局完成非物质文化遗产保护相关工作,及时收集、整理相关群众文化活动档案,开展好梧州市群众文化学会的日常相关管理工作。
+
+ 
+<h1>活动培训部</h1>
+
+
+      负责馆办各项活动的组织、策划相关工作；负责馆办各项培训活动的相关工作；馆灯光、音响、服装等设备设施的管理维护、设计安装、操作调试及使用安排；馆属排练场、业务教室等开放活动场所的使用安排及管理；
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="box">
+                <div class="box-title">
+                    <span>本馆概况</span>
+                    <span>SURVEY</span>
+                </div>
+                       <a href='/benguangaikuang/jianjie'>
+                <div class="content-item2">
+                  
+                    本馆概况
+                </div>
+                </a>
+                       <a href='/benguangaikuang/banzi'>
+                <div class="content-item2">
+                    领导班子
+                </div>
+                </a>
+              <a href='/benguangaikuang/shezhi'>
+                  <div class="content-item1">
+                    部门设置
+                </div>
+              </a>
+              
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    {% include "../public/foot.nj" %}
