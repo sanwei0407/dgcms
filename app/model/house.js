@@ -5,12 +5,13 @@ module.exports = app => {
 
   const Model = app.model.define('house', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     uid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     phone: {
@@ -78,13 +79,9 @@ module.exports = app => {
       allowNull: true
     },
     isdelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       defaultValue: '0'
-    },
-    houseName: {
-      type: DataTypes.STRING(255),
-      allowNull: true
     }
   }, {
     tableName: 'house'

@@ -1,0 +1,35 @@
+{% include "./head.nj" %}
+<link rel="stylesheet" href="/public/css/user.css">
+<link rel="stylesheet" href="/public/layui/css/layui.css">
+<script src="/public/layui/layui.all.js"></script>
+
+<div class="user_head">
+    <div class="user_portrait">
+        <img src="/public/img/user.png" alt="">
+        <p>{{phone}}</p>
+    </div>
+    <div class="btn">
+        <a href=""><i class="iconfont icon-shezhi1"></i>设置</a>
+        {% if state==2 %}
+        <a href=""><i class="iconfont icon-shimingrenzheng"></i>实名审核中</a>
+        {% elif state==1 %}
+        <a href=""><i class="iconfont icon-shimingrenzheng"></i>已实名</a>
+        {% else%}
+        <a href="/auth"><i class="iconfont icon-shimingrenzheng"></i>实名验证</a>
+        {% endif %}
+        <a href="#" id="signIn" onclick="signInVal(this);"><i class="iconfont icon-qiandao1"></i>签到</a>
+    </div>
+</div>
+<div class="user_nav">
+    <ul>
+        <li class="on"><a href="/user/activity">我的活动</a></li>
+        <li><a href="/user/book">我的场馆</a></li>
+        <li><a href="/user/artteam">我的社团</a></li>
+<!--        <li><a href="">慕课学习</a></li>-->
+        <li><a href="">我的消息</a></li>
+<!--        <li><a href="">积分记录</a></li>-->
+        <li><a href="">我的收藏</a></li>
+        <li><a href="">我的评论</a></li>
+<!--        <li><a href="">互动交流</a></li>-->
+    </ul>
+</div>

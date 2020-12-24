@@ -24,17 +24,17 @@ class ArticleController extends Controller {
       top,
       tag,
       isHot,
+      pdf,
       contentSummary,
       whoCanRead,
       reading,
+      type,
     } = ctx.request.body;
     if (!title) return ctx.body = { success: false, msg: '请输入标题!' };
     if (!content) return ctx.body = { success: false, msg: '请输入内容!' };
-    if (!author) return ctx.body = { success: false, msg: '请输入作者!' };
     // if (!cover) return ctx.body = { success: false, msg: '请输入封面地址' };
-    if (!from) return ctx.body = { success: false, msg: '请输入文章来源' };
     if (!cid) return ctx.body = { success: false, msg: '请输入文章栏目' };
-    if (!whoCanRead) return ctx.body = { success: false, msg: '请输入谁可见' };
+
     try {
       await ctx.model.Article.create({
         title,
@@ -44,12 +44,16 @@ class ArticleController extends Controller {
         cover,
         from,
         cid,
-        isHot,
-        top,
+        isHot: isHot ? isHot : 0,
+        top: top ? top : 0,
         tag, // 标签--文章标题的关键字(方便搜索到该文章)
         contentSummary: contentSummary ? contentSummary : content.substring(3, content.lastIndexOf('<')).substring(0, 120), // 如果没有内容摘要 选取内容的前120个字
         whoCanRead,
         reading,
+        state: 1,
+        uid: 0,
+        pdf,
+        type,
       });
       ctx.body = {
         success: true,
@@ -131,6 +135,7 @@ class ArticleController extends Controller {
         where,
         limit,
         offset,
+        order: [[ 'top', 'DESC' ], [ 'aid', 'DESC' ]],
         attributes: {
           exclude: [ 'isDelete' ],
         },
@@ -190,8 +195,9 @@ class ArticleController extends Controller {
       contentSummary,
       whoCanRead,
       reading,
+      type,
     } = ctx.request.body;
-    const update = {updateTime:Date.now()};
+    const update = { updateTime: Date.now() };
     if (title) update.title = title;
     if (content) update.content = content;
     if (author) update.author = author;
@@ -199,10 +205,11 @@ class ArticleController extends Controller {
     if (cid) update.cid = cid;
     if (top) update.top = top;
     if (tag) update.tag = tag;
-    if (isHot) update.tag = isHot;
+    if (isHot) update.isHot = isHot;
     if (contentSummary) update.contentSummary = contentSummary;
     if (whoCanRead) update.whoCanReal = whoCanRead;
     if (reading) update.reading = reading;
+    if (type) update.type = type;
     if (!aid) return ctx.body = { success: false, msg: '该文章不存在' };
     try {
       const res = await ctx.model.Article.update(

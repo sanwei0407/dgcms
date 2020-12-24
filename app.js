@@ -23,6 +23,43 @@ class AppBootHook {
       const d = `${_d.getDate()}`.padStart(2, 0);
       return `${year}-${m}-${d}`;
     });
+
+
+    this.app.nunjucks.addFilter('actypeStr', function(res) {
+      const _type = [
+        { value: 1, label: '展览' },
+        { value: 2, label: '赛事' },
+        { value: 3, label: '培训' },
+        { value: 4, label: '演出' },
+        { value: 5, label: '讲座' },
+        { value: 6, label: '公益' },
+      ];
+      return _type.find(r => r.value == res).label;
+    });
+
+    this.app.nunjucks.addFilter('zoneStr', function(res) {
+      const _zoneList = [
+        { value: 1, label: '万秀区' },
+        { value: 2, label: '长洲区' },
+        { value: 3, label: '龙圩区' },
+        { value: 4, label: '苍梧县' },
+        { value: 5, label: '藤县' },
+        { value: 6, label: '蒙山县' },
+        { value: 7, label: '岑溪市' },
+      ];
+      return _zoneList.find(r => r.value == res).label;
+    });
+
+    this.app.nunjucks.addFilter('bookTypeStr', function(res) {
+      const _zoneList = [
+        { value: 1, label: '文化场馆' },
+        { value: 2, label: '体育场馆' },
+        { value: 3, label: '旅游服务资源场馆' },
+        { value: 4, label: '社会场馆' },
+      ];
+      return _zoneList.find(r => r.value == res).label;
+    });
+
     this.app.nunjucks.addFilter('quiteHtml', function(res) {
       return res.replace(/<.*?>/g, '');
     });

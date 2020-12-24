@@ -1,0 +1,72 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/registered.css">
+<div class="head">
+    <div class="header">
+        <div class="reg">
+            <h3>用户注册</h3>
+            <form class="form" action="">
+                <input type="hidden" name="token" value="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="phone" class="layui-input" lay-verify="phone" name="phone">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="display: none">
+                    <label class="layui-form-label">验证码</label>
+                    <div class="layui-input-inline" style="width:220px">
+                        <input type="text" lay-verify="required" class="layui-input" name="captcha">
+                    </div>
+                    <button type="button" class="layui-btn-primary" id="dyMobileButton">获取验证码</button>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="pwd" class="layui-input" lay-verify="required" name="loginPassword">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="repwd" class="layui-input" lay-verify="required" name="pwdVal">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="hidden" name="token" value="">
+                        <button id="tj" class="layui-btn layui-btn-fluid layui-btn-lg" lay-submit="" lay-filter="formDemo">注册</button>
+                    </div>
+                </div>
+                <div class="t">已有账号，<a href="/login">请登录</a></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+            <script>
+                 $("#tj").click(function(ev){
+                     let phone = $("#phone").val();
+                     let pwd = $("#pwd").val();
+                     let repwd = $("#repwd").val();
+                     if(pwd!==repwd) return  alert('两次输入的密码不一致')
+                     if(pwd.length<6) return  alert('密码长度不能小于6位数')
+                     let code = $("#code").val();
+                     $.post('/register',{
+                         phone,
+                         pwd,
+                         code
+                     },(res)=>{
+                         const { success,info} = res;
+                         if(success){
+                             window.location.href = '/uc'
+                         }else{
+                             alert(info)
+                         }
+
+                     })
+                     ev.preventDefault()
+                 })
+            </script>
+
+</body>
+</html>

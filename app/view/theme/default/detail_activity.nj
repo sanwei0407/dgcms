@@ -1,0 +1,182 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/book.css">
+<link rel="stylesheet" href="/public/layui/css/layui.css">
+<script src="/public/layui/layui.all.js"></script>
+<div class="head">
+    <div class="mune_mask"></div>
+    <div class="show_banner" style="background:url(https://oss.culturalcloud.net/liuyang/202008/181740323fzu.png) no-repeat top">
+        <div class="show_box main">
+            <div class="p20">
+                <div class="show_crumbs">
+                    <!--    面包屑-->
+                    {% include "./public/innernav.nj" %}
+                </div>
+                <div class="info">
+                    <img src="{{activity.cover}}" />
+                    <div class="r">
+                        <h1>{{activity.title}}</h1>
+                        <div class="txt">
+                            类别：{{activity.type|actypeStr}}<br />
+                            地址： {{activity.address}}<br />
+                            活动时间：{{activity.sTime|time}} - {{activity.eTime|time}} <br />
+                            预约时间：{{activity.bookStime|time}} - {{activity.bookStime|time}} <br />
+                            面积：10000㎡<br />
+                            活动人数：{{activity.peopleLimit}}<br />
+
+                        </div>
+                        <div class="blank10"></div>
+                        <div class="blank10"></div>
+                        <div class="t">
+                            <div class="fl">
+                                {% if state == 0  %}
+                                <a href="#" class="btn book" style="background-color:#999;">即将开始预约</a>
+                                {% elif state == 1 %}
+                                <a href="#" id="dobook" class="btn book" data-id="{{activity.id}}"  >
+                                    立即预约
+                                </a>
+                                {% elif state == 2 %}
+                                <a href="#" class="btn book"  style="background-color:#999;">即将开始</a>
+                                {% elif state == 3 %}
+                                <a href="#" class="btn book"  style="background-color:#999;">进行中</a>
+                                {% elif state == 5 %}
+                                <a href="#" class="btn book"  style="background-color:#999;">您已经预约</a>
+                                {% else %}
+                                <a href="#" class="btn book"  style="background-color:#999;">已结束</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--head END-->
+    <div class="show_tabs">
+        <div class="hd">
+            <ul class="actab">
+                <li class="on" data-id="0">活动详情</li>
+                <li data-id="1">交通指南</li>
+            </ul>
+        </div>
+        <div class="bd">
+            <div class="main">
+                <div class="exhibition_show">
+                    {{activity.desc|safe}}
+                </div>
+            </div>
+
+            <!-- 地图 -->
+            <div class="main"  style="display: none">
+                <div class="exhibition_show">
+                    <div class="tt">交通指南</div>
+                    <div class="blank10"></div><div class="blank10"></div><div class="blank10"></div>
+                    <div id="allmap" style="width:100%;height:600px;"></div>
+                </div>
+            </div>
+
+            <!--收藏/ 点赞/ 分享-->
+            <div class="favorite">
+                <ul>
+                    <li>
+                        <p>收藏</p>
+                        </a></li>
+                    <li>
+                        <p>赞(<span id="ups">8</span>)</p>
+                        </a></li>
+                    <li>
+                        <p>分享</p>
+                        <div class="bdsharebuttonbox"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--    tab切换-->
+    <script>
+
+        let tabs = document.querySelectorAll(".actab li");
+        for(const item of tabs){
+            const mains = document.querySelectorAll(".bd .main")
+
+            item.addEventListener('click',(ev)=>{
+
+                 document.querySelector(".on").classList.remove('on')
+                ev.target.classList.add('on')
+                let num = parseInt(ev.target.dataset.id)
+                for(const item of mains){
+                    item.style.display = 'none'
+                }
+                mains[num].style.display ='block'
+
+            })
+        }
+
+
+
+
+        layui.use('upload', function() {
+            var form = layui.form;
+            form.render()
+            var $ = layui.jquery
+                , upload = layui.upload;
+
+            $("#dobook").click((ev)=>{
+                let id = ev.target.dataset.id
+                $.post('/api/joinac',{id},(res)=>{
+                    const  { success,info,backurl } = res
+                    if(success){
+                        layer.msg('报名已经提交成功')
+                        setTimeout(()=> window.location.reload(),1000)
+                    }else{
+                        layer.msg(info)
+                    }
+                    if(backurl) window.location.href = backurl
+                })
+
+
+                ev.preventDefault()
+            })
+
+
+
+
+
+        })
+
+
+
+
+        $(function(){
+
+
+        })
+    </script>
+
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <!--foot-->
+
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=C9g0EhBT47RZMItCfCtnMg3Zm5yNSmoA"></script>
+    <input type="hidden" id="gps" value="{{activity.addresGps}}">
+
+    <script type="text/javascript">
+        let _gps = document.getElementById('gps').value;
+        let gps = _gps.split(",").map(r=>parseInt(r))
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");    // 创建Map实例
+        map.centerAndZoom(new BMap.Point(gps[0], gps[1]), 11);  // 初始化地图,设置中心点坐标和地图级别
+        //添加地图类型控件
+        map.addControl(new BMap.MapTypeControl({
+            mapTypes:[
+                BMAP_NORMAL_MAP,
+                BMAP_HYBRID_MAP
+            ]}));
+        map.setCurrentCity("梧州");          // 设置地图显示的城市 此项是必须设置的
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    </script>
+
+    {% include "./public/foot.nj" %}

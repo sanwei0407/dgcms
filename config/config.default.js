@@ -11,7 +11,7 @@ module.exports = appInfo => {
    * @type {Egg.EggAppConfig}
    **/
   const config = exports = {};
-  config.onerror= {
+  config.onerror = {
     // all(err, ctx) {
     //   // 在此处定义针对所有响应类型的错误处理方法
     //   // 注意，定义了 config.all 之后，其他错误处理方法不会再生效
@@ -19,9 +19,9 @@ module.exports = appInfo => {
     //   ctx.status = 500;
     // },
     html(err, ctx) {
-      console.log('errorinfo ',err.status)
+      console.log('errorinfo ', err.status);
       // html hander
-      ctx.body = '<h1>耗子尾汁</h1>';
+      ctx.body = '<h1>error</h1>';
       ctx.status = 404;
     },
     json(err, ctx) {
@@ -32,11 +32,11 @@ module.exports = appInfo => {
     jsonp(err, ctx) {
       // 一般来说，不需要特殊针对 jsonp 进行错误定义，jsonp 的错误处理会自动调用 json 错误处理，并包装成 jsonp 的响应格式
     },
-  }
+  };
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1604974986714_6917';
-  config.notfound={
+  config.notfound = {
     pageUrl: '/public/404.html',
   };
   // add your middleware config here
@@ -59,12 +59,19 @@ module.exports = appInfo => {
     },
     defaultExtension: '.nj', // 设置渲染的模板文件后缀是.nj 使用的时候可以略去
     defaultViewEngine: 'nunjucks', // 默认的渲染引擎
+
   };
+
+  config.nunjucks = {
+    cache: true,
+  };
+
   // 配置数据库
   config.sequelize = {
     dialect: 'mysql', // 数据库类型
     database: 'dg', // 数据库名
-    host: 'home.yiker.cc',
+    host: 'wz.welltell.cc',
+    // host: '127.0.0.1',
     port: 3306,
     username: 'dg',
     password: 'iKnBTSrdFa37GetN',
@@ -104,10 +111,44 @@ module.exports = appInfo => {
   // 启用Flie文件模式
   config.multipart = {
     mode: 'file',
+    fileExtensions: [ '.pdf' ] // 增加对 apk 扩展名的文件支持
   };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    zoneList: [
+      { value: 1, label: '万秀区' },
+      { value: 2, label: '长洲区' },
+      { value: 3, label: '龙圩区' },
+      { value: 4, label: '苍梧县' },
+      { value: 5, label: '藤县' },
+      { value: 6, label: '蒙山县' },
+      { value: 7, label: '岑溪市' },
+    ],
+    actypeStr: [
+      { value: 1, label: '展览' },
+      { value: 2, label: '赛事' },
+      { value: 3, label: '培训' },
+      { value: 4, label: '演出' },
+      { value: 5, label: '讲座' },
+      { value: 6, label: '公益' },
+    ],
+    bookTypeStr: [
+      { value: 1, label: '文化场馆' },
+      { value: 2, label: '体育场馆' },
+      { value: 3, label: '旅游服务资源场馆' },
+      { value: 4, label: '社会场馆' },
+    ],
+    artTypeList: [
+      { value: 1, label: '舞蹈' },
+      { value: 2, label: '音乐' },
+      { value: 3, label: '戏剧' },
+      { value: 4, label: '曲艺' },
+      { value: 5, label: '美术' },
+      { value: 6, label: '摄影' },
+      { value: 7, label: '文学' },
+      { value: 8, label: '其他' },
+    ],
   };
 
   return {

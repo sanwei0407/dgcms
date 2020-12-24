@@ -1,0 +1,180 @@
+.flex {
+  display: flex;
+}
+
+.wrap {
+  margin: 0 auto;
+}
+
+.br {
+  border: 1px solid red;
+}
+
+.ab {
+  position: absolute;
+}
+
+.re {
+  position: relative;
+}
+
+body,
+html {
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+.menu {
+  height: 22px;
+  margin: 26px 0 30px 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  padding-left: 32px;
+}
+.all {
+  width: 1200px;
+}
+
+.all .choose {
+  width: 367px;
+  height: 46px;
+}
+
+.all .choose .shai {
+  width: 65px;
+  height: 25px;
+  color: #a6a6a6;
+  font-size: 18px;
+  line-height: 46px;
+}
+
+.all .choose .each {
+  flex: 1;
+}
+
+.all .choose .each .one {
+  width: 88px;
+  height: 46px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 46px;
+  text-align: center;
+}
+
+.all .items {
+  width: 1200px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.all .items .item {
+  width: 264px;
+  height: 243px;
+  margin-bottom: 72px;
+}
+
+.all .items .item .pic .end {
+  left: 0;
+  top: 0;
+  width: 61px;
+  height: 24px;
+  color: white;
+  background-color: #999999;
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.all .items .item .pic .rightDown {
+  width: 127px;
+  height: 23px;
+  right: 0;
+  bottom: 10px;
+}
+.pic img{
+  width: 100%;
+}
+.pic{
+  overflow: hidden;
+  height: 185px;
+}
+
+.all .items .item .pic .rightDown .love {
+  width: 38px;
+  height: 23px;
+  color: white;
+  background-color: rgba(110, 18, 18, 0.6);
+  border-radius: 12px;
+  font-size: 8px;
+  line-height: 23px;
+  text-align: center;
+  justify-content: space-around;
+  margin-right: 5px;
+
+}
+
+.all .items .item .pic .rightDown .love i {
+  font-size: 15px;
+}
+
+.all .items .item .title {
+  width: 264px;
+  height: 24px;
+  color: #505050;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 5px 0;
+}
+
+.all .items .item .time {
+  width: 206px;
+  height: 21px;
+  color: #a6a6a6;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: left;
+  padding: 5px 0;
+}
+
+.all .page {
+  width: 404px;
+  height: 32px;
+  margin: 0 auto;
+  margin-top: 38px !important;
+}
+
+.all .page .pageNum {
+  width: 280px;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.all .page .pageNum .num {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: #505050;
+  border: 1px #cccccc solid;
+  border-radius: 4px;
+}
+
+.all .page .jump {
+  flex: 1;
+  line-height: 32px;
+  color: #505050;
+  margin-left: 10px;
+}
+
+.all .page .jump input {
+  margin-left: 5px;
+  width: 40px;
+  border: 1px solid #ccc;
+}

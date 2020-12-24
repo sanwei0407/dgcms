@@ -5,16 +5,17 @@ module.exports = app => {
 
   const Model = app.model.define('category', {
     cid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING(10),
       allowNull: false
     },
     seoUrl: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(200),
       allowNull: true
     },
     templateId: {
@@ -22,11 +23,11 @@ module.exports = app => {
       allowNull: true
     },
     isNav: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     order: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(9),
       allowNull: true,
       defaultValue: '1'
     },
@@ -35,12 +36,12 @@ module.exports = app => {
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: '0'
     },
     pid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: '0'
     },
@@ -65,7 +66,15 @@ module.exports = app => {
       allowNull: true
     },
     isSubmit: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    seoTitle: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    tags: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {

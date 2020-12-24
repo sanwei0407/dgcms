@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('log', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     content: {
       type: DataTypes.STRING(255),
@@ -22,15 +23,15 @@ module.exports = app => {
       allowNull: true
     },
     uid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     aid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     addTime: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     }
   }, {

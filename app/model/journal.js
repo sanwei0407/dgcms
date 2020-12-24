@@ -5,12 +5,13 @@ module.exports = app => {
 
   const Model = app.model.define('journal', {
     bid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     uid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     beforfee: {

@@ -1,0 +1,243 @@
+{% include "../public/uchd.nj" %}
+
+<div class="main" id="app">
+
+
+    <div class="layui-tab">
+
+        <ul class="layui-tab-title">
+            <li class="layui-this">正在预定</li>
+            <li>过期的预定</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-hide" id="jointeam"></table>
+            </div>
+            <div class="layui-tab-item">
+                <table class="layui-hide" id="myteam"></table>
+            </div>
+            <div class="layui-tab-item">
+                <a type="button" class="layui-btn layui-btn-danger" id="publish" href="/user/publish"> 发布</a>
+                <table class="layui-hide" id="teamarticle" lay-filter="teamarticle"></table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/html" id="actionTpl">
+    <!-- 这里的 checked 的状态只是演示 -->
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+
+</script>
+
+<script>
+
+    layui.use('table', function() {
+        var $ = layui.jquery
+            , upload = layui.upload
+            , element = layui.element //Tab的切换功能，切换事件监听等，需要依赖element模块
+            , table = layui.table;
+      // 我的团队表格
+        table.render({
+            elem: '#myteam',
+            url:'/api/myteam',
+            cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            response: {
+                statusCode: true //重新规定成功的状态码为 200，table 组件默认为 0
+            },
+            cols: [[
+                {field:'id', width:60, title: 'ID',}
+                ,{field:'name', width:250, title: '团队名称'}
+                ,{field:'zone', width:120, title: '区域', }
+                ,{field:'type', width:120, title: '团队类型'}
+                ,{field:'state', width:120, title: '状态'}
+            ]],
+            parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+                console.log('res',res)
+                return {
+                    "code": res.success, //解析接口状态
+                    "count": res.count, //解析数据长度
+                    "data": res.rows //解析数据列表
+                };
+            }
+        });
+
+        // 加入的团队表格
+        table.render({
+            elem: '#jointeam',
+            url:'/api/myteam',
+            cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            response: {
+                statusCode: true //重新规定成功的状态码为 200，table 组件默认为 0
+            },
+            cols: [[
+                {field:'id', width:60, title: 'ID',}
+                ,{field:'name', width:250, title: '团队名称'}
+                ,{field:'zone', width:120, title: '区域', }
+                ,{field:'type', width:120, title: '团队类型'}
+                ,{field:'state', width:120, title: '状态'}
+            ]],
+            parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+                console.log('res',res)
+                return {
+                    "code": res.success, //解析接口状态
+                    "count": res.count, //解析数据长度
+                    "data": res.rows //解析数据列表
+                };
+            }
+        });
+
+
+        // 团队风采
+        table.render({
+            elem: '#teamarticle',
+            url:'/api/teamarticle',
+            id:'articlelist',
+            cellMinWidth: 80,
+            response: { statusCode: true  },
+            page: true,
+            cols: [[
+                {field:'aid', width:60, title: 'id',}
+                ,{field:'title', width:350, title: '标题'}
+                ,{field:'author', width:120, title: '作者', }
+                ,{field:'addTime', width:120, title: '发布时间', }
+                ,{field:'state', width:120, title: '状态'}
+                ,{field:'action',  title: '操作', templet:'#actionTpl'}
+            ]],
+            parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+                return {
+                    "code": res.success, //解析接口状态
+                    "count": res.count, //解析数据长度
+                    "data": res.rows //解析数据列表
+                };
+            }
+        });
+
+
+        // 表格处理监听
+
+        //监听工具条
+        table.on('tool(teamarticle)', function(obj){
+
+            const { event,data } = obj
+            if(event === 'edit'){
+                window.location.href='/user/editArticle/'+data.aid
+            }
+            if(event === 'del'){
+                layer.open({
+                    type: 1
+                    ,title: '提示'
+                    ,area: ['390px', '150px']
+                    ,shade: 0
+                    ,maxmin: true
+                    ,offset: [ //为了演示，随机坐标
+                        Math.random()*($(window).height()-300)
+                        ,Math.random()*($(window).width()-390)
+                    ]
+                    ,content: `<h1 style="font-size:16px;font-weight: normal;line-height: 2;text-align: center;">确定删除该文章么？</h1>`
+                    ,btn: ['确定', '取消'] //只是为了演示
+                    ,yes: function(){
+                        $.post('/api/deleArticle',{aid:data.aid},(res)=>{
+                            layer.closeAll();
+                            //执行重载
+                            table.reload('articlelist', {
+                                page: {
+                                    curr: 1 //重新从第 1 页开始
+                                },
+                            }, 'data');
+                        })
+
+                    }
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                });
+            }
+        });
+
+
+        //普通图片上传 正面
+        var uploadFront = upload.render({
+            elem: '#idfront'
+            ,url: 'http://home.yiker.cc:8001/adUpload' //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#idpicfront').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(!res.success ) return layer.msg('上传失败');
+                //上传成功
+                $('#fpic').val(res.msg);
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#idback');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadFront.upload();
+                });
+            }
+        });
+
+
+        // 反面图片上传
+
+        var uploadBack = upload.render({
+            elem: '#idback'
+            ,url: 'http://home.yiker.cc:8001/adUpload' //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#idpicback').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(!res.success ) return layer.msg('上传失败');
+                //上传成功
+                $('#bpic').val(res.msg);
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#idbacktxt');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadBack.upload();
+                });
+            }
+        });
+
+
+        // 提交
+        $("#tj").click(()=>{
+            console.log('aaaaa')
+            let phone = $("#phone").val();
+            let realname = $("#realname").val();
+            let idfront  =$('#fpic').val()
+            let idback  =$('#bpic').val()
+            let idNum  =$('#id').val()
+            $.post('/user/verify',{
+                phone,realname,idfront,idback,idNum
+            },(res)=>{
+                const { success ,info ,backurl} = res;
+                if(backurl) setTimeout(()=>window.location.href=backurl,2000)
+                if(!success) return layer.msg(info)
+
+            })
+
+        })
+
+    })
+
+
+</script>
+
+{% include "../public/foot.nj" %}

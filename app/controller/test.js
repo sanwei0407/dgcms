@@ -4,7 +4,12 @@ const Controller = require('egg').Controller;
 class TestController extends Controller {
   async aa() {
     const { ctx, app } = this;
-    await ctx.render('test.nj');
+    const res = await ctx.model.Article.findAll();
+
+    for (const item of res) {
+      item.update({ contentSummary: item.content.replace(/<.*?>/g, '').slice(0, 60) });
+    }
+
   }
 
 }

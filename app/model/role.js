@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('role', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING(20),
@@ -18,7 +19,7 @@ module.exports = app => {
       allowNull: true
     },
     pid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     action: {

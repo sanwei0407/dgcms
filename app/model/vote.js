@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('vote', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     title: {
       type: DataTypes.STRING(255),
@@ -34,7 +35,7 @@ module.exports = app => {
       allowNull: true
     },
     perLimit: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     addTime: {
@@ -42,7 +43,7 @@ module.exports = app => {
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
     },

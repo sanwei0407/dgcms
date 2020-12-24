@@ -1,31 +1,126 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>{{siteInfo.cfg_webname}}</title>
-		<link rel="stylesheet" href="/public/css/weitoutiao.css">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/home.css?verison=2.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2284466_vai5o5nmba.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
-	</head>
-	<body>
-		<div id="weitoutiao">
-			<div class="header">
-				<div class="header-muen">
-					<div class="header-icon">
-						<img src="https://fakeimg.pl/120x62/">
-					</div>
-					<div class="muen-item">
-						<ul id="nav">
-              {% for item in category %}
-                 <li><a href="{{item.seoUrl}}" targt="_blank">{{ item.name }}</a></li>
-				  		{% endfor %}
-						</ul>
-					</div>
-					<div class="muen-input ">
-						<input type="text" placeholder="关键词"/>
-						<img src="https://fakeimg.pl/34x30/">
-					</div>
-				</div>
-			</div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+</head>
+
+<body>
+  <div class="chd">
+        <!--<div class="wrap topbar">
+            <span>今天是 2020年12月18日 星期五 农历十一月初四</span>
+            {% if phone %}
+            <span style="margin-left:20px"> <a href="/uc">{{phone}}</a></span>
+            {% else %}
+            <span style="margin-left:20px"> <a href="/login">登录</a></span>
+            {% endif %}
+        </div>
+        <div class="wrap main">
+                <div id="logo">
+                    <img src="/public/css/logo.jpg" alt="">
+                </div>
+        </div>
+        <div class="nav">
+            <div class="wrap">
+              <div><a href="/" title="首页">首页</a></div>
+                {% for item in category %}
+                 <div>
+                     <a  href="{{item.seoUrl}}">  {{item.name}} </a>
+                     {% if item.children.length > 0 %}
+                     <div class="sub">
+                         {% for subitem in item.children %}
+                         <a  href="{{subitem.seoUrl}}">  {{subitem.name}} </a>
+                         {% endfor %}
+                     </div>
+                     {% endif %}
+                 </div>
+
+                {% endfor %}
+            </div>
+        </div>-->
+    </div>
+
+  <div id="header-sm" style="margin-bottom: 84px;">
+      <div class="header-nav-top-bg">
+          <div class="header-nav">
+              <ul id="whgnav">
+                  <li><a href="/">首页</a></li>
+                  {% for item in category %}
+                  <li {% if topcid === item.cid %} class="on" {% endif%} >
+                      <a  {% if item.type==3 %} href="{{item.outUrl}}" {% else %}  href="{{item.seoUrl}}" {% endif %} >  {{item.name}} </a>
+                  </li>
+                  {% endfor %}
+              </ul>
+              <div class="loginIn">
+				 <span class="userName">
+                     <i></i>
+                        {% if phone %}
+                        <a href="/uc">{{phone}}</a>
+                        {% else %}
+                       <a href="/login" class="btn">登录</a>
+                        {% endif %}
+
+				</span>
+                  <span>
+                      {% if phone %}
+                      <a href="/">
+                          <!--退出-->
+                           <a href="/quit"  class="btn">退出</a>
+					 	</a>
+                       {% else %}
+                         <a href="/register" id="regist" class="btn">注册</a>
+                      {% endif %}
+
+				</span>
+              </div>
+              <div class="searchContLt">
+                  <input name="srchkey" class="searchInput" placeholder="搜您喜欢的...">
+                  <a href="javascript:void(0)" class="searchBtn"></a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div id="header-fix" class="td-abs" style="position: absolute; top: 45px; z-index: 10; border-top-width: 0px;">
+      <div class="header-nav-bg">
+          <div class="header-nav">
+              <div class="logo-small">
+                  <a href="/">
+                      <img src="/public/css/logo.png" alt="" style="height: 52px;">
+                  </a>
+              </div>
+              <ul>
+
+                        {% for item in subCates %}
+                                {% if item.children.length %}
+                                <li>
+                                    {{item.name}}
+                                    <div class="subcates">
+                                          {% for sub in item.children %}
+                                                <div {% if sub.seoUrl === cate.seoUrl %} class="active" {% endif %}>
+                                                    <a  {% if sub.type==3 %} href="{{sub.outUrl}}" {% else %}  href="{{sub.seoUrl}}" {% endif %} >  {{sub.name}} </a>
+                                                </div>
+                                          {% endfor %}
+                                    </div>
+                                </li>
+                                {% else %}
+                                    <li {% if item.seoUrl === cate.seoUrl %} class="active" {% endif %}>
+                                        <a  {% if item.type==3 %} href="{{item.outUrl}}" {% else %}  href="{{item.seoUrl}}" {% endif %} >  {{item.name}} </a>
+                                    </li>
+                                 {% endif %}
+                        {% endfor %}
+
+
+              </ul>
+          </div>
+      </div>
+  </div>

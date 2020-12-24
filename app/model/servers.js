@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('servers', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     category: {
       type: DataTypes.STRING(255),
@@ -47,7 +48,7 @@ module.exports = app => {
       allowNull: true
     },
     isdelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: '0'
     },

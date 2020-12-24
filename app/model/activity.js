@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('activity', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     title: {
       type: DataTypes.STRING(80),
@@ -34,7 +35,7 @@ module.exports = app => {
       allowNull: true
     },
     peopleLimit: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     address: {
@@ -54,9 +55,25 @@ module.exports = app => {
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
+    },
+    type: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    bookStime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    bookEtime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    state: {
+      type: DataTypes.INTEGER(4),
+      allowNull: true
     }
   }, {
     tableName: 'activity'

@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.content .content1 {
+  width: 100%;
+  height: 350px; }
+.content .content2 {
+  height: 71px;
+  background: #f0f0f0;
+  position: relative;
+}
+  .content .content2 .choose {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+    color: #666666; }
+.content .content2 .choose div{
+  float:left;
+  padding:0 41px;
+  border-right: 1px solid #a4bedf;
+}
+.content .content2 .choose div:last-child{
+  border:none
+}
+    .content .content2 .choose .p1 {
+      margin: 25px 0;
+      padding: 0 41px;
+      border-right: 1px solid #a4bedf; }
+    .content .content2 .choose .p2 {
+      margin: 25px 0;
+      padding: 0 41px;
+      border-left: 1px solid #a4bedf; }
+    .content .content2 .choose .p1:hover {
+      color: #c20a14;
+      border-right: 1px solid #c20a14; }
+    .content .content2 .choose .p2:hover {
+      color: #c20a14;
+      border-left: 1px solid #c20a14; }
+.content .content3 {
+  background: #f9f9f9; }
+  .content .content3 .content31 {
+    position: relative;
+    margin: auto;
+    width: 1198px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
+    .content .content3 .content31 .choose2 {
+      padding: 20px 30px;
+      border-bottom:  1px dashed #b7b7b7;
+    }
+      .content .content3 .content31 .choose2 .classify {
+        padding: 3px 9px;
+        margin: 0 7px;
+        float: left;
+        color: #666666; }
+      .content .content3 .content31 .choose2 .classify-item {
+        padding: 3px 9px;
+        margin: 0 7px;
+        border-radius: 5px;
+        float: left; }
+      .content .content3 .content31 .choose2 .classify-item:hover {
+        background: #c20a14;
+        color: white;
+        cursor: pointer;
+      }
+      .classify-item.on{
+        background: #c20a14;
+        color: white;
+      }
+      .classify-item:hover > a{
+        color:#fff
+      }
+
+.content .content4 {
+  background: #ffffff;
+  padding: 50px 0 70px; }
+  .content .content4 .con4 {
+    width: 1197px;
+    border-left: 1px solid #dfdfdf;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    .content .content4 .con4 .content4-item {
+      width: 398px;
+      padding-bottom: 10px;
+      border-right: 1px solid #dfdfdf; }
+      .content .content4 .con4 .content4-item div {
+        padding: 0 29px; }
+        .content .content4 .con4 .content4-item div h3 {
+          padding: 20px 0 0;
+          font-weight: 500; }
+        .content .content4 .con4 .content4-item div h6 {
+          padding: 20px 0 0;
+          color: #b399a6; }
+        .content .content4 .con4 .content4-item div p {
+          padding: 20px 0 0;
+          color: #666666; }
+      .content .content4 .con4 .content4-item .img {
+        width: 340px;
+        height: 200px;
+        padding: 20px 29px 0;
+        overflow: hidden; }
+        .content .content4 .con4 .content4-item .img img {
+          width: 100%;
+          height: 200px;
+          transition: transform 0.3s; }
+    .content .content4 .con4 .content4-item:hover {
+      background: #c20a14; }
+      .content .content4 .con4 .content4-item:hover div h3 {
+        color: white; }
+      .content .content4 .con4 .content4-item:hover div h6 {
+        color: white; }
+      .content .content4 .con4 .content4-item:hover div p {
+        color: white; }
+      .content .content4 .con4 .content4-item:hover .img {
+        overflow: hidden; }
+        .content .content4 .con4 .content4-item:hover .img img {
+          transform: scale(1.1); }
+
+/*# sourceMappingURL=activity.css.map */
+
+
+.pages > div{
+  display: inline-block;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #d4d4d4;
+}
+.pages > div.cur{
+  background: #d4d4d4;
+}
+
+.searchBox{
+  position: absolute;
+  width: 250px;
+  height: 40px;
+  left:50%;
+  margin-left:350px;
+  bottom:10px
+}
+.searchBox > input{
+  height: 80%;
+  width: 100%;
+  box-sizing: border-box;
+  padding:10px;
+  outline: none;
+}
+.searchBox i{
+  position: absolute;
+  right:10px;
+  top:50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+

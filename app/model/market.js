@@ -5,7 +5,7 @@ module.exports = app => {
 
   const Model = app.model.define('market', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
     },
@@ -55,7 +55,12 @@ module.exports = app => {
       defaultValue: '0'
     },
     uid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      defaultValue: '0'
+    },
+    uid: {
+      type: DataTypes.INTEGER(11),
       allowNull: false
     }
   }, {

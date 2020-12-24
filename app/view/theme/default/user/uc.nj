@@ -1,0 +1,19 @@
+{% include "../public/uchd.nj" %}
+
+<div class="main">
+    <div class="noData">
+        <img src="./timg.jpg" alt="">
+        <p>暂无数据</p>
+    </div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+</div>
+
+
+{% include "../public/foot.nj" %}

@@ -1,0 +1,105 @@
+  {% include "./public/head.nj" %}
+  <link rel="stylesheet" href="/public/css/detai_a.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous"></script>
+
+  <!-- 活动详情 -->
+    <div id="cententBody">
+        <!-- 菜单 -->
+        <!--    面包屑-->
+        {% include "./public/innernav.nj" %}
+        <!-- 左边主题内容 -->
+        <h1 id="app1">我是pdf ${hi} </h1>
+        <div class="left">
+            <div class="heard">
+                <!-- 标题 -->
+                <div class="title">
+                    <span>{{article.title}}</span>
+                </div>
+                <div class="from">
+                    来源：<span> 梧州群艺馆 </span> &nbsp&nbsp <span> 2020-12-11 </span> 发布&nbsp&nbsp&nbsp <span> 5 </span> 浏览
+                </div>
+            </div>
+
+            <div class="text">
+                <div class="textarea" id="textarea">
+                  {{ article.content|safe }}
+                    <a href="/public/pdf/viewer.html?file={{article.pdf}}" target="_blank"> 立即阅读 </a>
+                </div>
+            </div>
+
+
+            <div class="more ">
+                <div class="left">
+                    <div> 我是图标</div>
+                    <div> <span>0</span> 赞 </div>
+                </div>
+                <div class="right">
+                    分享:
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 右边热门动态 -->
+        <div class="right">
+            <div class="reBox">
+                <div class="retitle">热门动态</div>
+                <div class="relist">
+                    {% for item in hotList %}
+                    <div class="relist_item">
+                        <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                            <div class="reitem_title">{{item.title}}</div>
+                        </a>
+                        <div class="reitem_desc">
+                            <span>{{item.author}}</span>
+                            <span>{{item.addTime|time}}</span>
+                            <div style="clear:both"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"> </div>
+        <input type="hidden" id="pdf" value="{{article.pdf}}">
+    </div>
+
+
+  <script>
+
+
+      let pdf = document.getElementById('pdf').value;
+
+
+      var loadingTask = pdfjsLib.getDocument(pdf);
+      loadingTask.promise.then(function(pdf) {
+          console.log('PDF loaded');
+
+          var pageNumber = 1;
+          pdf.getPage(pageNumber).then(function(page) {
+              console.log('Page loaded');
+
+              var scale = 1.5;
+              var viewport = page.getViewport(scale);
+
+              var canvas = document.getElementById('textarea');
+              var context = canvas.getContext('2d');
+              canvas.height = viewport.height;
+              canvas.width = viewport.width;
+
+              var renderContext = {
+                  canvasContext: context,
+                  viewport: viewport
+              };
+              var renderTask = page.render(renderContext);
+              renderTask.then(function () {
+                  console.log('Page rendered');
+              });
+          });
+      }, function (reason) {
+          console.error(reason);
+      });
+
+  </script>
+    {% include "./public/foot.nj" %}

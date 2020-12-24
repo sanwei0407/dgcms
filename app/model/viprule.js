@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('viprule', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     vipGrade: {
       type: DataTypes.STRING(20),
@@ -18,7 +19,7 @@ module.exports = app => {
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: true,
       defaultValue: '0'
     }

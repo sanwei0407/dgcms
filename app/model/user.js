@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('user', {
     uid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     phone: {
       type: DataTypes.STRING(11),
@@ -26,7 +27,7 @@ module.exports = app => {
       allowNull: true
     },
     state: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: true
     },
     addTime: {
@@ -54,12 +55,12 @@ module.exports = app => {
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
     },
     vipIntegral: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(6),
       allowNull: true,
       defaultValue: '0'
     },
@@ -68,11 +69,27 @@ module.exports = app => {
       allowNull: true
     },
     isEnterprise: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: true
     },
     EnterpriseDesc: {
       type: DataTypes.TEXT,
+      allowNull: true
+    },
+    realname: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    idfront: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    idback: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    idNum: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

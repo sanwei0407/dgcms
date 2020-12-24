@@ -42,16 +42,16 @@ global.article = function(appCtx) {
 
   this.run = async (context, args, callback) => {
     const key = args.key ? args.key : '';
-    console.log('!!!!!!!###########',context.ctx.ctx.request.url)
-    const url = context.ctx.ctx.request.url
-    const realPage = url.slice(url.lastIndexOf('/')+1)
-    console.log('!@#!@#!@#!@#!@',realPage)
-    
-    args.data.page = isNaN(realPage)?'': realPage
+    console.log('!!!!!!!###########', context.ctx.ctx.request.url);
+    const url = context.ctx.ctx.request.url;
+    const realPage = url.slice(url.lastIndexOf('/') + 1);
+    console.log('!@#!@#!@#!@#!@', realPage);
+
+    args.data.page = isNaN(realPage) ? '' : realPage;
     // console.log('dataaaaaaaa!!!!!!!!aaaaaaaaaaa',args.data)
-    
+
     const res = await axios.post('http://127.0.0.1:8001' + args.api, args.data);
-    context.ctx[key] =res
+    context.ctx[key] = res;
 
     return callback(null, '');
   };

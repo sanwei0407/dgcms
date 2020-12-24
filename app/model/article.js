@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('article', {
     aid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     title: {
       type: DataTypes.STRING(255),
@@ -34,16 +35,16 @@ module.exports = app => {
       allowNull: true
     },
     cid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
     },
     top: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
     },
@@ -52,7 +53,7 @@ module.exports = app => {
       allowNull: true
     },
     isHot: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
     },
@@ -61,7 +62,7 @@ module.exports = app => {
       allowNull: true
     },
     reading: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: '0'
     },
@@ -71,6 +72,23 @@ module.exports = app => {
     },
     updateTime: {
       type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    uid: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    state: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      defaultValue: '1'
+    },
+    pdf: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    type: {
+      type: DataTypes.STRING(100),
       allowNull: true
     }
   }, {

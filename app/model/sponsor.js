@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('sponsor', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     url: {
       type: DataTypes.STRING(255),
@@ -18,7 +19,7 @@ module.exports = app => {
       allowNull: true
     },
     type: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     imgurl: {
@@ -26,11 +27,11 @@ module.exports = app => {
       allowNull: true
     },
     order: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     isdelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     }
   }, {

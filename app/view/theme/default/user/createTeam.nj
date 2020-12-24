@@ -1,0 +1,170 @@
+{% include "../public/uchd.nj" %}
+<script type="text/javascript" src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
+
+<div class="main" id="app">
+    <h1 class="uch1"> 创建文艺团队 </h1>
+    <form class="layui-form" action="" lay-filter="single">
+        <div class="layui-form-item">
+            <label class="layui-form-label">团队名称</label>
+            <div class="layui-input-block">
+                <input type="text"  name="name" lay-verify="title" autocomplete="off" placeholder="请输入真实姓名" value="{{realname}}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">团队封面照</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="idfront">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="idpicfront">
+                        <p id="idfronttxt"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">团队类型</label>
+            <div class="layui-input-block">
+                <select name="type" lay-filter="aihao">
+                    <option value="1">舞蹈</option>
+                    <option value="2">音乐</option>
+                    <option value="3" >戏剧</option>
+                    <option value="4">曲艺</option>
+                    <option value="5">美术</option>
+                    <option value="6">摄影</option>
+                    <option value="7">文学</option>
+                    <option value="8">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所在区域</label>
+            <div class="layui-input-block">
+                <select name="zone" lay-filter="aihao">
+                    {% for item in zoneList%}
+                       <option value="{{item.value}}">{{item.label}}</option>
+                   {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">创建时间</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" id="buildTime" name="buildTime" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">招募人数</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="nums" >
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">团队介绍</label>
+            <div class="layui-input-block">
+               <div id="editor"></div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="tj">提交</button>
+            </div>
+        </div>
+
+
+        <input type="hidden" id="uid">
+        <input type="hidden" id="fpic">
+    </form>
+
+</div>
+
+<script>
+
+    // 富文本
+
+    const E = window.wangEditor
+    const editor = new E('#editor')
+    // 或者 const editor = new E(document.getElementById('div1'))
+    editor.config.uploadImgServer = '/common/editorupload'
+    editor.config.uploadImgMaxLength = 1
+    editor.create()
+
+
+
+    layui.use('upload', function() {
+        var form = layui.form;
+        var laydate = layui.laydate;
+        form.render()
+
+        //日期选择器
+        laydate.render({
+            elem: '#buildTime'
+        });
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+
+
+        const uid = document.getElementById("uid").value
+
+        if(uid){
+            layer.msg('需要先登录')
+            setTimeout(()=>window.location.href = '/login',2000)
+        }
+
+        //普通图片上传 正面
+        var uploadFront = upload.render({
+            elem: '#idfront'
+            ,url: 'http://home.yiker.cc:8001/adUpload' //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#idpicfront').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(!res.success ) return layer.msg('上传失败');
+                //上传成功
+                $('#fpic').val(res.msg);
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#idback');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadFront.upload();
+                });
+            }
+        });
+
+
+        // 提交
+        $("#tj").click(()=>{
+
+
+            var data = form.val('single');
+
+            data.desc = editor.txt.html();
+            delete  data.file;
+            data.cover  =  $('#fpic').val()
+            $.post('/user/createteam',{
+                ...data,
+            },(res)=>{
+                const { success ,info ,backurl} = res;
+                if(backurl) setTimeout(()=>window.location.href=backurl,2000)
+                if(!success) return layer.msg(info)
+
+            })
+
+        })
+
+    })
+
+
+</script>
+
+{% include "../public/foot.nj" %}

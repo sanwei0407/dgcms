@@ -1,0 +1,47 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/active03.css">
+<div class="all wrap">
+    <!--    面包屑-->
+    {% include "./public/innernav.nj" %}
+
+    <div class="choose flex ">
+        <div class="shai">筛选</div>
+        <div class="each flex">
+            <div class="one" style="color:#1890ff; border-bottom: 2px solid #1890ff;">全部</div>
+            <div class="one">进行中</div>
+            <div class="one">已结束</div>
+        </div>
+    </div>
+    <div class="items flex wrap ">
+        {% for item in voteList%}
+        <div class="item">
+            <div class="pic re ">
+                <div class="end ab">已结束</div>
+                <div class="rightDown ab flex">
+                    <div class="love flex"><i class="iconfont icon-bendifuwu"></i>0</div>
+                    <div class="love flex"><i class="iconfont icon-bendifuwu"></i>0</div>
+                    <div class="love flex"><i class="iconfont icon-bendifuwu"></i>0</div>
+                </div>
+                <img src="{{item.cover}}">
+            </div>
+            <div class="title">{{item.title}}</div>
+            <div class="time">发布时间：{{item.addTime|time}}</div>
+
+        </div>
+       {% endfor %}
+        <div class="page flex ">
+            <div class="pageNum  flex">
+                <div class="num"><i class="iconfont icon-xiangzuo"></i></div>
+                <div class="num" style="color: #1890ff; border-color: #1890ff;">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num"><i class="iconfont icon-xiangyou"></i></div>
+            </div>
+            <div class="jump ">跳至<input type="text" > 页</div>
+        </div>
+    </div>
+
+</div>
+{% include "./public/foot.nj" %}

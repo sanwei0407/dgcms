@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/home.css?4443233434">
+    <title>Document</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+</head>
+
+<body>
+  <div class="chd">
+        <div class="wrap topbar">
+            <span>今天是 2020年12月18日 星期五 农历十一月初四</span>
+            {% if phone %}
+            <span style="margin-left:20px"> <a href="/uc">{{phone}}</a></span>
+            {% else %}
+            <span style="margin-left:20px"> <a href="/login">登录</a></span>
+            {% endif %}
+        </div>
+        <div class="wrap main">
+                <div id="logo">
+                    <img src="/public/css/logo.jpg" alt="">
+                </div>
+        </div>
+        <div class="nav">
+            <div class="wrap">
+              <div><a href="/" title="首页">首页</a></div>
+                {% for item in category %}
+                 <div>
+                     <a  {% if item.type==3 %} href="{{item.outUrl}}" {% else %}  href="{{item.seoUrl}}" {% endif %} >  {{item.name}} </a>
+                 </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>

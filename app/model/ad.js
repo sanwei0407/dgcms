@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('ad', {
     aid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     type: {
       type: DataTypes.STRING(255),
@@ -34,12 +35,12 @@ module.exports = app => {
       allowNull: true
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: false,
       defaultValue: '0'
     },
     isHot: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: true
     }
   }, {

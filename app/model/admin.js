@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('admin', {
     aid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     userName: {
       type: DataTypes.STRING(50),
@@ -22,7 +23,7 @@ module.exports = app => {
       allowNull: true
     },
     groupId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     phone: {

@@ -1,65 +1,93 @@
-		<div class="footer">
-				<div class="us">
-					<div class="us-info">
-						<div class="us-item">
-							<div class="us-item-kuang">
-								<div class="us-item-icon">
-									<img src="https://fakeimg.pl/16x18/">
-								</div>
-								<div class="us-item-title">
-									微头条，微信热文汇集地!
-								</div>
-								<div class="item-msg">
-									<div>
-										<span>网站首页 |</span>
-										<span>关于我们 |</span>
-										<span>寻求报道 |</span>
-										<span>投稿须知</span>
-									</div>
-									<div>
-										<span>商务合作 |</span>
-										<span>投稿须知 |</span>
-										<span>版权申明 |</span>
-										<span>联系我们</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="us-item">
-							<div class="us-item-kuang">
-								<div class="us-item-icon">
-									<img src="https://fakeimg.pl/16x18/">
-								</div>
-								<div class="us-item-title">
-									版权声明
-								</div>
-								<div class="item-msg">
-									本站信息均是网上搜集，如有侵犯您的版权，请及时联系我们，我们将尽快处理。
-								</div>
-							</div>
-						</div>
-						<div class="us-item" style="border: none;">
-							<div class="us-item-kuang">
-								<div class="us-item-icon">
-									<img src="https://fakeimg.pl/16x18/">
-								</div>
-								<div class="us-item-title">
-									联系我们
-								</div>
-								<div class="item-msg">
-									<div>客服QQ：12345678</div>
-									<div>投稿邮箱：admin@qq.com</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="yuming">
-					Copyright © 2018 DEDE97. 缁囨ⅵ97 鐗堟潈鎵
-				</div>
-			</div>
-		</div>
-	</body>
+    <footer>
+
+        <div class="ftcontent">
+            <div class="code">
+                <div class="item left border">
+                    <div class="content">
+                        <!-- 二维码 -->
+                        <div class="twoCode" >
+                            <img src="https://fakeimg.pl/80x80/" alt="">
+                        </div>
+                        <div class="who">
+                            梧州市群艺馆
+                        </div>
+                    </div>
+                </div>
+                <div class="item right border">
+                    <div class="content">
+                        <!-- 二维码 -->
+                        <div class="twoCode">
+                            <img src="https://fakeimg.pl/80x80/" alt="">
+                        </div>
+                        <div class="who">
+                            梧州市文化广电体育和旅游局
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="meun">
+                <div class="meun-item">
+                    <div class="clice">
+                            <i class="iconfont icon-shijian"></i>
+                    </div>
+                    <div class="title">
+                        开放时间
+                    </div>
+                    <div class="info">
+                        周二至周日 9:00—17:00 <br/>法定节假日为 9:00—17:30（周一闭馆）
+                    </div>
+                </div>
+                <div class="meun-item">
+                    <div class="clice">
+                        <i class="iconfont icon-dizhi"></i>
+                    </div>
+                    <div class="title">
+                        地址
+                    </div>
+                    <div class="info">
+                      地址：广西壮族自治区梧州市长洲区三龙大道
+                    </div>
+                </div>
+                <div class="meun-item">
+                    <div class="clice">
+                        <i class="iconfont icon-dianhua"></i>
+                    </div>
+                    <div class="title">
+                        电话号码
+                    </div>
+                    <div class="info">
+                      774-2827334                    </div>
+                </div>
+                <div class="meun-item">
+                    <div class="clice">
+                        <i class="iconfont icon-iconset0395"></i>
+                    </div>
+                    <div class="title">
+                        文化地图
+
+                    </div>
+                    <div class="info">
+                      (点击查看)
+                      </div>
+                </div>
+            </div>
+            <div class="sanwei">
+                <span>版本信息:2020梧州群众文化艺术馆版权所有</span>
+                <span class="kongge">/</span>
+
+                <span>桂ICP备123456号-1</span>
+                <span class="kongge">/</span>
+                <span>公安备案号:100000000</span>
+            </div>
+        </div>
+
+
+
+        <div class="overlayer"></div>
+    </footer>
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2284466_j3qsify8bhc.css">
+
 	<script>
 var mySwiper = new Swiper ('.swiper-container', {
     //direction: 'vertical', // 垂直切换选项
@@ -82,5 +110,5 @@ var mySwiper = new Swiper ('.swiper-container', {
     },
   })
 </script>
-
+</body>
 </html>

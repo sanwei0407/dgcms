@@ -156,16 +156,23 @@ class CommonController extends Controller {
   async abc() {
     const { ctx, app } = this;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
-    const url = ctx.req.url; // 得到请求的url
+    let url = ctx.req.url; // 得到请求的url
+    url = url.split('?')[0];
     let templateDir = ''; // 渲染的模板
 
     // 渲染首页的情况
     if (url === '/') {
+
+      const indexData = await this._getIndexData();
+
+      ctx.locals.news = indexData.news;
+      ctx.locals.activity = indexData.activity;
+
+
       await ctx.render('theme/default/index.nj');
       return;
     }
     let path = '';
-
     let page = 1; // 默认都是第一页
     // 兼顾分页的情况 约定分页的链接都是  /page/页码
     if (url.includes('/page')) {
@@ -184,6 +191,7 @@ class CommonController extends Controller {
     console.log('isDetailPage', isDetailPage);
     ctx.locals.currentPath = path;
 
+
     // 列表页
     if (!isDetailPage) {
       const cate = await ctx.model.Category.findOne({
@@ -197,40 +205,126 @@ class CommonController extends Controller {
         const _tp = cate.templateId;
         templateDir = _tp;
         // 列表页面处理流程
+        const limit = 6;
+        const offset = limit * (page - 1);
         await ctx.model.Article.belongsTo(ctx.model.Category, { targetKey: 'cid', foreignKey: 'cid' });
         const _article = await app.model.Article.findAll({ where: {
           cid: cate.cid,
-
-        }, include: [
-          {
-            model: ctx.model.Category,
-          },
+        },
+        offset,
+        limit,
+        include: [{
+          model: ctx.model.Category,
+        },
         ] });
 
-        app.locals.articleList = _article;
+        // 生成分页信息
+        const _count = await app.model.Article.count({ where: {
+          cid: cate.cid,
+          isDelete: 0,
+        } });
+        const maxPage = Math.ceil(_count / limit);
+        const pagation = [];
+        for (let i = 0; i < maxPage; i++) {
+          pagation.push({ page: i + 1, url: `${cate.seoUrl}/page/${i + 1}` });
+        }
+        ctx.locals.pagation = pagation;
+
+        // 取得热门的5条内容
+        await this.getHotList(cate); // 热门消息
+        // 如果是文化活动取出活动的内容
+
+        if (path === '/wenhuahuodong' || path === '/wenhuahuodong/yugao') {
+          await this.handleActivity(page);
+        }
+
+
+        if (path === '/wenhuafuwu/fuwu/huodong') {
+          await this.handleZyAc(page);
+        }
+
+
+        // 如果是投票  加载投票内容
+
+        if (path.includes('toupiao')) {
+          const voteList = await ctx.model.Vote.findAll({
+            order: [ 'id', 'DESC' ],
+          });
+          ctx.locals.voteList = voteList;
+        }
+
+        // 获取下级栏目
+
+        const topcid = await this._getTopCid(cate);
+
+
+        const subCates = ctx.locals.category.find(r => r.cid == topcid);
+        console.log('topcid', subCates);
+        ctx.locals.subCates = subCates.children;
+        ctx.locals.topcid = topcid
+
+        // 生成面包屑菜单
+        // 生成面包屑菜单
+        await this._getBreakNum(cate);
+        // 生成面包屑菜单 end
+        ctx.locals.articleList = _article;
+        ctx.locals.cate = cate;
+        ctx.locals.fenlei = cate.tags.split(',').filter(r => r.trim());
       }
 
     }
 
     // 内容页处理流程
     if (isDetailPage) {
+      let type = 'article';
+
       const aid = path.match(/\/\d+$/)[0].replace('/', ''); // 内容id
+      const lk = path.split('/' + aid)[0];
+      if (lk === '/wenhuahuodong' || lk === '/wenhuafuwu/fuwu/huodong') type = 'activity';
+
+
       // 获取文章详情
-      const article = await ctx.model.Article.findByPk(aid, { raw: true });
-      // 进入文章详情后让文章（article）的阅读量 + 1
-      const _reading = article.reading * 1 + 1;
-      await ctx.model.Article.update({
-        reading: _reading,
-      },
-      {
-        where: {
-          aid,
-        },
-      });
-      const cate = await ctx.model.Category.findByPk(article.cid, { raw: true });
-      const _tp = cate.ctTemplateId; // 获取内容模板 todo ctTemplateId 变量名语义不清晰
-      templateDir = _tp;
-      ctx.locals.article = article;
+      if (type === 'article') {
+        const article = await ctx.model.Article.findByPk(aid);
+        // 进入文章详情后让文章（article）的阅读量 + 1
+        article.increment('reading', { by: 1 });
+        const cate = await ctx.model.Category.findByPk(article.cid);
+        ctx.locals.cate = cate;
+        ctx.locals.article = article;
+        const _tp = cate.ctTemplateId; // 获取内容模板 todo ctTemplateId 变量名语义不清晰
+        templateDir = _tp;
+        await this.getHotList(cate); // 热门消息
+        // 生成面包屑菜单
+        await this._getBreakNum(cate);
+      }
+      if (type === 'activity') {
+        // 考虑活动内容
+        templateDir = 'theme/default/detail_activity.nj';
+        const activity = await ctx.model.Activity.findByPk(aid, {
+          raw: true,
+        });
+        let state = 0;
+        const now = Date.now();
+        const { uid } = ctx.session;
+        if (uid) {
+          const action = await ctx.model.Actions.findOne({
+            uid,
+            aid,
+          });
+          if (action) state = 5;
+        }
+        if (now < activity.bookStime) state = 0;// 即将开始预约
+        if (now > activity.bookStime && now < activity.bookEtime) state = 1;// 开始预约
+        if (now > activity.bookEtime && now < activity.sTime) state = 2; // 即将开始
+        if (now > activity.sTime && now < activity.eTime) state = 3;
+        if (now > activity.eTime) state = 4;
+        ctx.locals.state = 1;
+
+
+        ctx.locals.activity = activity;
+      }
+
+
     }
 
 
@@ -239,6 +333,87 @@ class CommonController extends Controller {
 
   }
 
+  async _getBreakNum(cate) {
+    const { ctx } = this;
+    const innerNav = [];
+    let _temCate = cate;
+    innerNav.unshift(_temCate);
+    do {
+      _temCate = await ctx.model.Category.findOne({
+        where: {
+          cid: _temCate.pid,
+        },
+        raw: true,
+        attributes: [ 'cid', 'name', 'seoUrl', 'pid' ],
+      });
+      innerNav.unshift(_temCate);
+
+    } while (_temCate && _temCate.pid > 0);
+    // 最后加上首页
+    innerNav.unshift({ seoUrl: '/', name: '首页' });
+    ctx.locals.innerNav = innerNav.filter(r => r);
+  }
+  async getHotList(cate) {
+    const { ctx } = this;
+    const _hotList = await ctx.model.Article.findAll({
+      where: {
+        cid: cate.cid,
+        isHot: 1,
+      },
+      limit: 5,
+      order: [[ 'aid', 'DESC' ]],
+    });
+    ctx.locals.hotList = _hotList;
+  }
+
+  async handleActivity(page) {
+    const { ctx } = this;
+    const limit = 10;
+    const offset = (page - 1) * limit;
+    const { type } = ctx.query;
+    const where = {};
+    if (type) where.type = type;
+    const activitys = await ctx.model.Activity.findAll({
+      where,
+      limit,
+      offset,
+    });
+
+    ctx.locals.typeList = [
+      { value: 1, label: '展览' },
+      { value: 2, label: '赛事' },
+      { value: 3, label: '培训' },
+      { value: 4, label: '演出' },
+      { value: 5, label: '讲座' },
+      { value: 6, label: '公益' },
+    ];
+    ctx.locals.activitys = activitys;
+  }
+
+
+  async handleZyAc(page) {
+    const { ctx } = this;
+    const limit = 10;
+    const offset = (page - 1) * limit;
+    const { type } = ctx.query;
+    const where = {};
+    if (type) where.type = type;
+    const activitys = await ctx.model.Activity.findAll({
+      where,
+      limit,
+      offset,
+    });
+
+    ctx.locals.typeList = [
+      { value: 1, label: '展览' },
+      { value: 2, label: '赛事' },
+      { value: 3, label: '培训' },
+      { value: 4, label: '演出' },
+      { value: 5, label: '讲座' },
+      { value: 6, label: '公益' },
+    ];
+    ctx.locals.activitys = activitys;
+  }
 
   async queryParentCategory(_arr, cid) {
     const { ctx } = this;
@@ -254,6 +429,58 @@ class CommonController extends Controller {
     }
 
     return _arr;
+
+  }
+  // 获取首页需要的信息
+  async _getIndexData() {
+    const { ctx, app } = this;
+    const { Op } = app.Sequelize;
+    const news = await ctx.model.Article.findAll({
+      where: {
+        cid: {
+          [Op.in]: [ 64, 63, 81, 82 ],
+        },
+        cover: {
+          [Op.not]: null,
+        },
+      },
+      limit: 4,
+      order: [[ 'top', 'DESC' ], [ 'aid', 'DESC' ]],
+      raw: true,
+    });
+    const book = await ctx.model.Booking.findAll({
+      order: [[ 'id', 'DESC' ]],
+    });
+    ctx.locals.book = book;
+    const activity = await ctx.model.Activity.findAll({
+      order: [ 'id', 'DESC' ],
+      limit: 4,
+    });
+
+    return { news, activity };
+  }
+
+  // findTop cateid
+  async _getTopCid(cate) {
+    const { ctx } = this;
+    let topcid = 0;
+    let nowpid = cate.pid;
+    if (nowpid == 0) {
+      topcid = cate.cid;
+    } else {
+      while (nowpid != 0) {
+        const res = await ctx.model.Category.findOne({
+          where: {
+            cid: nowpid,
+          },
+          raw: true,
+        });
+        nowpid = res.pid;
+        topcid = res.cid;
+      }
+    }
+
+    return topcid;
 
   }
 }

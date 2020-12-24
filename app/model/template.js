@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('template', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING(50),
@@ -22,7 +23,7 @@ module.exports = app => {
       allowNull: true
     },
     type: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(4),
       allowNull: true
     }
   }, {

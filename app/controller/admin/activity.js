@@ -4,40 +4,40 @@ const Controller = require('egg').Controller;
 
 
 class UserController extends Controller {
-  async searchPosition(){
+  async searchPosition() {
     const {
-      ctx,app
+      ctx, app,
     } = this;
-    const{
-        keyword,
+    const {
+      keyword,
     } = ctx.request.body;
-    try{
-      const url = `http://api.map.baidu.com/place/v2/search?query=${keyword}&region=全国&output=json&ak=1RO8EvPHSDzApYU0pORqyXKEWAmGs3we`
-      let res = await ctx.curl(url,{
+    try {
+      const url = `http://api.map.baidu.com/place/v2/search?query=${keyword}&region=全国&output=json&ak=1RO8EvPHSDzApYU0pORqyXKEWAmGs3we`;
+      const res = await ctx.curl(url, {
         dataType: 'json',
-    })
-      ctx.body = res.data
-    }catch(e){
-      console.log(e)
+      });
+      ctx.body = res.data;
+    } catch (e) {
+      console.log(e);
     }
   }
-   async getPosition(){
+  async getPosition() {
     const {
       ctx,
     } = this;
-    const{
-        keyword,
+    const {
+      keyword,
     } = ctx.request.body;
-    try{
+    try {
       const url = `http://api.map.baidu.com/reverse_geocoding/v3/?ak=1RO8EvPHSDzApYU0pORqyXKEWAmGs3we&output=json&coordtype=wgs84ll&location= 
 
-      ${keyword}`
-      let res = await ctx.curl(url,{
+      ${keyword}`;
+      const res = await ctx.curl(url, {
         dataType: 'json',
-    })
-      ctx.body = res.data
-    }catch(e){
-      console.log(e)
+      });
+      ctx.body = res.data;
+    } catch (e) {
+      console.log(e);
     }
   }
   // @author zbx
@@ -107,18 +107,9 @@ class UserController extends Controller {
   // @title-活动标题 desc-活动描述 brief-简介 cover-封面 sTime-开始时间 eTime-结束时间 peopleLimit-人数限制 address-地址 addresGps-地址gps信息 author-发布人 id
   async editActivity() {
     const { ctx } = this;
-    const { title, desc, brief, cover, sTime, eTime, peopleLimit, address, addresGps, author, id } = ctx.request.body;
-    const update = {};
-    if (title) update.title = title;
-    if (desc) update.desc = desc;
-    if (brief) update.brief = brief;
-    if (cover) update.cover = cover;
-    if (sTime) update.sTime = sTime;
-    if (eTime) update.eTime = eTime;
-    if (peopleLimit) update.peopleLimit = peopleLimit;
-    if (address) update.address = address;
-    if (addresGps) update.addresGps = addresGps;
-    if (author) update.author = author;
+    const { id } = ctx.request.body;
+    const update = { ...ctx.request.body };
+    delete update.id;
     if (!id) return ctx.body = { success: false, msg: '该活动不存在' };
     try {
       const res = await ctx.model.Activity.update(

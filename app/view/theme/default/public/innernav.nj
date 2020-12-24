@@ -1,0 +1,13 @@
+<div class="menu">
+    {% for item in innerNav %}
+
+        <span>
+            <a href="{{item.seoUrl}}">
+               {{item.name}}
+            </a>
+        </span>
+    {% if not loop.last %}
+    <span>/</span>
+    {% endif %}
+    {% endfor %}
+</div>

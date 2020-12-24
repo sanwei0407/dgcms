@@ -5,16 +5,17 @@ module.exports = app => {
 
   const Model = app.model.define('markettype', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     type: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       defaultValue: '0'
     }

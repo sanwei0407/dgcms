@@ -1,0 +1,55 @@
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/activity.css?12313">
+<div class="content">
+        <div  class="content1" style="height:300px;background:url(/public/img/p1.png) center center no-repeat;background-size:cover">
+
+        </div>
+
+        <div class="content3">
+            <div class="content31">
+                <div class="choose2">
+                    <div class="classify">区域:</div>
+                    <div class="classify-item">全部</div>
+                    {% for item in zoneList %}
+                    <div class="classify-item">{{item.label}}</div>
+                    {% endfor %}
+                </div>
+                <div class="choose2">
+                    <div class="classify">场馆类型:</div>
+                    <div class="classify-item">全部</div>
+                    {% for item in bookTypeList %}
+                    <div class="classify-item">{{item.label}}</div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content4">
+            <!--    面包屑-->
+            {% include "./public/innernav.nj" %}
+            <div class="con4">
+                {% for item in places %}
+                   <div class="content4-item">
+                    <a href="{{cate.seoUrl}}/{{item.id}}">
+                    <div><h3>{{item.title}}</h3></div>
+                    <div><h6> 可容纳: {{item.peoples}}人</h6></div>
+                    <div class="img">
+                      <img src="{{item.cover}}">
+                      </div>
+                    <div><p> 地址: {{ item.address }} </p></div>
+                    <div><i ></i></div>
+                    </a>
+                </div>
+                {% endfor %}
+
+
+            </div>
+            <div class="pages">
+                {% for item in pagation %}
+                <a href="{{item.url}}" {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% include "./public/foot.nj" %}

@@ -139,8 +139,25 @@ module.exports = app => {
   // 通用模块
   router.post('/attachment/upload', controller.common.upload); // 附近上传模块
   router.get('/', controller.admin.common.abc); // 首页
-  router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
+  router.get('/book', controller.booking.pcindex); // 场馆预pc
+  router.get('/book/:id', controller.booking.pcdetail); // 场馆预pc
+  router.post('/common/editorupload', controller.common.editorupload); // wing ue 文件上传
 
+
+  router.all('/register', controller.user.register); // pc注册
+  router.all('/login', controller.user.login); // pc登录
+  router.get('/quit', controller.user.quit); // 退出
+  router.get('/uc', controller.user.uc); // 用户中心
+  router.get('/auth', controller.user.auth); // 实名验证
+  router.post('/user/verify', controller.user.verify); // 提及实名验证
+  router.all('/user/single', controller.user.single); // 个人志愿者注册
+  router.all('/user/team', controller.user.team); // 个人志愿者注册
+  router.all('/user/artteam', controller.user.artteam); // 文艺团队
+  router.all('/user/createteam', controller.user.createteam); // 创建团队
+  router.all('/user/publish', controller.user.publish); // 内容发布
+  router.all('/user/editArticle/:aid', controller.user.editArticle); // 编辑文章内容
+  router.all('/user/book', controller.user.book); // 场馆预约
+  router.all('/user/activity', controller.user.activity); // 场馆预约
   // 招聘信息接口
   router.post('/addJod', controller.client.jod.addJod);// 添加招聘信息
   router.post('/delJod', controller.client.jod.delJod);// 删除招聘信息
@@ -153,9 +170,6 @@ module.exports = app => {
   router.post('/destroyJobType', controller.client.jobtype.destroyJobType);// 删除招聘类型信息 直接删除
   router.post('/getJobTypeList', controller.client.jobtype.getJobTypeList);// 获取全部的分类
   router.post('/updateJobType', controller.client.jobtype.updateJobType);// 修改分类信息
-
-
-
 
 
   // 跳蚤市场信息接口
@@ -226,10 +240,9 @@ module.exports = app => {
   // 电商商品类别接口
   router.post('/addClassify', controller.shop.shopclassify.addClassify); // 编辑购物车信息
   router.post('/delClassify', controller.shop.shopclassify.delClassify); // 删除商品类别
-  router.post('/findClassify', controller.shop.shopclassify.findClassify); // 查找子商品类别
+  router.post('/findClassify', controller.shop.shopclassify.findClassify); // 查找商品类别
   router.post('/findOneify', controller.shop.shopclassify.findOneify); // 查询单个商品类别
   router.post('/reviceify', controller.shop.shopclassify.reviceify); // 编辑商品类别
-  router.post('/findParentify', controller.shop.shopclassify.findParentify); // 查找父商品类别
 
   // 电商收货信息接口
   router.post('/addrece', controller.shop.shoprecemsg.addrece); // 添加收货人信息
@@ -242,6 +255,23 @@ module.exports = app => {
   router.post('/journalAdd', controller.shop.journal.journalAdd); // 添加余额变化信息
   router.post('/journalFind', controller.shop.journal.journalFind); // 查询余额变化信息
 
-  // 数据总数接口
-  router.post('/totaldata', controller.total.totaldata.findtotalUser); // 查询余额变化信息
+
+  // 场地预定接口
+  router.post('/book/list', controller.booking.list); // 场馆列表
+  router.post('/book/create', controller.booking.create); // 场馆创建
+  router.post('/book/delete', controller.booking.delete); // 场馆删除
+  router.post('/book/getone', controller.booking.getOne); // 获取一个场馆的信息
+  router.post('/book/update', controller.booking.update); // 更新场馆信息
+
+
+  // api 接口
+  router.get('/api/myteam', controller.api.myteam);
+  router.get('/api/teamarticle', controller.api.teamarticle);
+  router.post('/api/deleArticle', controller.api.deleArticle);
+  router.post('/api/joinac', controller.api.joinac);
+  router.get('/api/activity', controller.api.activity);
+
+  router.post('/api/acticleList', controller.api.acticleList);// 获取文章内容
+  router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
+
 };

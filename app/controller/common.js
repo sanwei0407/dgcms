@@ -9,6 +9,31 @@ class CommonController extends Controller {
     const res = await ctx.service.common.upload(ctx);
     ctx.body = res;
   }
+
+  // 富文本编辑内容
+
+  async editorupload() {
+    const { ctx } = this;
+    try{
+      const res = await ctx.service.common.upload(ctx);
+      if (res.success) {
+        ctx.body = {
+          errno: 0,
+          data: [
+            res.msg,
+          ],
+        };
+      } else {
+        ctx.body = {
+          errno: 1,
+        };
+      }
+    }catch (e) {
+      console.log(e)
+    }
+
+
+  }
   // @author lk
   // @last update 2020年11月20日 16:00
   // @用户注册（新增）的接口 // 增加会员积分字段
@@ -104,6 +129,58 @@ class CommonController extends Controller {
     } catch (e) {
       ctx.body = { success: false, info: '删除失败' };
     }
+  }
+
+  async login() {
+    const { ctx } = this;
+    const { phone, pwd } = ctx.request.body;
+    const { backUrl } = ctx.query;
+    const method = ctx.req.method;
+    console.log('method', method);
+    if (method === 'GET') return await ctx.render('theme/default/login.nj');
+    const _u = await ctx.model.User.findOne({
+      where: {
+        phone,
+        pwd: utils.md5(pwd),
+      },
+    });
+    if (!_u) return ctx.body = { success: false, info: '账号不存在或者密码错误' };
+    ctx.session.uid = _u.uid;
+    ctx.session.username = _u.userName;
+    ctx.session.phone = _u.phone;
+    ctx.body = { success: true, info: 'info', backUrl };
+  }
+
+  async register() {
+    const { ctx } = this;
+    const method = ctx.req.method;
+    if (method === 'GET') return await ctx.render('theme/default/register.nj');
+    const { phone, pwd, code } = ctx.request.body;
+    const _u = await ctx.model.User.findOne({
+      where: {
+        phone,
+      },
+    });
+    if (_u) return ctx.body = { success: false, info: '该手机号码已经注册会员' };
+    try {
+      const res = await ctx.model.User.create({
+        phone,
+        pwd: utils.md5(pwd),
+      });
+
+      ctx.session.uid = res.uid;
+      ctx.session.phone = res.phone;
+      ctx.body = { success: true, info: '注册成功' };
+    } catch (e) {
+      ctx.body = { success: false, info: '注册失败' };
+    }
+
+  }
+
+  async uc() {
+    const { ctx } = this;
+    await ctx.service.common.getCommonData(); // 获取全局通用数据
+    return await ctx.render('theme/default/uc.nj');
   }
 
 }

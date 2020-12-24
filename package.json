@@ -1,4 +1,4 @@
-{
+ {
   "name": "dg_egg",
   "version": "1.0.0",
   "description": "",
@@ -47,7 +47,7 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "db": "egg-sequelize-auto -o app/model -d dg -h home.yiker.cc -u dg -p 3306 -x iKnBTSrdFa37GetN -e mysql"
+    "db": "egg-sequelize-auto -o app/model -d dg -h wz.welltell.cc -u dg -p 3306 -x iKnBTSrdFa37GetN -e mysql"
   },
   "ci": {
     "version": "10"

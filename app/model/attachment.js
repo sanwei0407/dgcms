@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('attachment', {
     aid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     addTime: {
       type: DataTypes.BIGINT,

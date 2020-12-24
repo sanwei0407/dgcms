@@ -1,0 +1,55 @@
+
+{% include "./public/head.nj" %}
+<link rel="stylesheet" href="/public/css/thelogin.css">
+<div class="head">
+    <div class="header">
+        <div class="reg">
+            <h3>用户登录</h3>
+            <div class="form" action="">
+                <input type="hidden">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号码</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" lay-verify="required" name="username" id="phone" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" class="layui-input" lay-verify="required" id="pwd" name="password"
+                               id="password">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-fluid layui-btn-lg"
+                                lay-filter="formDemo" id="tj">登录</button>
+                    </div>
+                </div>
+                <div class="t">没有账号，
+                    <a href="/register">立即注册</a>
+                    <div class="fr"><a href="">忘记密码？</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#tj").click(()=>{
+        let phone = $("#phone").val();
+        let pwd = $("#pwd").val();
+
+        $.post('/login',{
+            phone,
+            pwd
+        },(res)=>{
+            const { success ,backUrl} = res;
+            if(success){
+                if(backUrl) return window.location.href = backUrl
+                window.location.href = '/'
+            }
+        })
+    })
+</script>
+</body>
+</html>

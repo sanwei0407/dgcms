@@ -1,0 +1,127 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.user_head {
+  text-align: center;
+  background: url("/public/img/p1.png") no-repeat center;
+  background-size: cover;
+  height: 300px;
+  overflow: hidden;
+}
+
+.user_head .user_portrait {
+  padding: 70px 0 0 0;
+}
+
+.user_head .user_portrait img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: #fff solid 2px;
+}
+
+.user_head .user_portrait p {
+  font-size: 16px;
+  color: #fff;
+  padding: 10px 0 0 0;
+}
+
+.user_head .btn {
+  padding: 25px 0 0px 0;
+}
+
+.user_head .btn a {
+  border: rgba(255, 255, 255, 0.5) solid 1px;
+  padding: 6px 15px;
+  margin: 0 5px;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user_head .btn a i {
+  padding-right: 5px;
+  font-size: 15px;
+}
+
+.user_nav {
+  background: #f0f0f0;
+  height: 70px;
+  width: 100%;
+  text-align: center;
+}
+
+.user_nav li {
+  display: inline-block;
+  line-height: 70px;
+  font-size: 16px;
+  color: #666;
+  margin: 0 20px;
+  position: relative;
+}
+
+.user_nav li a {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.user_nav li a:hover {
+  color: #c20a14;
+}
+.user_nav li:hover >a{
+  color: #c20a14;
+}
+
+.main {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  background: #fff;
+  padding:25px;
+  box-sizing: border-box;
+}
+
+.main .noData {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.main .noData img {
+  width: 220px;
+}
+
+.main .noData p {
+  font-size: 16px;
+  color: #666;
+  padding: 20px 0 0 0;
+}
+
+.main .blank10 {
+  height: 10px;
+  clear: both;
+  overflow: hidden;
+}
+.uch1{
+  font-size: 20px;
+  line-height: 150px;
+}
+
+.layui-tab-content{
+  height: 500px;
+}
+.ct{
+  position: absolute;
+  right:35px;
+  top:45px;
+  z-index: 999;
+}

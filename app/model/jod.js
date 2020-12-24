@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('jod', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     Salary: {
       type: DataTypes.STRING(10),
@@ -38,11 +39,11 @@ module.exports = app => {
       allowNull: true
     },
     uid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     isdelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: true,
       defaultValue: '0'
     },

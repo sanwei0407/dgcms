@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('servetype', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     serve: {
       type: DataTypes.STRING(255),
@@ -18,7 +19,7 @@ module.exports = app => {
       allowNull: false
     },
     isDelete: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false
     }
   }, {

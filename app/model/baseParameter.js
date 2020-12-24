@@ -5,9 +5,10 @@ module.exports = app => {
 
   const Model = app.model.define('baseparameter', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     key: {
       type: DataTypes.STRING(255),

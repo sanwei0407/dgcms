@@ -42,11 +42,11 @@ global.ad = function(appCtx) {
 
   this.run = async (context, args, callback) => {
     const key = args.key ? args.key : '';
-
-    const methods = args.methods ? args.methods : 'post';
-    if (methods === 'post') {
-      const res = await axios.post('http://127.0.0.1:8001' + args.api, args.data);
-      // console.log('????????!!!!!!!!!!!!!!!!',res);
+    console.log('args',args)
+    const _url = '/findOneAd';
+    const methods = 'POST';
+    if (methods === 'POST') {
+      const res = await axios.post('http://127.0.0.1:8001' + _url, { aid: args.id });
       if (res.data.data.type === 'pic') {
         context.ctx[key] = `<a href="${res.data.data.goto}"> <img src="${res.data.data.adUrl}" style="width : ${res.data.data.width};height:${res.data.data.height} "></a>`;
       }
@@ -55,7 +55,7 @@ global.ad = function(appCtx) {
         const aa = [];
         for (let i = 0; i < res.data.data.adUrl.split(',').length; i++) {
           const a = res.data.data.adUrl.split(',')[i];
-          const jj = ` <div class="swiper-slide"><img src='${a}' style="width:100%;height:100%"></div>`;
+          const jj = ` <div class="swiper-slide"><img src='${a}' style="width:100%;height:100%;object-fit:cover;"></div>`;
           aa.push(jj);
 
         }

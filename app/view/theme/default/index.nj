@@ -1,487 +1,133 @@
-<html>
-  <body>
-    {% include "./public/head.nj" %} 
-    <div class="content">
-				<div class="content-left">
-					<div class=" figure">
-						<img src="https://fakeimg.pl/796x370/">
-						<div class="figure-msg">
-							<span>日本原宿街拍：有趣有形的“乱衣季”来了</span>
-							<div class="clice">
-								<div class=" clice-item"></div>
-								<div class=" clice-item"></div>	
-								<div class=" clice-item"></div>
-								<div class=" clice-item"></div>
-								<div class=" clice-item"></div>
-							</div>
-						</div>
-					</div>
-					<div class="title">
-						<div class="title-left">
-							<div class="title-left-icon">
-								<img src="https://fakeimg.pl/19x26/">
-							</div>
-							<div class="title-left-name">
-								精选头条
-							</div>
-						</div>
-						<div class="title-right"></div>
-					</div>
-					<div class="muen">
-						<div class="muen-item br">
-							<div class="muen-item-img">
-								<img src="https://fakeimg.pl/254x166/">
-							</div>
-							<div class="muen-content">
-								<div class="content">
-									日本原宿街拍：有趣有形的“乱衣季”来了
-								</div>
-							</div>
-						</div>
-						<div class="muen-item br">
-							<div class="muen-item-img">
-								<img src="https://fakeimg.pl/254x166/">
-							</div>
-							<div class="muen-content">
-								<div class="content">
-									日本原宿街拍：有趣有形的“乱衣季”来了
-								</div>
-							</div>
-						</div>
-						<div class="muen-item br">
-							<div class="muen-item-img">
-								<img src="https://fakeimg.pl/254x166/">
-							</div>
-							<div class="muen-content">
-								<div class="content">
-									日本原宿街拍：有趣有形的“乱衣季”来了
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ad">
-						广告位招租
-					</div>
-					<div class="title">
-						<div class="title-left">
-							<div class="title-left-icon">
-								<img src="https://fakeimg.pl/19x26/">
-							</div>
-							<div class="title-left-name">
-								热门推荐
-							</div>
-						</div>
-						<div class="title-right"></div>
-					</div>
-					<div class="news">
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-						<div class="news-item">	
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/250x166/">
-							</div>
-							<div class="item-right">
-								<div class="item-title">
-									小个子穿搭困扰，我们有对策
-								</div>
-								<div class="item-newInfo">
-									找到问题 对症下药 知己知彼，方能百战百胜。咱先得了解小个子姑娘在穿衣上的劣势才能对症下药。我们今天说的小个子姑娘大抵是指155cm~162cm的撒。 困扰1 身材五五分 显腿...
-								</div>
-								<div class="item-oName">
-									观点 / 2017-11-03
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="more br">
-					   更多文章
-					</div>
-				</div>
-				<div class="content-right">
-					<div class="title">
-						<div class="title-left">
-							<div class="title-left-icon">
-								<img src="https://fakeimg.pl/19x26/">
-							</div>
-							<div class="title-left-name">
-								今日头条
-							</div>
-						</div>
-						<div class="title-right"></div>
-					</div>
-					<div class="news-nav">
-						<div class="news-nav-item">
-							<div class="news-nav-title">
-								日本原宿街拍：有趣有形的“乱衣季”来了
-							</div>
-							<div class="item-info">
-								眉型 都说眼睛是灵魂之窗，但眉毛也会框出整张脸的轮廓。从柳叶眉，挑眉到近年大热的平眉，眉毛在美妆界的地位一直都不可小觑。一个完美的..
-							</div>
-						</div>
-						<div class="news-nav-item">
-							<div class="news-nav-title">
-								日本原宿街拍：有趣有形的“乱衣季”来了
-							</div>
-							<div class="item-info">
-								眉型 都说眼睛是灵魂之窗，但眉毛也会框出整张脸的轮廓。从柳叶眉，挑眉到近年大热的平眉，眉毛在美妆界的地位一直都不可小觑。一个完美的..
-							</div>
-						</div>
-						<div class="news-nav-item">
-							<div class="news-nav-title">
-								日本原宿街拍：有趣有形的“乱衣季”来了
-							</div>
-							<div class="item-info">
-								眉型 都说眼睛是灵魂之窗，但眉毛也会框出整张脸的轮廓。从柳叶眉，挑眉到近年大热的平眉，眉毛在美妆界的地位一直都不可小觑。一个完美的..
-							</div>
-						</div>
-						<div class="news-nav-item">
-							<div class="news-nav-title">
-								日本原宿街拍：有趣有形的“乱衣季”来了
-							</div>
-							<div class="item-info">
-								眉型 都说眼睛是灵魂之窗，但眉毛也会框出整张脸的轮廓。从柳叶眉，挑眉到近年大热的平眉，眉毛在美妆界的地位一直都不可小觑。一个完美的..
-							</div>
-						</div>
-						<div class="news-nav-item" style="border: none;">
-							<div class="news-nav-title">
-								日本原宿街拍：有趣有形的“乱衣季”来了
-							</div>
-							<div class="item-info">
-								眉型 都说眼睛是灵魂之窗，但眉毛也会框出整张脸的轮廓。从柳叶眉，挑眉到近年大热的平眉，眉毛在美妆界的地位一直都不可小觑。一个完美的..
-							</div>
-						</div>
-					</div>
-					<div class="ad">
-						广告招租
-					</div>
-					<div class="title">
-						<div class="title-left">
-							<div class="title-left-icon">
-								<img src="https://fakeimg.pl/19x26/">
-							</div>
-							<div class="title-left-name">
-								热文榜单
-							</div>
-						</div>
-						<div class="title-right"></div>
-					</div>
-					<div class="hotpage">
-						<div class="hotpage-item">
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/92x60/">
-							</div>
-							<div class="item-title">
-								姑娘快把腿秀起来
-							</div>
-						</div>
-						<div class="hotpage-item">
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/92x60/">
-							</div>
-							<div class="item-title">
-								姑娘快把腿秀起来
-							</div>
-						</div>
-						<div class="hotpage-item">
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/92x60/">
-							</div>
-							<div class="item-title">
-								姑娘快把腿秀起来
-							</div>
-						</div>
-						<div class="hotpage-item">
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/92x60/">
-							</div>
-							<div class="item-title">
-								姑娘快把腿秀起来
-							</div>
-						</div>
-						<div class="hotpage-item" style="border: none;">
-							<div class="item-pohto">
-								<img src="https://fakeimg.pl/92x60/">
-							</div>
-							<div class="item-title">
-								姑娘快把腿秀起来
-							</div>
-						</div>
-					</div>
-					<div class="ad">
-						广告招租
-					</div>
-					<div class="title">
-						<div class="title-left">
-							<div class="title-left-icon">
-								<img src="https://fakeimg.pl/19x26/">
-							</div>
-							<div class="title-left-name">
-								达人快报
-							</div>
-						</div>
-						<div class="title-right"></div>
-					</div>
-					<div class="flash-report">
-						<div class="flash-report-item">
-							<div class="item-labeling ">1</div>
-							<div class="item-info">
-								“差评”改“好评”一个收费260，揭秘藏在“
-							</div>
-						</div>
-						<div class="flash-report-item">
-							<div class="item-labeling ">2</div>
-							<div class="item-info">
-								“差评”改“好评”一个收费260，揭秘藏在“
-							</div>
-						</div>
-						<div class="flash-report-item">
-							<div class="item-labeling ">3</div>
-							<div class="item-info">
-								“差评”改“好评”一个收费260，揭秘藏在“
-							</div>
-						</div>
-						<div class="flash-report-item">
-							<div class="item-labeling ">4</div>
-							<div class="item-info">
-								“差评”改“好评”一个收费260，揭秘藏在“
-							</div>
-						</div>
-						<div class="flash-report-item">
-							<div class="item-labeling ">5</div>
-							<div class="item-info">
-								“差评”改“好评”一个收费260，揭秘藏在“
-							</div>
-						</div>
-						<div class="flash-report-item">
-							<div class="item-labeling ">6</div>
-							<div class="item-info">
-								“差评”改“好评”一个收费260，揭秘藏在“
-							</div>
-						</div>
-					</div>
-					<div class="title">
-						<div class="title-left">
-							<div class="title-left-icon">
-								<img src="https://fakeimg.pl/19x26/">
-							</div>
-							<div class="title-left-name">
-								品牌推荐
-							</div>
-						</div>
-						<div class="title-right"></div>
-					</div>
-					<div class="ad">广告位招租</div>
-					<div class="ad">广告位招租</div>
-				</div>
-			</div>
-			<div class="partners">
-				<div class="partners-icon">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-					<img src="https://fakeimg.pl/110x52/">
-				</div>
-				<div class="herf">
-					<div class="straight"></div>
-					<div class="clice"></div>
-					<div class="link">友情链接</div>
-					<div class="clice"></div>
-					<div class="straight"></div>
-				</div>
-				<div class="zhichi">
-					<span>技术支持</span>
-					<span>技术支持</span>
-					<span>技术支持</span>
-				</div>
-			</div>
-      {% include "./public/foot.nj" %}
-    </body>
-  </html>
 
-<script>
-const a = document.querySelector('#qwe')
-var qq = a.getAttribute("href");
-var getNum = qq.slice(qq.lastIndexOf('/')+1)
-console.log(getNum) 
-if(!isNaN(getNum)){
-a.onclick = function(){
-  const realUrl = qq.slice(0,qq.lastIndexOf('/'))
-  getNum++
-  a.setAttribute("href",realUrl+'/'+getNum)
-}
-}else{
-  a.onclick = function(){
-  getNum++
-  a.setAttribute("href",qq.concat('/page/'+ 2))
-}
-}
+    {% include "./public/indexhd.nj" %}
+
+    <div class="homeBg">
+        {% ad key="ad",id="41" %}
+        {{ad|safe}}
+    </div>
+    <div class="homeWrap" style="margin-top: 50px;">
+        <div class="secTitle">  资讯信息  news </div>
+        <div class="newct clr">
+
+            <div class="newLeft">
+
+                <div class="nlimg" style="background: url({{ news[0].cover }}) center center / cover no-repeat;"></div>
+                <div class="nltitle">{{ news[0].title }}</div>
+                <div class="nldesc">{{new[0].contentSummary }}</div>
+            </div>
+            <div class="newRight">
+                {% for item in news%}
+
+                <div class="nritem clr">
+                    <div class="nrdate">
+                        <span>11/03 </span>
+                        <span>2020</span>
+                    </div>
+                    <div class="nrmain">
+                        <div class="nrtitle">
+                            {{item.title}}
+                        </div>
+                        <div class="nrdesc">{{item.contentSummary}}</div>
+                    </div>
+                </div>
+               {% endfor %}
+            </div>
+        </div>
+        <div class="homeMore">
+            查看更多
+        </div>
+    </div>
+
+    <div class="homeWrap">
+        <div class="secTitle">  文化活动  culture </div>
+
+        <div class="whList clr">
+            {% for item in activity %}
+            <div class="whitem">
+                <div class="whimg" >
+                    <img src="{{ item.cover }}" alt="">
+                </div>
+                <div class="whtitle">{{item.title}}</div>
+                <div class="whaddr">{{item.address}}</div>
+                <div class="whdate">2020/12/25</div>
+
+            </div>
+            {% endfor %}
+        </div>
 
 
-var mySwiper = new Swiper ('.swiper-container', {
-    
-    loop: true, // 循环模式选项
+        <div class="homeMore">
+            查看更多
+        </div>
+    </div>
 
-    // 如果需要分页器
-    pagination: {
-      el: '.swiper-pagination',
-    },
+    <div class="homeWrap">
+        <div class="secTitle">  场馆预约  book </div>
 
-    // 如果需要前进后退按钮
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+        <div class="srtab clr" >
+            <div style="float: left;" class="cur">场馆预定</div>
+            <div style="float: right">活动预约</div>
+        </div>
+        <div class="clr srct">
+            {% for item in book%}
+            <div class="srbox">
+                <div class="srtitle">{{item.title}}</div>
+                <div class="srdesc">容纳： {{item.peoples}}人</div>
+                <div class="srimg">
+                    <img src="{{item.cover}}" alt="{{item.title}}">
+                </div>
+                <div class="sradd"> {{item.address}}</div>
+            </div>
+            {% endfor %}
 
-    // 如果需要滚动条
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  })
-</script>
+        </div>
 
+
+        <div class="homeMore">
+            查看更多
+        </div>
+    </div>
+
+    <div class="homeWrap">
+        <div class="secTitle">  文化服务  service </div>
+
+        <div class="stzone clr">
+            <div class="stitem">
+                <div class="sititle">慕课学习</div>
+                <div style="position: absolute;left:0;top:0">
+                    <img src="/public/img/si1.png" alt="">
+                </div>
+
+            </div>
+            <div class="stitem">
+                <div class="sititle">直播点播服务</div>
+                <div style="position: absolute;left:0;top:0">
+                    <img src="/public/img/i2.png" alt="">
+                </div>
+            </div>
+            <div class="stitem">
+                <div class="sititle">特色文旅</div>
+                <div style="position: absolute;left:0;top:0">
+                    <img src="/public/img/i3.png" alt="">
+                </div>
+            </div>
+            <div class="stitem">
+                <div class="sititle">特色品牌</div>
+                <div style="position: absolute;left:0;top:0">
+                    <img src="/public/img/i4.png" alt="">
+                </div>
+            </div>
+            <div class="stitem">
+                <div class="sititle">直 播 点 播 服 务</div>
+                <div style="position: absolute;left:0;top:0">
+                    <img src="/public/img/i5.png" alt="">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+     {% include "./public/foot.nj" %}
+  </body>
+</html>
