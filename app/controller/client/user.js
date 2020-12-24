@@ -67,6 +67,28 @@ class UserController extends Controller {
     }
   }
 
+  // 获取用户总数
+  async finduser() {
+    const {ctx, app} = this;
+    const where = {isDelete: 0};
+    const {Op} = app.Sequelize;
+
+    try {
+      const res = await ctx.model.User.findAndCountAll({
+        where,
+        attributes: {
+          exclude: ['isDelete'],
+        },
+      });
+      ctx.body = {success: true, data: res};
+
+    } catch (e) {
+      ctx.body = {success: false, info: '查询失败'};
+      console.log(e);
+    }
+  }
+
+
   // @author zbx
   // @last update 2020年11月11日 15:20
   // @用户登录的接口
