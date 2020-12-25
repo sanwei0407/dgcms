@@ -264,8 +264,7 @@ module.exports = app => {
   router.post('/book/update', controller.booking.update); // 更新场馆信息
 
   // 数据汇总接口
-  router.post('/addtotaData',controller.total.totaldata.addtotaData) // 添加汇总数据
-  // router.post('findAlltotaData',controller.total.totaldata.findAlltotaData) //查找所有的数据总况
+  router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
 
   // api 接口
   router.get('/api/myteam', controller.api.myteam);
