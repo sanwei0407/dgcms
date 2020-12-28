@@ -132,6 +132,7 @@ class BookingController extends Controller {
 
     const placeinfo = await ctx.model.Booking.findByPk(id);
     ctx.locals.placeinfo = placeinfo;
+    ctx.locals.bookId = id;
     ctx.locals.innerNav = [
       { seoUrl: '/', name: '首页' },
       { seoUrl: '/book', name: '场馆预约' },
@@ -143,6 +144,7 @@ class BookingController extends Controller {
     await ctx.render('theme/default/bookdetail.nj'); // 最终渲染
 
   }
+
 
 }
 module.exports = BookingController;

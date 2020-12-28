@@ -273,6 +273,9 @@ module.exports = app => {
   router.post('/api/joinac', controller.api.joinac);
   router.get('/api/activity', controller.api.activity);
 
+
+  router.post('/api/login', controller.api.)
+
   router.post('/api/acticleList', controller.api.acticleList);// 获取文章内容
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 

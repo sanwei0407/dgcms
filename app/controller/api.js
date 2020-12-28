@@ -151,6 +151,19 @@ class ApiController extends Controller {
     const offset = (page - 1) * limit;
     const where = {};
     let _order = [];
+
+    const _cate = await ctx.model.Category.findByPk(cid);
+    if (_cate.type == 1) {
+      const _cids = await ctx.model.Category.findAll({
+        where: {
+          pid: _cate.cod,
+        },
+        attributes: [ 'cid' ],
+        raw: true,
+      });
+      cids = _cids.map(r => r.cid).join(',');
+    }
+
     if (cid) where.cid = cid;
     if (cids) where.cid = { [Op.in]: cids.split(',') };
     if (type) where.type = type;
@@ -167,6 +180,82 @@ class ApiController extends Controller {
     });
 
     ctx.body = { success: true, data: res };
+  }
+
+  //
+  async aclist() {
+    const { ctx, app } = this;
+    let { type, page, limit, order, keyword } = ctx.request.body;
+    const where = {};
+    const { Op } = app.Sequelize;
+    if (type) where.type = type;
+    if (keyword) where.title = { [Op.like]: `%${keyword}%` };
+    page = page ? parseInt(page) : 1;
+    limit = limit ? parseInt(limit) : 20;
+
+    const offset = (page - 1) * limit;
+    let _order = [];
+    if (order === 'byview') _order = [[ 'reading', 'DESC' ], [ 'aid', 'DESC' ]];
+    if (order === 'bytime') _order = [[ 'addTime', 'DESC' ], [ 'aid', 'DESC' ]];
+    const res = await ctx.model.Activity.findAndCountAll({
+      where,
+      limit,
+      offset,
+      order,
+    });
+
+    ctx.body = {
+      success: true,
+      ...res,
+    };
+  }
+
+  async addBook() {
+    const { ctx, app } = this;
+    const { bookId } = ctx.request.body;
+    const { uid } = ctx.session;
+    if (!uid) return ctx.body = { success: false, info: '请先登录', backurl: '/login' };
+
+    await ctx.model.Actions.create({
+      uid,
+      state: 2,
+      type: 2,
+      updateTime: Date.now(),
+      addTime: Date.now(),
+      bookId,
+      bookInfo: JSON.stringify(ctx.request.body),
+    });
+
+
+    ctx.body = {
+      success: true,
+      info: '提交申请成功',
+    };
+
+  }
+
+  async mybook() {
+    const { ctx, app } = this;
+    const { type } = ctx.query;
+    const { uid } = ctx.session;
+    const where = {};
+    await ctx.model.Booking.belongsTo(ctx.model.Actions, { foreignKey: 'id', targetKey: 'bookId' });
+    const res = await ctx.model.Booking.findAndCountAll({
+      include: [
+        {
+          model: ctx.model.Actions,
+          where: { uid },
+          required: true,
+        },
+      ],
+      raw: true,
+    });
+
+    // res.rows.forEach(r => {
+    //   if (r.action.state == 2) r.action.state = '等待审核';
+    //   if (r.action.state == 3) r.action.state = '审核通过';
+    // });
+    ctx.body = { success: true, ...res };
   }
 }
 

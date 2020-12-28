@@ -200,7 +200,7 @@ class CommonController extends Controller {
         },
         raw: true,
       });
-      console.log('escape', path);
+
       if (cate) {
         const _tp = cate.templateId;
         templateDir = _tp;
@@ -208,8 +208,22 @@ class CommonController extends Controller {
         const limit = 6;
         const offset = limit * (page - 1);
         await ctx.model.Article.belongsTo(ctx.model.Category, { targetKey: 'cid', foreignKey: 'cid' });
+        let _cid;
+        const { Op } = app.Sequelize;
+        if (cate.type == 1) {
+          const _cids = await ctx.model.Category.findAll({
+            where: {
+              pid: cate.cid,
+            },
+            attributes: [ 'cid' ],
+            raw: true,
+          });
+          _cid = { [Op.in]: _cids.map(r => r.cid) };
+        } else {
+          _cid = cate.cid;
+        }
         const _article = await app.model.Article.findAll({ where: {
-          cid: cate.cid,
+          cid: _cid,
         },
         offset,
         limit,
@@ -220,7 +234,7 @@ class CommonController extends Controller {
 
         // 生成分页信息
         const _count = await app.model.Article.count({ where: {
-          cid: cate.cid,
+          cid: _cid,
           isDelete: 0,
         } });
         const maxPage = Math.ceil(_count / limit);
@@ -261,7 +275,7 @@ class CommonController extends Controller {
         const subCates = ctx.locals.category.find(r => r.cid == topcid);
         console.log('topcid', subCates);
         ctx.locals.subCates = subCates.children;
-        ctx.locals.topcid = topcid
+        ctx.locals.topcid = topcid;
 
         // 生成面包屑菜单
         // 生成面包屑菜单
@@ -269,7 +283,7 @@ class CommonController extends Controller {
         // 生成面包屑菜单 end
         ctx.locals.articleList = _article;
         ctx.locals.cate = cate;
-        ctx.locals.fenlei = cate.tags.split(',').filter(r => r.trim());
+        ctx.locals.fenlei = cate.tags ? cate.tags.split(',').filter(r => r.trim()) : '';
       }
 
     }
@@ -296,6 +310,18 @@ class CommonController extends Controller {
         await this.getHotList(cate); // 热门消息
         // 生成面包屑菜单
         await this._getBreakNum(cate);
+
+        // 把内容进行切割
+        const ct = article.content;
+        const _temarr = await this.splitStr(ct);
+        const _temarr2 = [];
+        for (let i = 0; i < _temarr.length; i = i + 2) {
+          _temarr2.push([ _temarr[i], _temarr[i + 1] ]);
+        }
+
+        ctx.locals.ctarr = _temarr2;
+
+
       }
       if (type === 'activity') {
         // 考虑活动内容
@@ -368,7 +394,7 @@ class CommonController extends Controller {
 
   async handleActivity(page) {
     const { ctx } = this;
-    const limit = 10;
+    const limit = 3;
     const offset = (page - 1) * limit;
     const { type } = ctx.query;
     const where = {};
@@ -388,6 +414,16 @@ class CommonController extends Controller {
       { value: 6, label: '公益' },
     ];
     ctx.locals.activitys = activitys;
+    const _count = await ctx.model.Activity.count({ where: {
+      isDelete: 0,
+    } });
+    const maxPage = Math.ceil(_count / limit);
+    const pagation = [];
+    for (let i = 0; i < maxPage; i++) {
+      pagation.push({ page: i + 1, url: `/wenhuahuodong/page/${i + 1}` });
+    }
+    ctx.locals.pagation = pagation;
+
   }
 
 
@@ -481,6 +517,32 @@ class CommonController extends Controller {
     }
 
     return topcid;
+
+  }
+
+
+  async splitStr(_str) {
+
+    const str = _str.replace(/<img.*\/?>/ig, '');
+    console.log('str', str);
+    if (str.length < 400) {
+      const rs = [];
+      rs[0] = str;
+      return rs;
+    }
+    const size = 400;
+    const count = Math.ceil(str.length / size);
+    const rs = [];
+    for (let i = 0; i <= count; i++) {
+      if (i === 0) {
+        rs.push(str.substring(i, size));
+      } else if (i > 0 && i < count) {
+        rs.push(str.substring((i * size) + 1, (i + 1) * size));
+      } else {
+        rs.push(str.substring((i * size) + 1, str.length - 1));
+      }
+    }
+    return rs;
 
   }
 }

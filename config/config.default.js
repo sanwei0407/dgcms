@@ -111,7 +111,8 @@ module.exports = appInfo => {
   // 启用Flie文件模式
   config.multipart = {
     mode: 'file',
-    fileExtensions: [ '.pdf' ] // 增加对 apk 扩展名的文件支持
+    fileExtensions: [ '.pdf', 'doc', 'docx', 'pptx' ], // 增加对 apk 扩展名的文件支持
+    fileSize: '50mb',
   };
   // add your user config here
   const userConfig = {
