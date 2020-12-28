@@ -11,25 +11,20 @@
                       <a href="{{item.seoUrl}}">{{item.name}}</a>
                   </div>
                 {% endfor %}
+
             </div>
         </div>
         <div class="content3">
             <div class="content31">
-                <div class="choose2">
-                    <div class="classify">活动类型:</div>
-                    <div class="classify-item">
-                      <a href="{{cate.seoUrl}}">
-                      全部
-                      </a>
-                    </div>
+                {% if typeList.length > 0 %}
+                <div class="choose2 typechoose">
+                    <div class="classify">类型:</div>
+                    <div class="classify-item on">全部</div>
                     {% for item in typeList %}
-                    <div class="classify-item">
-                      <a href="{{cate.seoUrl}}?type={{item.value}}">
-                          {{item.label}}
-                      </a>
-                    </div>
-                   {% endfor %}
+                    <div class="classify-item" data-value="{{item.value}}">{{item.label}}</div>
+                    {% endfor %}
                 </div>
+                {% endif %}
 
                 <div class="choose2">
                     <div class="classify">&#12288&#12288排序:</div>
@@ -57,6 +52,86 @@
 
 
             </div>
+        <!-- 分页  -->
+            <div class="pages">
+                {% for item in pagation %}
+                <div  {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</div>
+                {% endfor %}
+            </div>
         </div>
     </div>
+<input type="hidden" id="baseUrl" value="{{cate.seoUrl}}" />
+
+<script>
+    $(function(){
+
+
+        let pageInit = function(){
+            $(".pages>div").removeClass('cur');
+            $(".pages>div").first().addClass('cur')
+
+        }
+        let getData = function(){
+            const  limit  = 3;
+            let page = $('.pages .cur').text();
+            const baseUrl = $("#baseUrl").val()
+            const cid = $("#cid").val()
+            const keyword = $(".searchBox input").val()
+            let order = '';
+            let type = ''
+            type = $(".typechoose .on").text().trim() === '全部'?'':$(".typechoose .on").attr('data-value');
+            let _order = $(".orderchoose .on").text().trim();
+            if(_order === '浏览量')  order = 'byview';
+            if(_order === '最新发布')  order = 'bytime';
+            $.post('/activity/list',{order,type,page,limit,keyword},(res)=>{
+                const { success,count,rows } = res;
+                if(success){
+                    $('.con4').html(
+                        rows.map(item=> `
+                                <div class="content4-item">
+                                    <a href="${baseUrl}/${item.id}">
+                                    <div><h3>${item.title}</h3></div>
+                                    <div><h6></h6></div>
+                                    <div class="img">
+                                      <img src="${item.cover}" style="width:100%;height:100%; object-fit:cover;">
+                                      </div>
+
+                                        <div><p>  发布时间：${ new Date(item.addTime).toLocaleDateString()} </p></div>
+                                        <div><p>  浏览量：${item.reading} </p></div>
+                                    </a>
+                                </div>
+                        ` ).join("")
+                    )
+                }
+            })
+        }
+
+        $(".choose2").click((ev)=>{
+            $(ev.currentTarget).find(".classify-item").removeClass('on');
+            let curdom =  ev.target;
+            curdom.classList.add('on')
+            pageInit()
+            getData()
+        })
+
+        //分页点击
+
+        $(".pages>div").click(function(ev){
+            $(".pages>div").removeClass('cur');
+            $(this).addClass('cur')
+            getData()
+        })
+
+        // 关键字搜索
+
+        $('.searchBox i').click(function(ev){
+            getData();
+        })
+
+
+
+
+    })
+
+</script>
     {% include "./public/foot.nj" %}

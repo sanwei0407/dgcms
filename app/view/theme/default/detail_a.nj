@@ -1,12 +1,16 @@
   {% include "./public/head.nj" %}
   <link rel="stylesheet" href="/public/css/detai_a.css">
+  <link rel="stylesheet" href="/public/css/viewer.min.css">
+  <script src="/public/js/viewer-jquery.min.js"></script>
+  <script src="/public/js/jquery.jqzoom-core.js"></script>
+  <link rel="stylesheet" href="/public/css/jquery.jqzoom.css">
   <!-- 活动详情 -->
     <div id="cententBody">
         <!-- 菜单 -->
         <!--    面包屑-->
         {% include "./public/innernav.nj" %}
         <!-- 左边主题内容 -->
-        <div class="left">
+        <div class="left" style="min-height: 900px">
             <div class="heard">
                 <!-- 标题 -->
                 <div class="title">
@@ -18,13 +22,13 @@
             </div>
 
             <div class="text">
-                <div class="textarea">
+                <div class="textarea" id="textarea">
                   {{ article.content|safe }}
                 </div>
             </div>
 
 
-            <div class="more ">
+            <div class="more" >
                 <div class="left">
                     <div> 我是图标</div>
                     <div> <span>0</span> 赞 </div>
@@ -58,4 +62,13 @@
         </div>
         <div style="clear:both"> </div>
     </div>
+
+  <script>
+      $('#textarea').viewer({
+          url: 'data-original',
+      });
+
+
+
+  </script>
     {% include "./public/foot.nj" %}

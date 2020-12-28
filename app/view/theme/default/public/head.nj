@@ -8,11 +8,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2284466_vai5o5nmba.css">
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/public/js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+
 </head>
 
 <body>
@@ -90,7 +91,7 @@
           </div>
       </div>
   </div>
-  <div id="header-fix" class="td-abs" style="position: absolute; top: 45px; z-index: 10; border-top-width: 0px;">
+  <div id="header-fix" class="td-abs" style="position: absolute; top: 43px; z-index: 10; border-top-width: 0px;">
       <div class="header-nav-bg">
           <div class="header-nav">
               <div class="logo-small">

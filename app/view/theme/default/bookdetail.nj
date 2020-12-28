@@ -1,5 +1,7 @@
 {% include "./public/head.nj" %}
 <link rel="stylesheet" href="/public/css/book.css">
+<link rel="stylesheet" href="/public/layui/css/layui.css">
+<script src="/public/layui/layui.all.js"></script>
    <div class="head">
         <div class="mune_mask"></div>
         <div class="show_banner" style="background:url(https://oss.culturalcloud.net/liuyang/202008/181740323fzu.png) no-repeat top">
@@ -45,7 +47,7 @@
                 <div class="main" >
                     <div class="exhibition_show">
                         <div class="tt">场馆预订<span>（请选择预订时间段）</span></div>
-                        <div class="activity_venues">
+                        <div class="activity_venues" style="margin-bottom: 30px;">
                             <table cellspacing="0">
                                 <thead>
                                     <tr>
@@ -98,6 +100,67 @@
                                     </tr>
                             </table>
                         </div>
+                        <form class="layui-form" action="" lay-filter="bookform">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">团队/单位名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">单位性质</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="xingzhi" value="1" title="机关" checked>
+                                    <input type="radio" name="xingzhi" value="2" title="事业" >
+                                    <input type="radio" name="xingzhi" value="3" title="企业" >
+                                    <input type="radio" name="xingzhi" value="4" title="社会团体" >
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联系人</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="lxname" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联系电话</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="lxphone" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用途</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="gongyi" value="1" title="公益" checked>
+                                    <input type="radio" name="gongyi" value="2" title="非公益" >
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">预约申请表</label>
+                                <div class="layui-input-block">
+                                    <div class="layui-upload">
+                                        <button type="button" class="layui-btn" id="idfront">上传文件</button>
+                                        <a href="http://47.106.22.167:5050/common/20201227/1609079447091.doc"> （ 点击下载 梧州市群众艺术馆场地预约申请表 填写后上传） </a>
+                                        <div class="layui-upload-list">
+                                            <p id="idfronttxt"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"></label>
+                                <div class="layui-input-block">
+                                    <button class="layui-btn"  id="tj" >提交</button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+
+
                     </div>
                 </div>
                 <div class="main"  style="display: none">
@@ -120,8 +183,10 @@
                     </div>
                 </div>
 
+
+
                 <!--收藏/ 点赞/ 分享-->
-                <div class="favorite">
+                <div class="favorite" >
                     <ul>
                         <li>
                                 <p>收藏</p>
@@ -163,7 +228,9 @@
         <div class="blank10"></div>
         <div class="blank10"></div>
         <!--foot-->
-
+       <input type="hidden" id="uid">
+       <input type="hidden" id="fpic">
+       <input type="hidden" id="bookId" value="{{bookId}}">
 
        <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=C9g0EhBT47RZMItCfCtnMg3Zm5yNSmoA"></script>
 
@@ -179,6 +246,78 @@
         ]}));
 	map.setCurrentCity("梧州");          // 设置地图显示的城市 此项是必须设置的
 	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-</script>
 
+
+
+
+
+
+
+
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+        form.render()
+        //监听提交
+
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+
+        //普通图片上传 正面
+        var uploadFront = upload.render({
+            elem: '#idfront',
+            accept:'file'
+            ,url: 'http://127.0.0.1:8001/attachment/upload' //改成您自己的上传接口
+            ,before: function(obj){
+
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(!res.success ) return layer.msg('上传失败');
+                //上传成功
+                $("#idfronttxt").text(res.msg.split('/').pop())
+                $('#fpic').val(res.msg);
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#idback');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadFront.upload();
+                });
+            }
+        });
+
+        $("#tj").click(function(event){
+            var data = form.val('bookform');
+            console.log(data)
+            data.pic = $("#fpic").val();
+            data.bookId = $("#bookId").val();
+            data.bookDate = '2019-04-09'
+            $.post('/api/addBook',data,function(res){
+                const { success ,backurl} = res;
+                if(!success){
+                    layer.msg('需要先登录')
+                    if(backurl) setTimeout(()=>window.location.href=backurl,2000)
+                }else{
+                    layer.msg('提交成功')
+                }
+
+            })
+            event.preventDefault()
+        })
+
+    });
+
+
+</script>
+       <style>
+           .layui-form-label{
+               width: 94px;
+           }
+           .layui-input-block{
+               margin-left: 130px;
+           }
+       </style>
 {% include "./public/foot.nj" %}

@@ -1,0 +1,35 @@
+
+
+.mct ul h2 {
+  color: #fff;
+  margin: 0;
+  line-height: 30px;
+  padding-right: 30px;
+  text-align: right;
+  -moz-transform: translateX(-100%) rotate(-90deg);
+  -moz-transform-origin: right top;
+  -webkit-transform: translateX(-100%) rotate(-90deg);
+  -webkit-transform-origin: right top;
+}
+/* line 27, ../sass/jquery.wiper.scss */
+.mct ul li {
+  position: absolute;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+  box-shadow: 5px -5px 14px rgba(0, 0, 0, 0.4);
+  -moz-transform: translateX(0%) rotate(0deg);
+  -moz-transform-origin: right top;
+  -webkit-transform: translateX(0%) rotate(0deg);
+  -webkit-transform-origin: right top;
+}
+/* line 38, ../sass/jquery.wiper.scss */
+.mct ul li:nth-child(1) {
+  background: url(../images/p_back.png) repeat;
+  /*h2*/
+}
+/* line 45, ../sass/jquery.wiper.scss */
+.mct ul li:nth-child(2) {
+  background: url(../images/e_back.png) repeat;
+  /*h2*/
+}

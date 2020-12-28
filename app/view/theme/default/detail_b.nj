@@ -1,80 +1,150 @@
   {% include "./public/head.nj" %}
-  <link rel="stylesheet" href="/public/css/detai_a.css">
-  <link type="text/css" rel="stylesheet" href="/public/css/lightgallery.css" />
-  <script src="/public/js/lightgallery.js"></script>
-  <!-- 活动详情 -->
-    <div id="cententBody">
-        <!-- 菜单 -->
-        <!--    面包屑-->
-        {% include "./public/innernav.nj" %}
-        <!-- 左边主题内容 -->
-        <div class="left">
-            <div class="heard">
-                <!-- 标题 -->
-                <div class="title">
-                    <span>{{article.title}}</span>
-                </div>
-                <div class="from">
-                    来源：<span> 梧州群艺馆 </span> &nbsp&nbsp <span> 2020-12-11 </span> 发布&nbsp&nbsp&nbsp <span> 5 </span> 浏览
-                </div>
-            </div>
-
-            <div class="text">
-                <div class="textarea">
-                  {{ article.content|safe }}
-                </div>
-            </div>
+  <link rel="stylesheet" href="/public/css/detai_a.css?231">
+  <link rel="stylesheet" href="/public/css/viewer.min.css?123">
+  <link rel="stylesheet" href="/public/css/lilun.css?433">
 
 
-            <div class="more ">
-                <div class="left">
-                    <div> 我是图标</div>
-                    <div> <span>0</span> 赞 </div>
-                </div>
-                <div class="right">
-                    分享:
-                </div>
-            </div>
+  <script src="/public/js/viewer-jquery.min.js"></script>
+
+  <div class="clr if">
+      <div class="nleft">
+          {% include "./public/innernav.nj" %}
+      </div>
+
+      <div class="viewmode">
+          <button id="film">影院模式</button>
+          <button id="normal">普通模式</button>
+          <button id="nolayer">无遮罩</button>
+      </div>
+  </div>
 
 
-        </div>
-        <!-- 右边热门动态 -->
-        <div class="right">
-            <div class="reBox">
-                <div class="retitle">热门动态</div>
-                <div class="relist">
-                    {% for item in hotList %}
-                    <div class="relist_item">
-                        <a href="{{cate.seoUrl}}/{{item.aid}}" >
-                            <div class="reitem_title">{{item.title}}</div>
-                        </a>
-                        <div class="reitem_desc">
-                            <span>{{item.author}}</span>
-                            <span>{{item.addTime|time}}</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div style="clear:both"> </div>
-    </div>
+
+  <div id="scense"  style="height: 800px;width:1200px;margin:0 auto;padding-bottom: 40px">
+
+      <div class="scene">
+          <article class="book">
+
+              {% for item in ctarr %}
+                  {% if loop.first %}
+                  <section class="page active">
+                      <div class="front">
+
+                              <h1>{{ loop.index0*2 +1 }}</h1>
+
+                          {{item[0]|safe}}
+
+                      </div>
+                      <div class="back">
+                          <h1>– {{ loop.index0*2 +2 }} –</h1>
+                          {{item[1]|safe}}
+                      </div>
+                  </section>
+                  {% else %}
+                          <section class="page ">
+                              <div class="front">
+
+                                  <h1>{{ loop.index0*2 +1 }}</h1>
+
+                                  {{item[0]|safe}}
+
+                              </div>
+                              <div class="back">
+                                  <h1>– {{ loop.index0*2 +2 }} –</h1>
+                                  {{item[1]|safe}}
+                              </div>
+                          </section>
+                  {% endif %}
+              {% endfor %}
+          </article>
+      </div>
+
+  </div>
+
+  <div id="ctinfo" style="display: none">
+      <h1> {{article.title}} </h1>
+      <div class="from">
+          来源：<span> 梧州群艺馆 </span> &nbsp&nbsp <span> 2020-12-11 </span> 发布&nbsp&nbsp&nbsp <span> 5 </span> 浏览
+      </div>
+      <div class="ctt">
+          {{ article.content|safe }}
+      </div>
+
+  </div>
+
+  <div class="overlayer"></div>
+  <script src='/public/js/jquery.hammer.min.js' type="text/javascript"></script>
+  <script src="/public/js/cutter.js"></script>
+  <script>
+
+      var currentPage = 0;
+
+
+      $('.book')
+          .on('click', '.active', nextPage)
+          .on('click', '.flipped', prevPage);
+
+      $('.book').hammer().on("swipeleft", nextPage);
+      $('.book').hammer().on("swiperight", prevPage);
+
+      function prevPage() {
+
+          $('.flipped')
+              .last()
+              .removeClass('flipped')
+              .addClass('active')
+              .siblings('.page')
+              .removeClass('active');
+      }
+      function nextPage() {
+
+          $('.active')
+              .removeClass('active')
+              .addClass('flipped')
+              .next('.page')
+              .addClass('active')
+              .siblings();
+
+
+      }
+
+
+  </script>
 
   <script>
 
-      let doms = document.querySelectorAll('.textarea img');
-      console.log(doms);
+
+
 
       $(".textarea img").each(function(){
           let url = $(this).attr('src');
-         $(this).wrap(`<a href="${url}"></a>`)
+         $(this).attr('data-original',url)
       })
 
-      lightGallery(document.querySelector('.textarea p'),{
-          thumbnail:true
+
+      $('#textarea').viewer({
+          url: 'data-original',
       });
 
+
+
+
+      $("#film").click(function(){
+          $('.overlayer').show();
+          $("#scense").show()
+          $("#ctinfo").hide()
+      })
+      $("#nolayer").click(function(){
+          $('.overlayer').hide();
+          $("#scense").show()
+          $("#ctinfo").hide()
+      })
+
+      $("#normal").click(function(){
+          $("#scense").hide();
+          $('.overlayer').hide();
+          $("#ctinfo").show()
+      })
   </script>
 
     {% include "./public/foot.nj" %}

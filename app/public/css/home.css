@@ -657,3 +657,11 @@ footer .sanwei .kongge {
 #whgnav .on a{
   color:#fff!important;
 }
+
+.favorite{
+  display: none;
+}
+
+#cententBody .left .more{
+  display: none;
+}

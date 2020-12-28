@@ -1,0 +1,97 @@
+  {% include "./public/head.nj" %}
+  <link rel="stylesheet" href="/public/css/detai_a.css">
+  <link rel="stylesheet" href="/public/css/viewer.min.css">
+  <script src="/public/js/viewer-jquery.min.js"></script>
+  <script src="/public/js/jquery.wiper.js"></script>
+  <link rel="stylesheet" href="/public/css/tab_3d.css">
+  <link rel="stylesheet" href="/public/css/jquery.wiper.css">
+  <!-- 活动详情 -->
+    <div id="cententBody">
+        <!-- 菜单 -->
+        <!--    面包屑-->
+        {% include "./public/innernav.nj" %}
+
+
+        <div class="mct">
+            <section id="inner_wiper_demo">
+
+                <ul id="inner_wiper">
+
+                    <li>
+
+                        <h2>{{article.title}}</h2>
+
+                        <section class="li_sample5 en_box">11</section>
+
+                    </li>
+
+
+
+                    <li>
+
+                        <h2>{{article.title}}</h2>
+
+                        <section class="li_sample1" class="en_box">
+
+                        </section>
+
+                    </li>
+
+                </ul>
+
+            </section>
+        </div>
+
+        <div style="clear:both"> </div>
+    </div>
+
+  <script>
+
+
+
+
+      $('#textarea').viewer({
+          url: 'data-original',
+      });
+
+      $(function() {
+
+          $("ul#acordion_main").Wiper();
+
+          $("ul#inner_wiper").Wiper({
+
+              easing: 'ease-out',
+
+              offset: -1,
+
+              duration: 2000,
+
+              binder: $("#inner_wiper_demo"),
+
+              menuColors: [ '#000000', '#333333', '#666666', '#999999', '#cccccc' ]
+
+          });
+
+
+
+          //Demonstration2
+
+          $("ul#inner_wiper2").Wiper({
+
+              easing: 'ease-out',
+
+              offset: -1,
+
+              duration: 800,
+
+              binder: $("#inner_wiper_demo2"),
+
+              menuColors: [ false, false, '#ffd700', '#adff2f', '#4169e1' ],
+
+          });
+
+      });
+
+
+  </script>
+    {% include "./public/foot.nj" %}

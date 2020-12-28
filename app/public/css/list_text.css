@@ -1,0 +1,80 @@
+.lb_wrap{
+    width:1100px;
+
+    margin: 30px auto
+}
+.lbleft{
+    float:left;
+    padding:10px;
+    width: 740px;
+}
+.lbrigth{
+    float:right
+}
+
+.lb_item{
+    width: 720px;
+    padding:10px;
+    left: 226px;
+    top: 134px;
+    color: rgb(95, 95, 95);
+    font-size: 14px;
+    line-height: 150%;
+    text-align: center;
+    border-bottom: 1px dashed #888;
+}
+.lbimg{
+    width: 123px;
+    height: 111px;
+    float: left;
+    margin-right: 25px;
+}
+
+.lbtitle{
+    width: 500px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap;
+    color: rgba(80, 80, 80, 1);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    float:left;
+}
+.lbct{
+    width: 481px;
+    overflow: hidden;
+    height: 42px;
+    color: rgba(80, 80, 80, 1);
+    font-size: 14px;
+    line-height: 150%;
+    text-align: left;
+    margin-top: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.lbtime{
+    height: 21px;
+    color: rgba(128, 128, 128, 1);
+    font-size: 14px;
+    line-height: 24px;
+    text-align: left;
+    float:right
+
+}
+
+.applybox{
+    height: 80px;
+    border: 1px solid #888;
+    line-height: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding-left:80px;
+    background: url('/public/img/zyz.png') left center/cover no-repeat;
+    display: block;
+}
+
+.applybox:hover{
+    border: 2px solid #333;
+}

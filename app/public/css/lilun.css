@@ -1,0 +1,139 @@
+.scene {
+    width: 45%;
+    height: 90%;
+    margin: 3% 5% 5% 50%;
+
+    perspective: 1000px;
+}
+
+.book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+    z-index: 99;
+}
+
+.page {
+    cursor: pointer;
+    position: absolute;
+    color: black;
+    width: 100%;
+    height: 100%;
+
+    transition: 1.5s transform;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+}
+.front header{
+    width: auto;
+}
+.front,
+.back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    padding: 10% 5% 5%;
+    box-sizing: border-box;
+
+    backface-visibility: hidden;
+    background: -webkit-gradient(linear, 0% 0%, 100% 100%, from(#FFFFFF), to(#CCCCCC));
+    background: linear-gradient(to bottom right, #fff, #ccc);
+}
+.back {
+    transform: rotateY(180deg);
+}
+
+.page.active {
+    z-index: 1;
+}
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+.page.flipped:last-of-type {
+    z-index: 1;
+}
+
+p {
+    margin: 0 0 0.1em;
+    text-indent: 1em;
+}
+
+.qr {
+    margin: 50px auto;
+    max-width: 50%;
+}
+.qr img {
+    display: block;
+}
+
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+    .scene {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
+    }
+}
+
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.viewmode{
+    float:right
+}
+.nleft{
+    float:left;
+}
+.nleft .menu{
+    width: auto;
+}
+
+.overlayer{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top:0;
+    left:0;
+    z-index: -1;
+}
+
+.if{
+    width: 1200px;
+    margin:0 auto;
+    padding:30px 0;
+}
+#ctinfo{
+    width: 1100px;
+    min-height: 500px;
+    margin:0 auto 50px;
+    background: #fff;
+    box-sizing: border-box;
+    padding:20px
+}
+#ctinfo h1{
+    font-size: 18px;
+}
+.from{
+    border-bottom: 1px dashed #888;
+    font-size: 14px;
+    color:#666;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+

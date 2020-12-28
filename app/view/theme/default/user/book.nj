@@ -69,16 +69,15 @@
         // 加入的团队表格
         table.render({
             elem: '#jointeam',
-            url:'/api/myteam',
+            url:'/api/mybook',
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             response: {
                 statusCode: true //重新规定成功的状态码为 200，table 组件默认为 0
             },
             cols: [[
                 {field:'id', width:60, title: 'ID',}
-                ,{field:'name', width:250, title: '团队名称'}
-                ,{field:'zone', width:120, title: '区域', }
-                ,{field:'type', width:120, title: '团队类型'}
+                ,{field:'title', width:250, title: '场馆宁城'}
+                ,{field:'address', width:120, title: '地址', }
                 ,{field:'state', width:120, title: '状态'}
             ]],
             parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
@@ -105,7 +104,7 @@
                 ,{field:'title', width:350, title: '标题'}
                 ,{field:'author', width:120, title: '作者', }
                 ,{field:'addTime', width:120, title: '发布时间', }
-                ,{field:'state', width:120, title: '状态'}
+                ,{field:'action.state', width:120, title: '状态'}
                 ,{field:'action',  title: '操作', templet:'#actionTpl'}
             ]],
             parseData: function(res){ //将原始数据解析成 table 组件所规定的数据

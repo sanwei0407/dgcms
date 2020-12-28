@@ -43,7 +43,7 @@
             <div class="con4 clr">
                 {% for item in articleList %}
                    <div class="content4-item">
-                    <a href="{{cate.seoUrl}}/{{item.aid}}">
+                    <a href="{{item.category.seoUrl}}/{{item.aid}}">
                     <div><h3>{{item.title}}</h3></div>
                     <div><h6></h6></div>
                     <div class="img">
