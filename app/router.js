@@ -9,9 +9,9 @@ module.exports = app => {
 
   // 会员规则管理
   router.post('/addvipRule', controller.admin.vipRule.addvipRule); // 添加会员等级+对应的规则
-  router.post('/delvipRule', controller.admin.vipRule.delvipRule); // 添加会员等级+对应的规则
-  router.post('/findvipRule', controller.admin.vipRule.findvipRule); // 添加会员等级+对应的规则
-  router.post('/editvipRule', controller.admin.vipRule.editvipRule); // 添加会员等级+对应的规则
+  router.post('/delvipRule', controller.admin.vipRule.delvipRule); // 删除会员等级+对应的规则
+  router.post('/findvipRule', controller.admin.vipRule.findvipRule); // 查会员等级+对应的规则
+  router.post('/editvipRule', controller.admin.vipRule.editvipRule); // 改会员等级+对应的规则
 
 
   // 管理员的接口
@@ -262,6 +262,16 @@ module.exports = app => {
   router.post('/book/delete', controller.booking.delete); // 场馆删除
   router.post('/book/getone', controller.booking.getOne); // 获取一个场馆的信息
   router.post('/book/update', controller.booking.update); // 更新场馆信息
+
+  // 用户预约及活动参与关联表接口
+  router.post('/finfOneActions', controller.admin.actions.finfOneActions); // 根据id查该用户预约及活动详情
+  router.post('/finfAllActions', controller.admin.actions.finfAllActions); // 所有用户预约及活动详情
+  router.post('/editActions', controller.admin.actions.editActions); // 编辑用户预约及活动详情
+
+  // 文艺团队
+  router.post('/finfOneArtteam', controller.admin.artteam.finfOneArtteam); // 根据id查文艺团队
+  router.post('/finfAllArtteam', controller.admin.artteam.finfAllArtteam); // 所有文艺团队详情
+  router.post('/editArtteam', controller.admin.artteam.editArtteam); // 编辑文艺团队详情
 
   // 数据汇总接口
   // router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
