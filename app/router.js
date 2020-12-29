@@ -276,7 +276,6 @@ module.exports = app => {
   router.get('/api/mybook', controller.api.mybook);
 
 
-
   router.post('/activity/list', controller.api.aclist);
 
 
@@ -284,7 +283,7 @@ module.exports = app => {
   // 手机api
   router.post('/mapi/acticleList', controller.mapi.acticleList);
   router.post('/mapi/article/detail', controller.mapi.acdetail);
-  router.post('/mapi/acdetail',controller.mapi.activityDetail);
+  router.post('/mapi/acdetail', controller.mapi.activityDetail);
 
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 
