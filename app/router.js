@@ -264,7 +264,7 @@ module.exports = app => {
   router.post('/book/update', controller.booking.update); // 更新场馆信息
 
   // 数据汇总接口
-  router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
+  // router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
 
   // api 接口
   router.get('/api/myteam', controller.api.myteam);
@@ -272,12 +272,19 @@ module.exports = app => {
   router.post('/api/deleArticle', controller.api.deleArticle);
   router.post('/api/joinac', controller.api.joinac);
   router.get('/api/activity', controller.api.activity);
+  router.post('/api/addBook', controller.api.addBook);
+  router.get('/api/mybook', controller.api.mybook);
 
 
-  // 1229 移动端接口
-  router.post('/mapi/login', controller.mobile.user.login.)
+  router.post('/activity/list', controller.api.aclist);
+
 
   router.post('/api/acticleList', controller.api.acticleList);// 获取文章内容
+  // 手机api
+  router.post('/mapi/acticleList', controller.mapi.acticleList);
+  router.post('/mapi/article/detail', controller.mapi.acdetail);
+  router.post('/mapi/acdetail',controller.mapi.activityDetail);
+
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 
 };
