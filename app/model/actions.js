@@ -49,6 +49,10 @@ module.exports = app => {
     eTime: {
       type: DataTypes.BIGINT,
       allowNull: true
+    },
+    beizhu: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'actions'
