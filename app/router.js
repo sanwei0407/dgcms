@@ -276,6 +276,7 @@ module.exports = app => {
   router.get('/api/mybook', controller.api.mybook);
 
 
+
   router.post('/activity/list', controller.api.aclist);
 
 
