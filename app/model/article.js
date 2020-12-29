@@ -90,6 +90,14 @@ module.exports = app => {
     type: {
       type: DataTypes.STRING(100),
       allowNull: true
+    },
+    music: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    video: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'article'

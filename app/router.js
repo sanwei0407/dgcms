@@ -274,7 +274,8 @@ module.exports = app => {
   router.get('/api/activity', controller.api.activity);
 
 
-  router.post('/api/login', controller.api.)
+  // 1229 移动端接口
+  router.post('/mapi/login', controller.mobile.user.login.)
 
   router.post('/api/acticleList', controller.api.acticleList);// 获取文章内容
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色

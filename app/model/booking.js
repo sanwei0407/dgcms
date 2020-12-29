@@ -45,6 +45,15 @@ module.exports = app => {
     size: {
       type: DataTypes.INTEGER(11),
       allowNull: true
+    },
+    paiban: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      defaultValue: '[]'
+    },
+    gps: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'booking'

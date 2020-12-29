@@ -37,6 +37,18 @@ module.exports = app => {
     bookId: {
       type: DataTypes.INTEGER(11),
       allowNull: true
+    },
+    bookInfo: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    sTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
+    eTime: {
+      type: DataTypes.BIGINT,
+      allowNull: true
     }
   }, {
     tableName: 'actions'

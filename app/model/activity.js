@@ -74,6 +74,11 @@ module.exports = app => {
     state: {
       type: DataTypes.INTEGER(4),
       allowNull: true
+    },
+    reading: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      defaultValue: '0'
     }
   }, {
     tableName: 'activity'

@@ -7,7 +7,8 @@ module.exports = app => {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     Price: {
       type: DataTypes.DECIMAL,
@@ -50,11 +51,6 @@ module.exports = app => {
       allowNull: true
     },
     isdelete: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: '0'
-    },
-    uid: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       defaultValue: '0'
