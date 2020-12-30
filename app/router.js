@@ -311,6 +311,7 @@ module.exports = app => {
   router.post('/mapi/bookList', controller.mobile.user.list);
   router.post('/mapi/GetOnebook', controller.mobile.user.getOne);
   router.post('/mapi/booking', controller.mobile.user.addBook);
+  router.post('/mapi/cancelBook', controller.mobile.user.cancelBook);
 
 
 

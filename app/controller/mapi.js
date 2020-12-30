@@ -174,15 +174,15 @@ class ApiController extends Controller {
     const { ctx } = this;
     const { aid } = ctx.request.body;
 
-    const a = await ctx.model.Article.findByPk(aid);
-    ctx.body = { success: true, data: a };
+    const res = await ctx.model.Article.findByPk(aid, { raw: true });
+    ctx.body = { success: true, ...res };
   }
 
   async activityDetail () {
     const { ctx } = this;
     const { id } = ctx.request.body;
-    const a = await ctx.model.Activity.findByPk(id);
-    ctx.body = { success: true, data: a };
+    const res = await ctx.model.Activity.findByPk(id, { raw: true });
+    ctx.body = { success: true, ...res };
   }
 }
 

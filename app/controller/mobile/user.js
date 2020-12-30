@@ -154,9 +154,9 @@ class UserController extends Controller {
         }, raw: true
       })
       console.log('asdasd', res)
-      if (res) return ctx.body = { msg: '该用户已存在' }
+      if (res) return ctx.body = { info: '该用户已存在' }
     } catch (e) {
-      ctx.body = { msg: '滚' }
+      ctx.body = { success: false, info: '失败' }
     }
 
     try {
@@ -316,6 +316,33 @@ class UserController extends Controller {
       info: '提交申请成功',
     };
   }
+
+  async cancelBook () {
+    const { ctx } = this;
+    const { id, uid } = ctx.request.body;
+    if (!uid) return ctx.body = { success: false, backurl: '/login', info: '请重新登录' };
+    try {
+      await ctx.model.Actions.destroy({
+        where: {
+          id,
+          uid,
+          state: 2,
+          type: 2,
+        },
+      })
+      // const res = await ctx.model.Activity.findOne({
+      //   where: {
+      //     id,
+      //   }
+      // })
+      // await res.update({ peopleLimit: res.peopleLimit + 1 }, { where: { id, }, })
+      ctx.body = { success: true, info: '取消成功', };
+    } catch (e) {
+      console.log(e)
+      ctx.body = { success: true, info: '取消失败', };
+    }
+  }
+
 
   // 个人志愿者
   async single () {
