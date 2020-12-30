@@ -1,0 +1,61 @@
+{% if article.music %}
+
+<link rel="stylesheet" href="/public/css/common.css">
+
+<div class="music-box">
+    <img src="/public/img/avatar.jpg" />
+    <div class="mask">
+        <div class="mplayer" onclick="play()">
+            <i class="fa">
+                <span class="before"></span>
+                <span class="after"> </span>
+            </i>
+            <svg
+                    class="loadingSvg"
+                    width="50"
+                    height="50"
+                    viewBox="0,0,50,50"
+                    style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
+            >
+                <circle></circle>
+            </svg>
+        </div>
+        <div class="m-circle m-progress">
+            <svg width="326" height="326" viewBox="0,0,326,326">
+                <circle
+                        cx="163"
+                        cy="163"
+                        r="159"
+                        stroke-width="4"
+                        stroke="rgba(255, 206, 113, 0.2)"
+                        fill="rgba(0,0,0,.2)"
+                ></circle>
+                <circle
+                        class="a"
+                        cx="163"
+                        cy="163"
+                        r="159"
+                        stroke-width="3"
+                        stroke="rgba(255, 206, 113, 1)"
+                        fill="none"
+                        stroke-dasharray="0 999"
+                        transform="matrix(0,-1,1,0,0,326)"
+                ></circle>
+            </svg>
+        </div>
+        <div class="m_time">
+            <span class="mplayer_curtime">00:00</span>
+            <span class="m-join">/</span>
+            <span class="mplayer_durtime">00:00</span>
+        </div>
+    </div>
+    <audio id="myAudio" src="{{article.music}}"></audio>
+</div>
+<script src="/public/js/common.js"></script>
+
+{% endif %}

@@ -1,0 +1,15 @@
+{% if article.video %}
+<div id="video">
+    <section class="jsmodern-video" style="width:100%;height:400px;">
+        <video src="{{article.video}}" id="videoShow" style="width:100%" height="400" poster=""></video><section class="jsmodern-video-panel"><b class="jsmodern-video-play"></b><span class="jsmodern-video-start">00:01</span><span>/</span><span class="jsmodern-video-end">06:30</span><div class="jsmodern-video-linebox"><div class="jsmodern-video-pass" style="width: 1.91795px;"></div><b class="jsmodern-video-linedot" style="margin-left: 1.91795px;"></b></div><b class="jsmodern-video-volume"></b><div class="jsmodern-video-volumebox"><div class="jsmodern-video-volumeline"></div><b class="jsmodern-video-volumedot"></b></div><b class="jsmodern-video-fullin"></b></section></section>
+    <span class="VideoBtn" style="display: block;">
+                    <img src="/public/img/bo1.png">
+                </span>
+</div>
+<div class="text">
+    <div class="textarea" id="textarea">
+        {{ article.content|safe }}
+    </div>
+</div>
+
+{% endif %}

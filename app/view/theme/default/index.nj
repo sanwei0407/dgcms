@@ -13,7 +13,7 @@
 
                 <div class="nlimg" style="background: url({{ news[0].cover }}) center center / cover no-repeat;"></div>
                 <div class="nltitle">{{ news[0].title }}</div>
-                <div class="nldesc">{{new[0].contentSummary }}</div>
+                <div class="nldesc">{{news[0].contentSummary }}</div>
             </div>
             <div class="newRight">
                 {% for item in news%}
@@ -64,24 +64,38 @@
     <div class="homeWrap">
         <div class="secTitle">  场馆预约  book </div>
 
-        <div class="srtab clr" >
-            <div style="float: left;" class="cur">场馆预定</div>
-            <div style="float: right">活动预约</div>
-        </div>
+
         <div class="clr srct">
-            {% for item in book%}
-            <div class="srbox">
-                <div class="srtitle">{{item.title}}</div>
-                <div class="srdesc">容纳： {{item.peoples}}人</div>
-                <div class="srimg">
-                    <img src="{{item.cover}}" alt="{{item.title}}">
+            <div class="swiper-wrapper">
+                {% for item in book%}
+                <div class="srbox swiper-slide">
+                    <div class="srtitle">{{item.title}}</div>
+                    <div class="srdesc">容纳： {{item.peoples}}人</div>
+                    <div class="srimg">
+                        <img src="{{item.cover}}" alt="{{item.title}}">
+                    </div>
+                    <div class="sradd"> {{item.address}}</div>
                 </div>
-                <div class="sradd"> {{item.address}}</div>
+                {% endfor %}
             </div>
-            {% endfor %}
-
         </div>
 
+        <script>
+
+            var swiper = new Swiper('.srct', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                slidesPerGroup: 3,
+                autoplay:true,
+                loop: true,
+                loopFillGroupWithBlank: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+        </script>
 
         <div class="homeMore">
             查看更多
@@ -100,25 +114,25 @@
 
             </div>
             <div class="stitem">
-                <div class="sititle">直播点播服务</div>
+                <div class="sititle">志愿者服务</div>
                 <div style="position: absolute;left:0;top:0">
                     <img src="/public/img/i2.png" alt="">
                 </div>
             </div>
             <div class="stitem">
-                <div class="sititle">特色文旅</div>
+                <div class="sititle">数字资源</div>
                 <div style="position: absolute;left:0;top:0">
                     <img src="/public/img/i3.png" alt="">
                 </div>
             </div>
             <div class="stitem">
-                <div class="sititle">特色品牌</div>
+                <div class="sititle">艺术展厅</div>
                 <div style="position: absolute;left:0;top:0">
                     <img src="/public/img/i4.png" alt="">
                 </div>
             </div>
             <div class="stitem">
-                <div class="sititle">直 播 点 播 服 务</div>
+                <div class="sititle">文化活动</div>
                 <div style="position: absolute;left:0;top:0">
                     <img src="/public/img/i5.png" alt="">
                 </div>
@@ -129,5 +143,11 @@
     </div>
 
      {% include "./public/foot.nj" %}
+    <style>
+        body{
+            background: url('/public/img/bg.jpg');
+        }
+
+    </style>
   </body>
 </html>
