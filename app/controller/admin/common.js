@@ -479,6 +479,7 @@ class CommonController extends Controller {
         cover: {
           [Op.not]: null,
         },
+        isDelete: 0,
       },
       limit: 4,
       order: [[ 'top', 'DESC' ], [ 'aid', 'DESC' ]],
@@ -486,6 +487,7 @@ class CommonController extends Controller {
     });
     const book = await ctx.model.Booking.findAll({
       order: [[ 'id', 'DESC' ]],
+      limit: 6,
     });
     ctx.locals.book = book;
     const activity = await ctx.model.Activity.findAll({

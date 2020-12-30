@@ -83,3 +83,47 @@
 .applybox:hover{
     border: 2px solid #333;
 }
+
+
+.pages > div{
+    display: inline-block;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #d4d4d4;
+}
+.pages > div.cur{
+    background: #d4d4d4;
+}
+
+.searchBox{
+
+    width: 250px;
+    height: 40px;
+    float:right;
+    margin-left:350px;
+    position: relative;
+
+}
+.searchBox > input{
+    height: 80%;
+    width: 100%;
+    box-sizing: border-box;
+    padding:10px;
+    outline: none;
+}
+.searchBox i{
+    position: absolute;
+    right:10px;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.menu{
+    float:left;
+    width:auto;
+}
+.lbleft{
+    min-height: 800px;
+}

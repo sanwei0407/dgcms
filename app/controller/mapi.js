@@ -6,7 +6,7 @@ class ApiController extends Controller {
 
   // 用户中心
   // 我的团队
-  async myteam() {
+  async myteam () {
     const { ctx, app } = this;
     let { page, limit } = ctx.query;
     page = page ? parseInt(page) : 1;
@@ -28,7 +28,7 @@ class ApiController extends Controller {
     ctx.body = { success: true, status: 200, ...res };
   }
   // 团队风采
-  async teamarticle() {
+  async teamarticle () {
     const { ctx, app } = this;
     let { page, limit } = ctx.query;
     const { uid } = ctx.session;
@@ -54,7 +54,7 @@ class ApiController extends Controller {
   }
 
   // api
-  async deleArticle() {
+  async deleArticle () {
     const { ctx } = this;
     const { aid } = ctx.request.body;
     const { uid } = ctx.session;
@@ -73,7 +73,7 @@ class ApiController extends Controller {
   }
 
   // 加入活动
-  async joinac() {
+  async joinac () {
     const { ctx } = this;
     const { id } = ctx.request.body;
     const { uid } = ctx.session;
@@ -101,7 +101,7 @@ class ApiController extends Controller {
     }
   }
 
-  async activity() {
+  async activity () {
     const { ctx, app } = this;
     let { type, page, limit } = ctx.query;
     page = page ? parseInt(page) : 1;
@@ -127,7 +127,7 @@ class ApiController extends Controller {
       ],
       limit,
       offset,
-      order: [[ 'sTime', 'DESC' ]],
+      order: [['sTime', 'DESC']],
     });
 
     res.rows.forEach(r => {
@@ -142,7 +142,7 @@ class ApiController extends Controller {
   }
 
   // 文章列表
-  async acticleList() {
+  async acticleList () {
     const { ctx, app } = this;
     const { Op } = app.Sequelize;
     let { type, order, page, limit, cid, cids, keyword } = ctx.request.body;
@@ -154,8 +154,8 @@ class ApiController extends Controller {
     if (cid) where.cid = cid;
     if (cids) where.cid = { [Op.in]: cids.split(',') };
     if (type) where.type = type;
-    if (order === 'byview') _order = [[ 'reading', 'DESC' ], [ 'aid', 'DESC' ]];
-    if (order === 'bytime') _order = [[ 'addTime', 'DESC' ], [ 'aid', 'DESC' ]];
+    if (order === 'byview') _order = [['reading', 'DESC'], ['aid', 'DESC']];
+    if (order === 'bytime') _order = [['addTime', 'DESC'], ['aid', 'DESC']];
     if (keyword) where.title = { [Op.like]: `%${keyword}%` };
 
     const res = await ctx.model.Article.findAndCountAll({
@@ -166,11 +166,11 @@ class ApiController extends Controller {
       raw: true,
     });
 
-    ctx.body = { success: true, data: res };
+    ctx.body = { success: true, ...res };
   }
 
   // 文章页详情
-  async acdetail() {
+  async acdetail () {
     const { ctx } = this;
     const { aid } = ctx.request.body;
 
@@ -178,7 +178,7 @@ class ApiController extends Controller {
     ctx.body = { success: true, data: a };
   }
 
-  async activityDetail() {
+  async activityDetail () {
     const { ctx } = this;
     const { id } = ctx.request.body;
     const a = await ctx.model.Activity.findByPk(id);

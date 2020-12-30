@@ -4,7 +4,7 @@ const utils = require('utility'); // 引入一个工具库
 
 class CommonController extends Controller {
   // 前后台通用的上传模块
-  async upload() {
+  async upload () {
     const { ctx } = this;
     const res = await ctx.service.common.upload(ctx);
     ctx.body = res;
@@ -14,7 +14,7 @@ class CommonController extends Controller {
   // @用户注册（新增）的接口 // 增加会员积分字段
   // @userName-用户名 pwd-用户密码 state-用户状态 phone-手机号码 qq-qq号 openId-微信openId wxNickName-微信nickName wxCity-微信城市 wxSex-微信性别
   // isDalete-1-删除0-未删除 vipIntegral-会员积分（默认值：0）
-  async addUser() {
+  async addUser () {
     const { ctx, app } = this;
     const { Op } = app.Sequelize;
     const { pwd, phone, userName } = ctx.request.body;
@@ -87,7 +87,7 @@ class CommonController extends Controller {
   // @last update 2020年11月11日 10:45
   // @用户删除的接口
   // @uid-用户id
-  async delUser() {
+  async delUser () {
     const { ctx } = this;
     const { uid } = ctx.request.body;
     if (!uid) return ctx.body = { success: false, info: '用户id不正确' };
@@ -95,18 +95,18 @@ class CommonController extends Controller {
       await ctx.model.User.update({
         isDelete: 1,
       },
-      {
-        where: {
-          uid,
-        },
-      });
+        {
+          where: {
+            uid,
+          },
+        });
       ctx.body = { success: true, info: '删除成功' };
     } catch (e) {
       ctx.body = { success: false, info: '删除失败' };
     }
   }
 
-  async login() {
+  async login () {
     const { ctx } = this;
     const { phone, pwd } = ctx.request.body;
     const { backUrl } = ctx.query;
@@ -126,7 +126,7 @@ class CommonController extends Controller {
     ctx.body = { success: true, info: 'info', backUrl };
   }
 
-  async register() {
+  async register () {
     const { ctx } = this;
     const method = ctx.req.method;
     if (method === 'GET') return await ctx.render('theme/default/register.nj');
@@ -152,18 +152,18 @@ class CommonController extends Controller {
 
   }
 
-  async uc() {
+  async uc () {
     const { ctx } = this;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
     return await ctx.render('theme/default/user/uc.nj');
   }
-  async auth() {
+  async auth () {
     const { ctx } = this;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
     return await ctx.render('theme/default/user/auth.nj');
   }
 
-  async verify() {
+  async verify () {
     const { ctx } = this;
     const { uid } = ctx.session;
     if (!uid) return ctx.body = { success: false, info: '请重新登录', backurl: '/login' };
@@ -194,7 +194,7 @@ class CommonController extends Controller {
 
 
   // 个人志愿者
-  async single() {
+  async single () {
     const { ctx } = this;
     const method = ctx.req.method;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
@@ -230,7 +230,7 @@ class CommonController extends Controller {
     }
   }
   // 团队志愿者
-  async team() {
+  async team () {
     const { ctx } = this;
     const method = ctx.req.method;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
@@ -246,7 +246,6 @@ class CommonController extends Controller {
           type: 2,
         },
       });
-
       if (zy) return ctx.body = { success: false, info: '已经提交过注册,不需要重复提交' };
       const inserData = { ...ctx.request.body };
       delete inserData.servertime;
@@ -268,7 +267,7 @@ class CommonController extends Controller {
 
   }
 
-  async artteam() {
+  async artteam () {
     const { ctx } = this;
     const method = ctx.req.method;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
@@ -277,7 +276,7 @@ class CommonController extends Controller {
   }
 
   // 用户的场馆预约
-  async book() {
+  async book () {
     const { ctx } = this;
     const method = ctx.req.method;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
@@ -287,7 +286,7 @@ class CommonController extends Controller {
 
   // 用户中心 我的活动
 
-  async activity() {
+  async activity () {
     const { ctx } = this;
     const method = ctx.req.method;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
@@ -295,7 +294,7 @@ class CommonController extends Controller {
 
   }
 
-  async createteam() {
+  async createteam () {
     const { ctx } = this;
     const method = ctx.req.method;
     await ctx.service.common.getCommonData(); // 获取全局通用数据
@@ -324,7 +323,7 @@ class CommonController extends Controller {
   }
 
   // 用户端内容发布
-  async publish() {
+  async publish () {
     const { ctx, app } = this;
     const { cate } = ctx.query;
     const method = ctx.req.method;
@@ -354,7 +353,7 @@ class CommonController extends Controller {
 
   // 文章编辑
 
-  async editArticle() {
+  async editArticle () {
     const { ctx } = this;
     const { aid } = ctx.params;
     const _article = await ctx.model.Article.findByPk(aid);
@@ -376,7 +375,7 @@ class CommonController extends Controller {
   }
 
   // 退出
-  async quit() {
+  async quit () {
     const { ctx } = this;
     ctx.session = null;
     ctx.redirect('./');

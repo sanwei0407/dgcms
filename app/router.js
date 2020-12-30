@@ -9,9 +9,9 @@ module.exports = app => {
 
   // 会员规则管理
   router.post('/addvipRule', controller.admin.vipRule.addvipRule); // 添加会员等级+对应的规则
-  router.post('/delvipRule', controller.admin.vipRule.delvipRule); // 添加会员等级+对应的规则
-  router.post('/findvipRule', controller.admin.vipRule.findvipRule); // 添加会员等级+对应的规则
-  router.post('/editvipRule', controller.admin.vipRule.editvipRule); // 添加会员等级+对应的规则
+  router.post('/delvipRule', controller.admin.vipRule.delvipRule); // 删除会员等级+对应的规则
+  router.post('/findvipRule', controller.admin.vipRule.findvipRule); // 查会员等级+对应的规则
+  router.post('/editvipRule', controller.admin.vipRule.editvipRule); // 改会员等级+对应的规则
 
 
   // 管理员的接口
@@ -151,7 +151,7 @@ module.exports = app => {
   router.get('/auth', controller.user.auth); // 实名验证
   router.post('/user/verify', controller.user.verify); // 提及实名验证
   router.all('/user/single', controller.user.single); // 个人志愿者注册
-  router.all('/user/team', controller.user.team); // 个人志愿者注册
+  router.all('/user/team', controller.user.team); // 团队志愿者注册
   router.all('/user/artteam', controller.user.artteam); // 文艺团队
   router.all('/user/createteam', controller.user.createteam); // 创建团队
   router.all('/user/publish', controller.user.publish); // 内容发布
@@ -263,6 +263,21 @@ module.exports = app => {
   router.post('/book/getone', controller.booking.getOne); // 获取一个场馆的信息
   router.post('/book/update', controller.booking.update); // 更新场馆信息
 
+  // 用户预约及活动参与关联表接口
+  router.post('/finfOneActions', controller.admin.actions.finfOneActions); // 根据id查该用户预约及活动详情
+  router.post('/finfAllActions', controller.admin.actions.finfAllActions); // 所有用户预约及活动详情
+  router.post('/editActions', controller.admin.actions.editActions); // 编辑用户预约及活动详情
+
+  // 文艺团队
+  router.post('/finfOneArtteam', controller.admin.artteam.finfOneArtteam); // 根据id查文艺团队
+  router.post('/finfAllArtteam', controller.admin.artteam.finfAllArtteam); // 所有文艺团队详情
+  router.post('/editArtteam', controller.admin.artteam.editArtteam); // 编辑文艺团队详情
+
+  // Booking 场馆预约
+  router.post('/finfOneBooking', controller.admin.booking.finfOneBooking); // 根据id查场馆预约
+  router.post('/finfAllBooking', controller.admin.booking.finfAllBooking); // 所有场馆预约详情
+  router.post('/editBooking', controller.admin.booking.editBooking); // 编辑场馆预约详情
+
   // 数据汇总接口
   // router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
 
@@ -284,6 +299,20 @@ module.exports = app => {
   router.post('/mapi/acticleList', controller.mapi.acticleList);
   router.post('/mapi/article/detail', controller.mapi.acdetail);
   router.post('/mapi/acdetail', controller.mapi.activityDetail);
+  //用户登录
+  router.post('/mapi/addUser', controller.mobile.user.addUser);
+  router.post('/mapi/userLogin', controller.mobile.user.userLogin);
+  //活动
+  router.post('/mapi/joinAc', controller.mobile.user.joinAc);
+  router.post('/mapi/activity', controller.mobile.user.activity);
+  router.post('/mapi/cancelAc', controller.mobile.user.cancel);
+
+  //场馆
+  router.post('/mapi/bookList', controller.mobile.user.list);
+  router.post('/mapi/GetOnebook', controller.mobile.user.getOne);
+  router.post('/mapi/booking', controller.mobile.user.addBook);
+
+
 
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 

@@ -38,7 +38,7 @@ class AdController extends Controller {
     const where = { isDelete: 0 };
     if (adUrl) where.adUrl = { [Op.like]: '%' + adUrl + '%' };
     if (type) where.type = { [Op.like]: '%' + type + '%' };
-    limit = limit ? limit*1 : 20;
+    limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
     try {
