@@ -273,6 +273,9 @@ module.exports = app => {
   router.post('/finfAllArtteam', controller.admin.artteam.finfAllArtteam); // 所有文艺团队详情
   router.post('/editArtteam', controller.admin.artteam.editArtteam); // 编辑文艺团队详情
 
+  // 查页面数据 cetagory article booking activity
+  router.post('/findpagedatas', controller.one.findpagedatas); // 编辑文艺团队详情
+
   // Booking 场馆预约
   router.post('/finfOneBooking', controller.admin.booking.finfOneBooking); // 根据id查场馆预约
   router.post('/finfAllBooking', controller.admin.booking.finfAllBooking); // 所有场馆预约详情
@@ -311,8 +314,6 @@ module.exports = app => {
   router.post('/mapi/bookList', controller.mobile.user.list);
   router.post('/mapi/GetOnebook', controller.mobile.user.getOne);
   router.post('/mapi/booking', controller.mobile.user.addBook);
-
-
 
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 
