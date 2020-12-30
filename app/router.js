@@ -299,6 +299,20 @@ module.exports = app => {
   router.post('/mapi/acticleList', controller.mapi.acticleList);
   router.post('/mapi/article/detail', controller.mapi.acdetail);
   router.post('/mapi/acdetail', controller.mapi.activityDetail);
+  //用户登录
+  router.post('/mapi/addUser', controller.mobile.user.addUser);
+  router.post('/mapi/userLogin', controller.mobile.user.userLogin);
+  //活动
+  router.post('/mapi/joinAc', controller.mobile.user.joinAc);
+  router.post('/mapi/activity', controller.mobile.user.activity);
+  router.post('/mapi/cancelAc', controller.mobile.user.cancel);
+
+  //场馆
+  router.post('/mapi/bookList', controller.mobile.user.list);
+  router.post('/mapi/GetOnebook', controller.mobile.user.getOne);
+  router.post('/mapi/booking', controller.mobile.user.addBook);
+
+
 
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 

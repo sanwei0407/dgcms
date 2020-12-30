@@ -289,9 +289,9 @@ class AdminController extends Controller {
         where,
         limit,
         offset,
-        // attributes: {
-        //   exclude: [ 'pwd' ],
-        // },
+        attributes: {
+          exclude: [ 'pwd' ],
+        },
       });
       ctx.body = { success: true, data: res };
     } catch (e) {
