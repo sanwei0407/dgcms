@@ -110,7 +110,7 @@ class shopclassifyController extends Controller {
   async findParentify() {
     const { ctx } = this;
     let { page, limit } = ctx.request.body;
-    const where = {  parentid: 0 };
+    const where = {parentid: 0};
     limit = limit ? limit * 1 : 20;
     page = page ? page : 1;
     const offset = (page - 1) * limit;
