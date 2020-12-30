@@ -151,7 +151,7 @@ module.exports = app => {
   router.get('/auth', controller.user.auth); // 实名验证
   router.post('/user/verify', controller.user.verify); // 提及实名验证
   router.all('/user/single', controller.user.single); // 个人志愿者注册
-  router.all('/user/team', controller.user.team); // 个人志愿者注册
+  router.all('/user/team', controller.user.team); // 团队志愿者注册
   router.all('/user/artteam', controller.user.artteam); // 文艺团队
   router.all('/user/createteam', controller.user.createteam); // 创建团队
   router.all('/user/publish', controller.user.publish); // 内容发布

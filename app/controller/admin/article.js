@@ -29,6 +29,8 @@ class ArticleController extends Controller {
       whoCanRead,
       reading,
       type,
+      video,
+      music,
     } = ctx.request.body;
     if (!title) return ctx.body = { success: false, msg: '请输入标题!' };
     if (!content) return ctx.body = { success: false, msg: '请输入内容!' };
@@ -54,6 +56,8 @@ class ArticleController extends Controller {
         uid: 0,
         pdf,
         type,
+        video,
+        music,
       });
       ctx.body = {
         success: true,

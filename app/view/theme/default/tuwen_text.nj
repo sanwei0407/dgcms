@@ -12,31 +12,37 @@
 {% endif %}
 
 <div class="lb_wrap">
-    <!--    面包屑-->
-    {% include "./public/innernav.nj" %}
+    <div class="clr">
+        <!--    面包屑-->
+        {% include "./public/innernav.nj" %}
+        <div class="searchBox">
+            <input type="text" id="keyword" placeholder="输输入你要搜索的内容">
+            <i class="iconfont icon-tubiao-"></i>
+        </div>
+    </div>
+
     <div class="lbleft">
-        {% for item in articleList %}
-        <div class="lb_item clr">
-
-            <div class="lbtxt">
-
+        <div class="newlist">
+            {% for item in articleList %}
+            <div class="lb_item clr">
+                <div class="lbtxt">
                     <div class="lbtitle">
                         <a href="{{cate.seoUrl}}/{{item.aid}}" >
                             {{item.title}}
                         </a>
                     </div>
                     <div class="lbtime">
-                          {{item.addTime|time}}
+                        {{item.addTime|time}}
                     </div>
-
-
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
 
         <div class="pages">
             {% for item in pagation %}
-            <a href="{{item.url}}" {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</a>
+            <div  {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</div>
             {% endfor %}
         </div>
     </div>
@@ -69,6 +75,81 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="baseUrl" value="{{cate.seoUrl}}" />
+<input type="hidden" id="cid" value="{{cate.cid}}" />
+
+<script>
+    $(function(){
+
+
+        let pageInit = function(){
+            $(".pages>div").removeClass('cur');
+            $(".pages>div").first().addClass('cur')
+
+        }
+        let getData = function(){
+            const  limit  = 6;
+            let page = $('.pages .cur').text();
+            const baseUrl = $("#baseUrl").val()
+            const cid = $("#cid").val()
+            const keyword = $(".searchBox input").val()
+            let order = '';
+            let type = ''
+            // type = $(".typechoose .on").text().trim() === '全部'?'':$(".typechoose .on").text().trim();
+            let _order = $(".orderchoose .on").text().trim();
+            if(_order === '浏览量')  order = 'byview';
+            if(_order === '最新发布')  order = 'bytime';
+            $.post('/api/acticleList',{order,cid,page,limit,keyword},(res)=>{
+                const { success,data } = res;
+                if(success){
+                    $('.newlist').html(
+                        data.map(item=> `
+                                   <div class="lb_item clr">
+                                        <div class="lbtxt">
+                                                <div class="lbtitle">
+                                                    <a href="${baseUrl}/${item.aid}" >
+                                                        ${item.title}
+                                                    </a>
+                                                </div>
+                                                <div class="lbtime">
+                                                      ${ new Date(item.addTime).toLocaleDateString()}
+                                                </div>
+                                        </div>
+                                    </div>
+                        ` ).join("")
+                    )
+                }
+            })
+        }
+
+        $(".choose2").click((ev)=>{
+            $(ev.currentTarget).find(".classify-item").removeClass('on');
+            let curdom =  ev.target;
+            curdom.classList.add('on')
+            pageInit()
+            getData()
+        })
+
+        //分页点击
+
+        $(".pages>div").click(function(ev){
+            $(".pages>div").removeClass('cur');
+            $(this).addClass('cur')
+            getData()
+        })
+
+        // 关键字搜索
+
+        $('.searchBox i').click(function(ev){
+            getData();
+        })
+
+
+
+
+    })
+
+</script>
 
 
 {% include "./public/foot.nj" %}

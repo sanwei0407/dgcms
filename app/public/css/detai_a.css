@@ -148,6 +148,27 @@
 }
 #cententBody .ql-video{
   width:100%;
-  height: 450px;
+  height: 400px;
   margin-top: 20px;
+}
+#video {
+  width: 100%;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+
+
+.VideoBtn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 70px;
+  height: 70px;
+  margin-left: -35px;
+  margin-top: -35px;
+  cursor: pointer;
+  z-index: 10;
 }
