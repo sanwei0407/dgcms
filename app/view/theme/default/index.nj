@@ -7,10 +7,41 @@
     </div>
     <div class="homeWrap" style="margin-top: 50px;">
         <div class="secTitle">  资讯信息  news </div>
+
+        <div class="newform">
+            <div class="new-img">
+                <img src="https://fakeimg.pl/500x453/">
+                <p>光辉历程 红色经典——庆祝新中国成立70周年第六届全国架上连环画展•西宁站</p>
+            </div>
+            <div class="new-list">
+                <div class="new-title">
+                    <span >热点聚焦</span>
+                    <span>活动公告</span>
+                    <span>基层直击</span>
+                    <span>文化视窗</span>
+                </div>
+                <div class="new-inform">
+                    <ul>
+                        <li><span>2020-06-16</span>重要通知！2021年青海省文化馆老年大学招生考试通知</li>
+                        <li><span>2020-06-16</span>中华人民共和国反间谍法</li>
+                        <li><span>2020-06-16</span>深入基层培训 立足岗位练兵</li>
+                        <li><span>2020-06-16</span>“人员大培训、 岗位大练兵、环境大整治”我们在行动</li>
+                        <li><span>2020-06-16</span>非遗传承 健康生活——2020年“文化和自然遗产日”省级非遗项目“河湟刺绣</li>
+                        <li><span>2020-06-16</span>增进团结 提升合力 奋发拼搏 勇于开拓</li>
+                        <li><span>2020-06-16</span>立足岗位大练兵 基层调研提技能</li>
+                        <li><span>2020-06-16</span>中共青海省文化馆第三党支部委员会赴尖扎县开展“不忘初心”红色教</li>
+                        <li><span>2020-06-16</span>以党建促扶贫，文旅人游青海——省文化馆第一党支部开展主题党日活动</li>
+                        <li><span>2020-06-16</span>关于2020“我眼中的青海”群众手机摄影展延期征稿通知</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <div class="newct clr">
-
             <div class="newLeft">
-
                 <div class="nlimg" style="background: url({{ news[0].cover }}) center center / cover no-repeat;"></div>
                 <div class="nltitle">{{ news[0].title }}</div>
                 <div class="nldesc">{{news[0].contentSummary }}</div>
@@ -30,9 +61,10 @@
                         <div class="nrdesc">{{item.contentSummary}}</div>
                     </div>
                 </div>
-               {% endfor %}
+                {% endfor %}
             </div>
         </div>
+
         <div class="homeMore">
             查看更多
         </div>

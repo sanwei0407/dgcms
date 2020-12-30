@@ -301,6 +301,7 @@ footer .sanwei .kongge {
   font-size: 25px;
   position: relative;
   text-align: center;
+  padding-bottom: 55px;
 }
 .secTitle::after{
   content: '';
@@ -325,6 +326,83 @@ footer .sanwei .kongge {
   bottom: -14px;
   position: absolute;
 }
+
+.newform{
+  width: 1200px;
+  height: 453px;
+  margin: 0 auto;
+}
+.new-img{
+  float: left;
+  width: 500px;
+  height: 100%;
+  margin-right: 50px;
+  position: relative;
+}
+.new-img p {
+  position: absolute;
+  top: 400px;
+  height: 40px;
+  line-height: 40px;
+  left: 200px;
+  color: #fff
+}
+
+.new-list{
+  float: right;
+  width: 650px;
+  height: 453px;
+}
+.new-title{
+  height: 40px;
+  border-bottom: 1px solid #999;
+  line-height: 40px;
+}
+.new-title span{
+  font-size: 16px;
+  padding: 1px 20px;
+  color: #999;
+  display: block;
+  float: left;
+  width: 70px;
+  text-align: center;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: red;
+
+}
+.new-inform{
+  height: 393px;
+  width: 100%;
+  line-height: 38px;
+  margin-top: 20px;
+
+}
+.new-inform ul li::after{
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #999;
+  left: 0;
+  top: 50%;
+}
+.new-inform ul li{
+  font-size: 14px;
+  color: #333;
+  position: relative;
+  padding-left: 30px;
+}
+.new-inform ul li span{
+  float: right;
+  font-size: 12px;
+  color: #999;
+}
+
+
+
+
 .newct{
   padding-top: 55px;
 }
