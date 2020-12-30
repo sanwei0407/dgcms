@@ -151,7 +151,7 @@ module.exports = app => {
   router.get('/auth', controller.user.auth); // 实名验证
   router.post('/user/verify', controller.user.verify); // 提及实名验证
   router.all('/user/single', controller.user.single); // 个人志愿者注册
-  router.all('/user/team', controller.user.team); // 个人志愿者注册
+  router.all('/user/team', controller.user.team); // 团队志愿者注册
   router.all('/user/artteam', controller.user.artteam); // 文艺团队
   router.all('/user/createteam', controller.user.createteam); // 创建团队
   router.all('/user/publish', controller.user.publish); // 内容发布
@@ -284,6 +284,20 @@ module.exports = app => {
   router.post('/mapi/acticleList', controller.mapi.acticleList);
   router.post('/mapi/article/detail', controller.mapi.acdetail);
   router.post('/mapi/acdetail', controller.mapi.activityDetail);
+  //用户登录
+  router.post('/mapi/addUser', controller.mobile.user.addUser);
+  router.post('/mapi/userLogin', controller.mobile.user.userLogin);
+  //活动
+  router.post('/mapi/joinAc', controller.mobile.user.joinAc);
+  router.post('/mapi/activity', controller.mobile.user.activity);
+  router.post('/mapi/cancelAc', controller.mobile.user.cancel);
+
+  //场馆
+  router.post('/mapi/bookList', controller.mobile.user.list);
+  router.post('/mapi/GetOnebook', controller.mobile.user.getOne);
+  router.post('/mapi/booking', controller.mobile.user.addBook);
+
+
 
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
 
