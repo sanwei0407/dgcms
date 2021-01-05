@@ -282,7 +282,7 @@ module.exports = app => {
   router.post('/editBooking', controller.admin.booking.editBooking); // 编辑场馆预约详情
 
   // 数据汇总接口
-  // router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
+  router.post('/findweekusers',controller.client.user.findweekusers) // 添加汇总数据
 
   // api 接口
   router.get('/api/myteam', controller.api.myteam);
