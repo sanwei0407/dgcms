@@ -76,6 +76,10 @@ module.exports = app => {
     tags: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    banner: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'category'

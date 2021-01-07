@@ -224,6 +224,8 @@ class ApiController extends Controller {
       addTime: Date.now(),
       bookId,
       bookInfo: JSON.stringify(ctx.request.body),
+      sTime: ctx.request.body.bookTime,
+      beizhu: ctx.request.body.sx,
     });
 
 
@@ -238,18 +240,29 @@ class ApiController extends Controller {
     const { ctx, app } = this;
     const { type } = ctx.query;
     const { uid } = ctx.session;
+    const { Op } = app.Sequelize;
     const where = {};
     await ctx.model.Booking.belongsTo(ctx.model.Actions, { foreignKey: 'id', targetKey: 'bookId' });
+    const todayYear = (new Date()).getFullYear();
+    const todayMonth = (new Date()).getMonth();
+    const todayDay = (new Date()).getDate();
+    const todayTime = (new Date(todayYear, todayMonth, todayDay, '0', '0', '0')).getTime();// 毫秒
     const res = await ctx.model.Booking.findAndCountAll({
       include: [
         {
           model: ctx.model.Actions,
-          where: { uid },
+          where: { uid,
+            sTime: type === 'will' ? { [Op.gt]: todayTime } : { [Op.lt]: todayTime },
+          },
           required: true,
         },
       ],
       raw: true,
     });
+    res.rows.forEach(row => {
+      row.state = row['action.state'];
+    });
+
 
     // res.rows.forEach(r => {
     //   if (r.action.state == 2) r.action.state = '等待审核';

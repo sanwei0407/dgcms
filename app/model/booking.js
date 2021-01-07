@@ -54,6 +54,14 @@ module.exports = app => {
     gps: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    lng: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    lat: {
+      type: DataTypes.STRING(30),
+      allowNull: true
     }
   }, {
     tableName: 'booking'

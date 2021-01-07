@@ -283,6 +283,7 @@ class CommonController extends Controller {
         // 生成面包屑菜单 end
         ctx.locals.articleList = _article;
         ctx.locals.cate = cate;
+        ctx.locals.title = cate.name;
         ctx.locals.fenlei = cate.tags ? cate.tags.split(',').filter(r => r.trim()) : '';
       }
 
@@ -305,6 +306,8 @@ class CommonController extends Controller {
         const cate = await ctx.model.Category.findByPk(article.cid);
         ctx.locals.cate = cate;
         ctx.locals.article = article;
+
+        ctx.locals.title = cate.name + '_' + article.title;
         const _tp = cate.ctTemplateId; // 获取内容模板 todo ctTemplateId 变量名语义不清晰
         templateDir = _tp;
         await this.getHotList(cate); // 热门消息
@@ -335,8 +338,9 @@ class CommonController extends Controller {
         if (uid) {
           const action = await ctx.model.Actions.findOne({
             uid,
-            aid,
+            activityId: aid,
           });
+          console.log('the action is ', action);
           if (action) state = 5;
         }
         if (now < activity.bookStime) state = 0;// 即将开始预约
@@ -344,10 +348,11 @@ class CommonController extends Controller {
         if (now > activity.bookEtime && now < activity.sTime) state = 2; // 即将开始
         if (now > activity.sTime && now < activity.eTime) state = 3;
         if (now > activity.eTime) state = 4;
-        ctx.locals.state = 1;
+        ctx.locals.state = state;
 
 
         ctx.locals.activity = activity;
+        ctx.locals.title = activity.title;
       }
 
 
@@ -384,10 +389,9 @@ class CommonController extends Controller {
     const _hotList = await ctx.model.Article.findAll({
       where: {
         cid: cate.cid,
-        isHot: 1,
       },
-      limit: 5,
-      order: [[ 'aid', 'DESC' ]],
+      limit: 20,
+      order: [[ 'isHot', 'DESC' ], [ 'aid', 'DESC' ]],
     });
     ctx.locals.hotList = _hotList;
   }
@@ -494,6 +498,27 @@ class CommonController extends Controller {
       order: [ 'id', 'DESC' ],
       limit: 4,
     });
+
+    // 获取推送的内容
+
+
+    await ctx.model.Push.belongsTo(ctx.model.Article, { targetKey: 'aid', foreignKey: 'articleId' });
+    const _pushData = await ctx.model.Push.findAll({
+      order: [[ 'order', 'DESC' ]],
+      type: 1,
+      include: [ ctx.model.Article ],
+    });
+
+    const pushData = [
+      _pushData.filter(r => r.place == 1),
+      _pushData.filter(r => r.place == 2),
+      _pushData.filter(r => r.place == 3),
+      _pushData.filter(r => r.place == 4),
+
+    ];
+    ctx.locals.pushData = pushData;
+
+    console.log('pushData', pushData);
 
     return { news, activity };
   }

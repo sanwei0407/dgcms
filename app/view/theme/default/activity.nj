@@ -1,6 +1,6 @@
 {% include "./public/head.nj" %}
 <link rel="stylesheet" href="/public/css/activity.css?version=233332">
-<div class="content">
+<div class="content ctmain">
         <div  class="content1" style="height:300px;background:url(/public/img/p1.png) center center no-repeat;background-size:cover">
 
         </div>

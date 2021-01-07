@@ -1,80 +1,82 @@
 {% include "./public/head.nj" %}
 <link rel="stylesheet" href="/public/css/artteam.css?23432">
 <link rel="stylesheet" href="/public/css/list_text.css">
-{% if cate.name == '党建园地' %}
-<div class="chat" style="background:url(/public/img/p4.jpg) center center no-repeat;background-size:cover">
+<style>
 
-</div>
-{% else %}
-<div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
+</style>
+<div class="ctmain">
+    {% if cate.name == '党建园地' %}
+    <div class="chat" style="background:url(/public/img/p4.jpg) center center no-repeat;background-size:cover"></div>
+    {% else %}
+    <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover"></div>
+    {% endif %}
 
-</div>
-{% endif %}
-
-<div class="lb_wrap">
-    <div class="clr">
-        <!--    面包屑-->
-        {% include "./public/innernav.nj" %}
-        <div class="searchBox">
-            <input type="text" id="keyword" placeholder="输输入你要搜索的内容">
-            <i class="iconfont icon-tubiao-"></i>
-        </div>
-    </div>
-
-    <div class="lbleft">
-        <div class="newlist">
-            {% for item in articleList %}
-            <div class="lb_item clr">
-                <div class="lbtxt">
-                    <div class="lbtitle">
-                        <a href="{{cate.seoUrl}}/{{item.aid}}" >
-                            {{item.title}}
-                        </a>
-                    </div>
-                    <div class="lbtime">
-                        {{item.addTime|time}}
-                    </div>
-                </div>
+    <div class="lb_wrap">
+        <div class="clr">
+            <!--    面包屑-->
+            {% include "./public/innernav.nj" %}
+            <div class="searchBox">
+                <input type="text" id="keyword" placeholder="输输入你要搜索的内容">
+                <i class="iconfont icon-tubiao-"></i>
             </div>
-            {% endfor %}
         </div>
 
-
-        <div class="pages">
-            {% for item in pagation %}
-            <div  {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="lbrigth clr">
-        {% if cate.seoUrl === '/wenhuafuwu/fuwu' %}
-        <a class="applybox" href="/user/single">
-            个人志愿者报名
-        </a>
-        <a class="applybox" href="/user/team">
-            团队志愿者报名
-        </a>
-        {% endif %}
-
-        <div class="reBox">
-            <div class="retitle">热门动态</div>
-            <div class="relist">
-                {% for item in hotList %}
-                <div class="relist_item">
-                    <a href="{{cate.seoUrl}}/{{item.aid}}" >
-                        <div class="reitem_title">{{item.title}}</div>
-                    </a>
-                    <div class="reitem_desc">
-                        <span>{{item.author}}</span>
-                        <span>{{item.addTime|time}}</span>
-                        <div style="clear:both"></div>
+        <div class="lbleft">
+            <div class="newlist">
+                {% for item in articleList %}
+                <div class="lb_item clr">
+                    <div class="lbtxt">
+                        <div class="lbtitle">
+                            <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                                {{item.title}}
+                            </a>
+                        </div>
+                        <div class="lbtime">
+                            {{item.addTime|time}}
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+
+
+            <div class="pages">
+                {% for item in pagation %}
+                <div  {% if page==item.page %}class="cur"{% endif %} >{{item.page}}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="lbrigth clr">
+            {% if cate.seoUrl === '/wenhuafuwu/fuwu' %}
+            <a class="applybox" href="/user/single">
+                个人志愿者报名
+            </a>
+            <a class="applybox" href="/user/team">
+                团队志愿者报名
+            </a>
+            {% endif %}
+
+            <div class="reBox">
+                <div class="retitle">热门动态</div>
+                <div class="relist">
+                    {% for item in hotList %}
+                    <div class="relist_item">
+                        <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                            <div class="reitem_title">{{item.title}}</div>
+                        </a>
+                        <div class="reitem_desc">
+                            <span>{{item.author}}</span>
+                            <span>{{item.addTime|time}}</span>
+                            <div style="clear:both"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <input type="hidden" id="baseUrl" value="{{cate.seoUrl}}" />
 <input type="hidden" id="cid" value="{{cate.cid}}" />
 

@@ -135,10 +135,12 @@ module.exports = appInfo => {
       { value: 6, label: '公益' },
     ],
     bookTypeStr: [
-      { value: 1, label: '文化场馆' },
-      { value: 2, label: '体育场馆' },
-      { value: 3, label: '旅游服务资源场馆' },
-      { value: 4, label: '社会场馆' },
+      { value: 1, label: '舞蹈室' },
+      { value: 2, label: '音乐室' },
+      { value: 3, label: '画室' },
+      { value: 4, label: '展示厅' },
+      { value: 5, label: '录音室' },
+      { value: 6, label: '其他' },
     ],
     artTypeList: [
       { value: 1, label: '舞蹈' },

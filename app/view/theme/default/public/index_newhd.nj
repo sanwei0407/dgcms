@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/home.css?123213">
+    <title>Document</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+
+
+  <div class="topcWrap">
+      <div class="topContent">
+          <!-- 轮播图 -->
+          <div class="bannerBox">
+              <div class="bd">
+                  <div class="tempWrap" style="overflow:hidden; position:relative; width:570px">
+                      <ul id="advertTop" class="swiper-wrapper" style="width: 2280px; left: -570px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
+
+                              <li style="float: left; width: 570px;" class="swiper-slide">
+                                  <a href="#">
+                                  <img src="http://culturecloud.oss-cn-hangzhou.aliyuncs.com/chongqing/20201161115332CS7RRj7ML0zTaX9trLRZALqtxyJPk.png"></a>
+                              </li>
+                              <li style="float: left; width: 570px;" class="swiper-slide">
+                                  <a href="#">
+                                      <img src="/public/img/slide4.png">
+                                  </a>
+                              </li>
+
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <script>
+
+              var swiper = new Swiper('.tempWrap', {
+                  autoplay:true,
+                  loop: true,
+
+              });
+
+          </script>
+          <div class="topWrap">
+
+
+
+
+
+
+
+              <div class="topMain clearfix">
+                  <div class="fr clearfix">
+                      <div class="userUl fl">
+
+                          {% if phone %}
+                           <a href="/uc">{{phone}}</a>
+                          {% else %}
+                          <a href="/login">登录</a>
+                          {% endif %}
+
+
+
+
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+
+          <div class="topMidWrap">
+              <div class="topMidMain clearfix">
+                  <a href="#" class="logo fl"><img src="/public/img/logo1.jpg"></a>
+                  <div class="localCityBox" style="position: absolute; left: 10px; top: 170px;">
+
+                      <div style="font-size: 14px;color: #656565; margin-top: 20px;display: none">
+                          总访问量:<span style="color: #ff3838" id="totalPv">7,728.5万</span>&emsp;
+                          今年访问量:<span style="color: #ff3838" id="yearTotalPv">7.8万</span>
+                          今日访问量:<span style="color: #ff3838" id="todayPv">2.8万</span>&emsp;
+                          (微信及APP:<span style="color: #ff3838" id="wapPv">1.2万</span>&emsp;
+                          PC:<span style="color: #ff3838" id="webPv">1.6万</span>)
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="nav">
+      <div class="wrap">
+          <div><a href="/" title="首页">首页</a></div>
+          {% for item in category %}
+          <div>
+              <a  {% if item.type==3 %} href="{{item.outUrl}}" {% else %}  href="{{item.seoUrl}}" {% endif %} >  {{item.name}} </a>
+          </div>
+
+          {% endfor %}
+      </div>
+  </div>

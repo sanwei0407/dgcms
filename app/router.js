@@ -296,26 +296,39 @@ module.exports = app => {
 
   router.post('/activity/list', controller.api.aclist);
 
+  // 推送管理
+  router.post('/api/getpushinfo', controller.client.common.getpushinfo);
+  router.post('/api/addPush', controller.client.common.addPush);
+  router.post('/api/pushList', controller.client.common.pushList);
+  router.post('/api/editPush', controller.client.common.editPush);
+  router.post('/api/delPush', controller.client.common.delPush);
 
   router.post('/api/acticleList', controller.api.acticleList);// 获取文章内容
   // 手机api
   router.post('/mapi/acticleList', controller.mapi.acticleList);
   router.post('/mapi/article/detail', controller.mapi.acdetail);
   router.post('/mapi/acdetail', controller.mapi.activityDetail);
-  //用户登录
+  // 用户登录
   router.post('/mapi/addUser', controller.mobile.user.addUser);
   router.post('/mapi/userLogin', controller.mobile.user.userLogin);
-  //活动
+  // 活动
   router.post('/mapi/joinAc', controller.mobile.user.joinAc);
   router.post('/mapi/activity', controller.mobile.user.activity);
   router.post('/mapi/cancelAc', controller.mobile.user.cancel);
 
-  //场馆
+  // 场馆
   router.post('/mapi/bookList', controller.mobile.user.list);
   router.post('/mapi/GetOnebook', controller.mobile.user.getOne);
   router.post('/mapi/booking', controller.mobile.user.addBook);
   router.post('/mapi/cancelBook', controller.mobile.user.cancelBook);
 
+  router.post('/mapi/getSubCate', controller.mapi.getSubCate);
+
+
+  // one 一体机
+  require('./router/one')(app);
+
   router.get('/*', controller.admin.common.abc); // 参考例子-模版-栏目-主题色
+
 
 };

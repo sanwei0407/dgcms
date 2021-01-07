@@ -55,15 +55,10 @@ class CommonService extends Service {
       { value: 6, label: '蒙山县' },
       { value: 7, label: '岑溪市' },
     ];
-    ctx.locals.bookTypeList = [
-      { value: 1, label: '文化场馆' },
-      { value: 2, label: '体育场馆' },
-      { value: 3, label: '旅游服务资源场馆' },
-      { value: 4, label: '社会场馆' },
-    ];
+    ctx.locals.bookTypeList = app.config.bookTypeStr;
 
     const { uid, phone, state, realname } = ctx.session;
-    console.log(ctx.session);
+
     if (uid) ctx.locals.uid = uid;
     if (phone) ctx.locals.phone = phone;
     if (state) ctx.locals.state = state;

@@ -7,7 +7,7 @@ class TestController extends Controller {
     const res = await ctx.model.Article.findAll();
 
     for (const item of res) {
-      item.update({ contentSummary: item.content.replace(/<.*?>/g, '').slice(0, 60) });
+      item.update({ contentSummary: item.content.replace(/<.*?>/g, '').replace(/&nbsp;/g,'').slice(0, 80) });
     }
 
   }

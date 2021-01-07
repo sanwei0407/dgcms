@@ -1,0 +1,110 @@
+{% if cate.seoUrl === '/szzt/gewuquyi' %}
+<div class="tchot">
+
+    <div class="tctitle">
+        热点
+    </div>
+    <div class="fl txList">
+            {% for item in hotList%}
+            <div> <span>{{item.addTime|time}} </span> <a href="/news/{{item.aid}}">{{item.title}}</a>   </div>
+            {% endfor %}
+    </div>
+    <div class="fr tcswiper">
+        <div class="swiper-wrapper">
+            {% for item in hotList%}
+              <div class="swiper-slide">
+                  <a href="/news/{{item.aid}}">
+                      <img src="{{item.cover}}" alt="" >
+                      <div class="tctxt">{{item.title}}</div>
+                  </a>
+              </div>
+            {% endfor %}
+
+        </div>
+        <i class="iconfont sl icon-arrow-left"></i>
+        <i class="iconfont sr icon-arrow-left"></i>
+    </div>
+
+    <script>
+        var swiper = new Swiper('.tcswiper', {
+            autoplay:true,
+            loop: true,
+            navigation: {
+                nextEl: '.sl',
+                prevEl: '.sr',
+            },
+        });
+    </script>
+
+</div>
+{% endif %}
+<style>
+
+    .tchot{
+        width: 1200px;
+        margin:0 auto;
+    }
+    .txList  > div{
+        line-height: 40px;
+        font-size: 14px;
+        color:#333
+    }
+    .txList > div span{
+        font-size: 12px;
+        color: #808080;
+        padding-right: 15px;
+    }
+    .tcswiper{
+        width: 600px;
+        height: 320px;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        position: relative;
+    }
+    .tcswiper img{
+        object-fit:cover;
+        width: 600px;
+        height: 320px;
+    }
+    .tctitle{
+        color:#333;
+        font-size: 16px;
+        line-height: 3;
+        border-bottom: 1px solid #b5b5b5;
+    }
+    .txList a{
+        cursor: pointer;
+    }
+    .txList a:hover{
+        color:#b03a3e;
+    }
+    .tctxt{
+        position: absolute;
+        line-height: 45px;
+        background: rgba(0,0,0,.3);
+        color:#fff;
+        bottom:0;
+        width: 600px;
+        left:0;
+        text-align: center;
+    }
+
+    .sl,.sr{
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        font-size: 50px!important;
+        color: rgba(172, 172, 172, 0.5);
+        z-index: 999;
+    }
+    .sl{
+       left:20px
+    }
+    .sr{
+        right:20px;
+        transform: translateY(-50%) rotate(180deg);
+    }
+    .tcswiper i:hover{
+        color: #ff6600;
+    }
+</style>

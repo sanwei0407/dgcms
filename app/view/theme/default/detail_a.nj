@@ -1,5 +1,5 @@
   {% include "./public/head.nj" %}
-  <link rel="stylesheet" href="/public/css/detai_a.css">
+  <link rel="stylesheet" href="/public/css/detai_a.css?123">
   <link rel="stylesheet" href="/public/css/viewer.min.css">
   <script src="/public/js/viewer-jquery.min.js"></script>
   <script src="/public/js/jquery.jqzoom-core.js"></script>

@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/home.css?4443233434">
+    <link rel="stylesheet" href="/public/css/home.css?129123993">
     <title>Document</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.js"></script>
 </head>
 
 <body>

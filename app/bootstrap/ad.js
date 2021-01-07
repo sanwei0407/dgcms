@@ -59,7 +59,6 @@ global.ad = function(appCtx) {
           aa.push(jj);
 
         }
-        console.log('??????????', aa);
         const bb = aa.join();
         console.log(res.data.data.adUrl);
         context.ctx[key] = `<a href="${res.data.data.goto}"> <div class="swiper-container" style="width:${res.data.data.width};height:${res.data.data.height} ">

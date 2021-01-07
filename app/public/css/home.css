@@ -26,14 +26,22 @@ body{
   width: 1210px;
   margin:0 auto
 }
+.nav .wrap{
+  width: 1210px;
+  margin:0 auto
+}
 .topbar{
   font-size: 12px;
   color:#888
+}
+.chd{
+  background: #f4f4f4;
 }
 .chd .main{
   position: relative;
   height: 145px;
   background: url(/public/css/topbg.jpg) right center no-repeat;
+
 }
 #logo{
   position: absolute;
@@ -43,7 +51,8 @@ body{
 }
 .nav{
   height: 45px;
-  background: #87ceeb;
+  /*background: #87ceeb;*/
+  background: #955a5a;
   line-height: 45px;
 }
 .nav > .wrap >div{
@@ -286,6 +295,19 @@ footer .sanwei .kongge {
   display: block;
   clear: both;
 }
+
+
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl{
+  float:left
+}
+.fr{
+  float:right
+}
 .homeBg{
   height: 450px;
   overflow: hidden;
@@ -344,8 +366,11 @@ footer .sanwei .kongge {
   top: 400px;
   height: 40px;
   line-height: 40px;
-  left: 200px;
-  color: #fff
+  right: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  background: rgba(0,0,0,.3);
 }
 
 .new-list{
@@ -368,8 +393,12 @@ footer .sanwei .kongge {
   text-align: center;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  background-color: red;
 
+
+}
+.new-title span.cur{
+  background-color: red;
+  color:#fff
 }
 .new-inform{
   height: 393px;
@@ -387,6 +416,7 @@ footer .sanwei .kongge {
   background-color: #999;
   left: 0;
   top: 50%;
+  transform: translateY(-50%);
 }
 .new-inform ul li{
   font-size: 14px;
@@ -612,11 +642,11 @@ footer .sanwei .kongge {
 .reBox{
   width: 270px;
   background: #fff;
-  padding:10px
+  padding:16px 10px
 
 }
 .retitle{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bolder;
   padding-left: 10px;
   line-height: 2;
@@ -633,7 +663,11 @@ footer .sanwei .kongge {
   height: 20px;
 }
 .relist_item{
-  border-bottom:1px dashed rgb(119,119,119)
+  border-bottom:1px dotted rgb(212, 212, 212);
+  padding:10px 0;
+}
+.relist_item:hover{
+  background: rgb(238, 238, 238);
 }
 .reitem_title{
   line-height: 2;
@@ -642,6 +676,15 @@ footer .sanwei .kongge {
   white-space: nowrap;
   overflow: hidden;
   color:rgb(119, 119, 119);
+  cursor: pointer;
+
+}
+.reitem_title a{
+  cursor: pointer;
+}
+.reitem_title:hover{
+  cursor: pointer;
+  color: rgb(100, 45, 45);
 }
 .reitem_desc{
   font-size: 12px;
@@ -670,12 +713,12 @@ footer .sanwei .kongge {
 /*头部结束*/
 /*小头部开始*/
 #header-sm{overflow:hidden;}
-#header-sm .header-nav-top-bg{height:43px; line-height:43px; background-color:#87ceeb;}
+#header-sm .header-nav-top-bg{height:43px; line-height:43px; background-color:#955a5a;}
 #header-sm .header-nav-bg{height:81px; border-bottom:1px #e8e8e8 solid; background-color:#fff;}
 #header-sm .header-nav-top-bg .header-nav{width:1200px; margin:0px auto; position:relative;}
 #header-sm .header-nav-top-bg .header-nav ul{position:absolute; left:0px; top:0px; height:43px; line-height:43px; width:900px;}
 #header-sm .header-nav-top-bg .header-nav ul li{float:left;}
-#header-sm .header-nav-top-bg .header-nav ul li a{display:block; padding:0px 10px; color:#777; font-size:12px;}
+#header-sm .header-nav-top-bg .header-nav ul li a{display:block; padding:0px 10px; color: #c6c6c6; font-size:12px;}
 #header-sm .header-nav-top-bg .header-nav ul .active a{color:#fff;}
 #header-sm .header-nav-top-bg .header-nav ul li a:hover{color:#fff;}
 #header-sm .header-nav-top-bg .header-nav .loginInfo{float:right; height:43px; line-height:43px; font-size:12px;}
@@ -743,4 +786,123 @@ footer .sanwei .kongge {
 
 #cententBody .left .more{
   display: none;
+}
+
+.stzone .linkitem{
+  width:280px;
+  background: #fff;
+  float:left;
+  margin-right: 20px;
+  text-align: center;
+  box-shadow: 3px 4px 5px rgba(0,0,0,.2);
+  padding-top: 10px;
+}
+
+.linkitem:last-child{
+  margin-right:0
+}
+.linkitem .t{
+  line-height: 60px;
+}
+.linkitem .ad{
+  font-size: 12px;
+}
+
+.linkitem .pic {
+  width: 100%;
+  height: 200px;
+
+}
+
+.linkitem .pic img{
+  width: 100%;
+  height: 200px;
+}
+
+.linkitem .lbt{
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  margin:25px auto;
+  border: 1px solid #999;
+}
+
+
+
+/*cqy 样式 styles*/
+
+/* 登录前后 */
+.topcWrap {
+  background: url(/public/img/top_bg.png) no-repeat center bottom;
+  background-size: 100% 100%;
+}
+
+.topContent {
+  /*max-width: 1495px;*/
+  /*min-width: 1200px;*/
+  width: 1210px;
+  margin: 0 auto;
+  height: 382px;
+  position: relative;
+}
+
+.topWrap {
+  width: 100%;
+}
+
+.topMain {
+  position: absolute;
+  height: 36px;
+  line-height: 36px;
+  background: rgba(255, 255, 255, 0.66);
+  font-size: 12px;
+  color: #464544;
+  padding: 0 12px;
+  top: 25px;
+  left: 50%;
+  margin-left: 140px;
+}
+.topMidMain .logo {
+  top: 0px !important;
+}
+
+.topMain p {
+  padding-left: 8px;
+}
+
+.topMain .userUl .loginBtn {
+  color: #b03a3e;
+}
+
+.topMain .userUl a {
+  color: #464544;
+  float: left;
+  margin: 0 8px;
+}
+
+.topMain .userUl em {
+  float: left;
+  line-height: 35px;
+}
+.bannerBox {
+  width: 570px !important;
+  height: 382px;
+  overflow: hidden;
+  /* margin: 0 auto; */
+  position: relative;
+  left: 720px;
+}
+
+.bannerBox .bd li {
+  display: block;
+  width: 570px !important;
+  height: 382px;
+  overflow: hidden;
+  position: relative;
+}
+.topMidMain .logo {
+  position: absolute;
+  top: 88px;
+  left: 0;
 }

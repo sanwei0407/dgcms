@@ -32,7 +32,7 @@ class BookingController extends Controller {
 
   async create() {
     const { ctx, app } = this;
-    const { title, desc, type, peoples, cover, address, zone } = ctx.request.body;
+    const { title, desc, type, peoples, cover, address, zone, lng, lat } = ctx.request.body;
     if (!title) return ctx.body = { success: false, info: '标题不能为空' };
 
     try {
@@ -40,14 +40,17 @@ class BookingController extends Controller {
         title,
         desc,
         type,
-        peoples,
+        peoples: peoples || 10,
         cover,
         address,
         zone,
+        lng,
+        lat,
       });
       ctx.body = { success: true, info: '添加成功' };
 
     } catch (e) {
+      console.log(e);
       ctx.body = { success: false, info: '添加失败' };
     }
 
@@ -137,6 +140,28 @@ class BookingController extends Controller {
       { seoUrl: '/', name: '首页' },
       { seoUrl: '/book', name: '场馆预约' },
     ];
+
+
+    // 获取最近7天的的日期列表
+
+    const paiban = JSON.parse(placeinfo.paiban);
+
+    const datearr = [];
+
+    const zhouarr = [ '周日', '周一', '周二', '周三', '周四', '周五', '周六' ];
+    for (let i = 1; i <= 7; i++) {
+      const _d = new Date();
+      _d.setDate(_d.getDate() + i);
+      datearr.push({
+        _d,
+        yd: `${_d.getMonth() + 1}.${_d.getDate()}`,
+        xq: zhouarr[_d.getDay()],
+        sw: paiban.find(item => item.day === zhouarr[_d.getDay()]).sw,
+        xw: paiban.find(item => item.day === zhouarr[_d.getDay()]).xw,
+      });
+    }
+
+    ctx.locals.days = datearr;
 
     ctx.locals.cate = {
       seoUrl: '/book',

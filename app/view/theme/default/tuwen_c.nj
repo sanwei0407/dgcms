@@ -1,9 +1,21 @@
 {% include "./public/head.nj" %}
 <link rel="stylesheet" href="/public/css/activity.css?version=4">
+<style>
+
+</style>
 <div class="content">
-        <div  class="content1" style="height:300px;background:url(/public/img/p1.png) center center no-repeat;background-size:cover">
+
+       {% if cate.banner %}
+        <div  class="content1" style="height:300px;background:url({{cate.banner}}) center center no-repeat;background-size:cover"></div>
+        {% else %}
+        <div  class="content1" style="height:300px;background:url(/public/img/p1.png) center center no-repeat;background-size:cover"></div>
+        {% endif %}
+
+        <div class="wrap">
+            {% include "./public/tcHost.nj" %}
 
         </div>
+
         <div class="content2" style="display: none">
             <div class="choose">
                 {% for item in subCates %}

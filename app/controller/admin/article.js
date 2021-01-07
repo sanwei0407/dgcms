@@ -139,7 +139,7 @@ class ArticleController extends Controller {
         where,
         limit,
         offset,
-        order: [[ 'top', 'DESC' ], [ 'aid', 'DESC' ]],
+        order: [[ 'top', 'DESC' ], [[ 'isHot', 'DESC' ]], [ 'aid', 'DESC' ]],
         attributes: {
           exclude: [ 'isDelete' ],
         },
@@ -200,6 +200,10 @@ class ArticleController extends Controller {
       whoCanRead,
       reading,
       type,
+      pdf,
+      video,
+      music,
+      cover,
     } = ctx.request.body;
     const update = { updateTime: Date.now() };
     if (title) update.title = title;
@@ -214,6 +218,10 @@ class ArticleController extends Controller {
     if (whoCanRead) update.whoCanReal = whoCanRead;
     if (reading) update.reading = reading;
     if (type) update.type = type;
+    if (cover) update.cover = cover;
+    if (pdf) update.pdf = pdf;
+    if (video) update.video = video;
+    if (music) update.music = music;
     if (!aid) return ctx.body = { success: false, msg: '该文章不存在' };
     try {
       const res = await ctx.model.Article.update(

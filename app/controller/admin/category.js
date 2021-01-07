@@ -11,7 +11,7 @@ class CategoryController extends Controller {
   // name-栏目名 seoUrl-搜索链接 templateId-模板id isNav-是否在主导航上显示 order-排序,越大约前面 ctTemplateId-内容的模板id
   async categoryadd() {
     const { ctx } = this;
-    let { name, seoUrl, templateId, isNav, order, ctTemplateId, pid, type, outUrl, keyWord, desc, ctHtml, isSubmit ,tags} = ctx.request.body;
+    let { name, seoUrl, templateId, isNav, order, ctTemplateId, pid, type, outUrl, keyWord, desc, ctHtml, isSubmit, tags, banner } = ctx.request.body;
     if (!name) return ctx.body = { success: false, info: '请填写栏目名' };
     if (!seoUrl) seoUrl = '/' + pinyin4js.getShortPinyin(name);
     if (!isNav) isNav = 0;
@@ -42,7 +42,8 @@ class CategoryController extends Controller {
         desc, // 描述
         ctHtml, // 栏目编辑的内容
         isSubmit, // 是否投稿 // 0=不投 1 = 投稿
-        tags
+        tags,
+        banner,
       });
       ctx.body = { success: true, info: '添加成功', data: res };
     } catch (e) {
@@ -53,7 +54,7 @@ class CategoryController extends Controller {
   // 栏目的编辑
   async categoryupdate() {
     const { ctx } = this;
-    const { name, seoUrl, templateId, isNav, order, ctTemplateId, cid, pid, type, outUrl, keyWord, desc, ctHtml, isSubmit, tags } = ctx.request.body;
+    const { name, seoUrl, templateId, isNav, order, ctTemplateId, cid, pid, type, outUrl, keyWord, desc, ctHtml, isSubmit, tags, banner } = ctx.request.body;
     if (!cid) return ctx.body = { success: false, info: '未选择cid' };
     const updateData = {};
     if (name) updateData.name = name;
@@ -70,6 +71,7 @@ class CategoryController extends Controller {
     if (ctHtml) updateData.ctHtml = ctHtml;
     if (isSubmit) updateData.isSubmit = isSubmit;
     if (tags) updateData.tags = tags;
+    if (banner) updateData.banner = banner;
     try {
       const res = await ctx.model.Category.update(updateData, {
         where: {

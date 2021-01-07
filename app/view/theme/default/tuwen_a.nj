@@ -1,6 +1,9 @@
 {% include "./public/head.nj" %}
 <link rel="stylesheet" href="/public/css/artteam.css?345454">
- <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
+<style>
+
+</style>
+    <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
 
     </div>
     <div class="content">

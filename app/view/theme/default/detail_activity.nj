@@ -91,6 +91,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="gps" value="{{activity.addresGps}}">
 <!--    tab切换-->
     <script>
 
@@ -100,7 +101,7 @@
 
             item.addEventListener('click',(ev)=>{
 
-                 document.querySelector(".on").classList.remove('on')
+                $(".actab .on").removeClass('on')
                 ev.target.classList.add('on')
                 let num = parseInt(ev.target.dataset.id)
                 for(const item of mains){
@@ -161,14 +162,17 @@
 
 
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=C9g0EhBT47RZMItCfCtnMg3Zm5yNSmoA"></script>
-    <input type="hidden" id="gps" value="{{activity.addresGps}}">
+
 
     <script type="text/javascript">
         let _gps = document.getElementById('gps').value;
-        let gps = _gps.split(",").map(r=>parseInt(r))
+        let gps = _gps.split(",").map(r=>parseFloat(r))
+
         // 百度地图API功能
         var map = new BMap.Map("allmap");    // 创建Map实例
-        map.centerAndZoom(new BMap.Point(gps[0], gps[1]), 11);  // 初始化地图,设置中心点坐标和地图级别
+
+        map.addOverlay(new BMap.Marker(new BMap.Point(gps[0], gps[1])))
+        map.centerAndZoom(new BMap.Point(gps[0], gps[1]), 15);  // 初始化地图,设置中心点坐标和地图级别
         //添加地图类型控件
         map.addControl(new BMap.MapTypeControl({
             mapTypes:[
@@ -177,6 +181,7 @@
             ]}));
         map.setCurrentCity("梧州");          // 设置地图显示的城市 此项是必须设置的
         map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
     </script>
 
     {% include "./public/foot.nj" %}

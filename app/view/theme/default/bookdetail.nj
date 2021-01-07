@@ -51,52 +51,35 @@
                             <table cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>12.18（周五）</th>
-                                        <th>12.19（周六）</th>
-                                        <th>12.20（周日）</th>
-                                        <th>12.21（周一）</th>
-                                        <th>12.22（周二）</th>
-                                        <th>12.23（周三）</th>
-                                        <th>12.24（周四）</th>
+                                        {% for item in days %}
+                                        <th>{{item.yd}} （{{item.xq}}）</th>
+                                        {% endfor %}
                                     </tr>
                                 <tbody>
                                     <tr>
-                                        <td class="able" onclick="showWin('2020-12-18', '9:00-12:00')">
-                                            <span>9:00-12:00<br />
-                                                可预约</span></td>
-                                        <td><span>不可选</span></td>
-                                        <td><span>不可选</span></td>
-                                        <td class="able" onclick="showWin('2020-12-21', '9:00-12:00')">
-                                            <span>9:00-12:00<br />
-                                                可预约</span></td>
-                                        <td class="able" onclick="showWin('2020-12-22', '9:00-12:00')">
-                                            <span>9:00-12:00<br />
-                                                可预约</span></td>
-                                        <td class="able" onclick="showWin('2020-12-23', '9:00-12:00')">
-                                            <span>9:00-12:00<br />
-                                                可预约</span></td>
-                                        <td class="able" onclick="showWin('2020-12-24', '9:00-12:00')">
-                                            <span>9:00-12:00<br />
-                                                可预约</span></td>
+                                        {% for item in days %}
+                                        <td {% if item.sw %} class="able" data-date="{{item._d.getTime()}}" data-sx="sw" {% endif %} >
+                                            {% if loop.first %}   <span>9:00-12:00<br />{% endif %}
+                                               {% if item.sw %}
+                                                    可预约
+                                               {% else %}
+                                                    不可预约
+                                               {% endif %}
+                                        </span></td>
+                                        {% endfor %}
                                     </tr>
                                     <tr>
-                                        <td class="able" onclick="showWin('2020-12-18', '2:00-5:00')">
-                                            <span>2:00-5:00<br />
-                                                可预约</span></td>
-                                        <td><span>不可选</span></td>
-                                        <td><span>不可选</span></td>
-                                        <td class="able" onclick="showWin('2020-12-21', '2:00-5:00')">
-                                            <span>2:00-5:00<br />
-                                                可预约</span></td>
-                                        <td class="able" onclick="showWin('2020-12-22', '2:00-5:00')">
-                                            <span>2:00-5:00<br />
-                                                可预约</span></td>
-                                        <td class="able" onclick="showWin('2020-12-23', '2:00-5:00')">
-                                            <span>2:00-5:00<br />
-                                                可预约</span></td>
-                                        <td class="able" onclick="showWin('2020-12-24', '2:00-5:00')">
-                                            <span>2:00-5:00<br />
-                                                可预约</span></td>
+                                        {% for item in days %}
+                                        <td {% if item.sw %} class="able" data-date="{{item._d.getTime()}}" data-sx="xw" {% endif %} >
+                                            {% if loop.first %}   <span>14:30-17:30<br />{% endif %}
+
+                                             {% if item.xw %}
+                                                    可预约
+                                               {% else %}
+                                                    不可预约
+                                               {% endif %}
+                                        </span></td>
+                                        {% endfor %}
                                     </tr>
                             </table>
                         </div>
@@ -232,6 +215,13 @@
        <input type="hidden" id="fpic">
        <input type="hidden" id="bookId" value="{{bookId}}">
 
+       <style>
+           .cur{
+               background: #f6bfbf !important;
+           }
+       </style>
+
+
        <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=C9g0EhBT47RZMItCfCtnMg3Zm5yNSmoA"></script>
 
 <script type="text/javascript">
@@ -263,6 +253,16 @@
         var $ = layui.jquery
             , upload = layui.upload;
 
+        $('.activity_venues td').click(function(){
+            if($(this).hasClass('able')){
+                $('.cur').removeClass('cur')
+                $(this).addClass('cur')
+            }else{
+                layer.msg('该时段不可预约哦');
+            }
+
+        })
+
 
         //普通图片上传 正面
         var uploadFront = upload.render({
@@ -290,11 +290,16 @@
         });
 
         $("#tj").click(function(event){
+
+
             var data = form.val('bookform');
             console.log(data)
             data.pic = $("#fpic").val();
             data.bookId = $("#bookId").val();
             data.bookDate = '2019-04-09'
+            const _d = $('td.cur').data()
+            data.sx = _d.sx;
+            data.bookTime = _d.date
             $.post('/api/addBook',data,function(res){
                 const { success ,backurl} = res;
                 if(!success){
@@ -302,6 +307,8 @@
                     if(backurl) setTimeout(()=>window.location.href=backurl,2000)
                 }else{
                     layer.msg('提交成功')
+                    setTimeout(()=> window.location.href= '/user/book',1000)
+
                 }
 
             })

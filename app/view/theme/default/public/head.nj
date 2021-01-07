@@ -4,52 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/home.css?verison=2.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/home.css?verison=3.5">
+    <title>梧州市群众艺术馆 {{title}}</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2284466_vai5o5nmba.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2284466_chf7qeupz2h.css">
     <script src="/public/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.js"></script>
 
 </head>
 
 <body>
-  <div class="chd">
-        <!--<div class="wrap topbar">
-            <span>今天是 2020年12月18日 星期五 农历十一月初四</span>
-            {% if phone %}
-            <span style="margin-left:20px"> <a href="/uc">{{phone}}</a></span>
-            {% else %}
-            <span style="margin-left:20px"> <a href="/login">登录</a></span>
-            {% endif %}
-        </div>
-        <div class="wrap main">
-                <div id="logo">
-                    <img src="/public/css/logo.jpg" alt="">
-                </div>
-        </div>
-        <div class="nav">
-            <div class="wrap">
-              <div><a href="/" title="首页">首页</a></div>
-                {% for item in category %}
-                 <div>
-                     <a  href="{{item.seoUrl}}">  {{item.name}} </a>
-                     {% if item.children.length > 0 %}
-                     <div class="sub">
-                         {% for subitem in item.children %}
-                         <a  href="{{subitem.seoUrl}}">  {{subitem.name}} </a>
-                         {% endfor %}
-                     </div>
-                     {% endif %}
-                 </div>
-
-                {% endfor %}
-            </div>
-        </div>-->
-    </div>
 
   <div id="header-sm" style="margin-bottom: 84px;">
       <div class="header-nav-top-bg">

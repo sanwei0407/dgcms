@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/home.css?123213">
+    <title>梧州市群众艺术馆 {{title}}</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2263609_zztyg540lhe.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2284466_chf7qeupz2h.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/6.4.1/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+
+<div class="cthd">
+        <div class="searchBox">
+            <input type="text" placeholder="请输入您要搜索的内容">
+            <div class="bt">
+                <i class="iconfont icon-tubiao-" style="color:#fff"></i>
+            </div>
+        </div>
+
+</div>
+
+
+<style>
+
+    .cthd{
+        height: 32vw;
+        background: url('/public/img/top_bg2.jpg') center center / cover  no-repeat;
+        position: relative;
+    }
+    .cthd .searchBox{
+        width: 24.3vw;
+        height: 2.5vw;
+        border:1px  solid #955a5a;
+        position: absolute;
+        left:50%;
+        transform: translateX(-50%);
+        top: 18.5vw;
+        border-radius: 2.25vw;
+        overflow: hidden;
+    }
+    .cthd .searchBox input{
+        line-height: 2.5vw;
+        outline: none;
+        padding-left:20px;
+        border:none;
+        width: 13.5416vw ;
+    }
+    .cthd .searchBox .bt{
+        width: 3.4722vw;
+        height: 100%;
+        background: #955a5a;
+        color:#fff;
+        position: absolute;
+        right:0;
+        top:0;
+        text-align: center;
+        line-height: 2.5vw;
+    }
+    .cthd .searchBox i{
+        color: #fff!important;
+    }
+
+</style>
+
+  <div class="nav">
+      <div class="wrap">
+          <div><a href="/" title="首页">首页</a></div>
+          {% for item in category %}
+          <div>
+              <a  {% if item.type==3 %} href="{{item.outUrl}}" {% else %}  href="{{item.seoUrl}}" {% endif %} >  {{item.name}} </a>
+              <div class="bbt"></div>
+          </div>
+
+          {% endfor %}
+      </div>
+  </div>
+
+<style>
+    .nav{
+        background: url('/public/img/navbg.png') center bottom  no-repeat;
+        top: -50px;
+        position: relative;
+    }
+    .nav .wrap{
+        width: 860px;
+
+    }
+    .nav > .wrap >div:first-child{
+        margin-left: 16px;
+    }
+    .nav > .wrap >div{
+        padding:0 15px;
+        position: relative;
+        bottom:20px;
+
+    }
+
+    .nav > .wrap >div .bbt{
+        width: 0;
+        position: absolute;
+        top:0;
+        left:50%;
+        transform: translateX(-50%);
+        transition: width 300ms;
+        background: #b03a3e;
+        height: 2px;
+    }
+    .nav > .wrap >div:hover .bbt{
+        width: 100%;
+    }
+
+    .nav > .wrap a{
+        color:#955a5a
+    }
+
+    .nav > .wrap a:hover{
+        font-weight: 600;
+    }
+</style>

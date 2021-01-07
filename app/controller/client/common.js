@@ -60,6 +60,122 @@ class CommonController extends Controller {
 
   }
 
+  async getpushinfo() {
+    const { ctx } = this;
+    const { type, id } = ctx.request.body;
+    const where = {};
+    if (type) where.type = type;
+    // 1 = 文章
+    // 2 = 活动
+    // 3 = 预定
+    if (type == 1) where.articleId = id;
+    if (type == 2) where.activityId = id;
+    if (type == 3) where.bookId = id;
+
+    const res = await ctx.model.Push.findOne({
+      where,
+    });
+    ctx.body = {
+      success: true,
+      data: res,
+    };
+  }
+
+  async addPush() {
+    const { ctx } = this;
+    let { placeInfo, order, id, platform, type } = ctx.request.body;
+    const inserData = {};
+    type = type || 1;
+    if (type == 1) inserData.articleId = id;
+    if (type == 2) inserData.activityId = id;
+    if (type == 3) inserData.bookId = id;
+
+    platform = platform || 1;
+    order = order || 1;
+    const place = placeInfo;
+
+    try {
+      await ctx.model.Push.create({
+        type,
+        platform,
+        order,
+        place,
+        ...inserData,
+      });
+      ctx.body = { success: true, info: 'ok' };
+    } catch (e) {
+      console.log(e);
+      ctx.body = { success: false, info: '添加推送失败' };
+    }
+  }
+
+  async pushList() {
+    const { ctx } = this;
+    let { platform, type, place, page, limit } = ctx.request.body;
+
+    limit = limit || 10;
+    page = page || 1;
+    type = type || 1;
+    const offset = limit * (page - 1);
+    const where = {};
+    if (type) where.type = type;
+    if (place) where.place = place;
+    if (platform) where.platform = platform;
+    const { Push, Article, Booking, Activity } = ctx.model;
+    let include = {};
+    await ctx.model.Push.belongsTo(Article, { foreignKey: 'articleId', targetKey: 'aid' });
+    await ctx.model.Push.belongsTo(Activity, { foreignKey: 'activityId', targetKey: 'id' });
+    await ctx.model.Push.belongsTo(Booking, { foreignKey: 'bookId', targetKey: 'id' });
+
+    if (type == 1) include = { model: Article, require: true };
+    if (type == 2) include = { model: Activity, require: true };
+    if (type == 3) include = { model: Booking, require: true };
+
+    try {
+      const res = await ctx.model.Push.findAndCountAll({
+        where,
+        limit,
+        offset,
+        include,
+        order: [[ 'order', 'DESC' ], [ 'id', 'DESC' ]],
+      });
+      ctx.body = { success: true, data: res };
+    } catch (e) {
+      console.log('e', e);
+      ctx.body = { success: false };
+    }
+
+  }
+
+  async editPush() {
+    const { ctx } = this;
+    const { id, order } = ctx.request.body;
+    try {
+      await ctx.model.Push.update({ order }, {
+        where: {
+          id,
+        },
+      });
+      ctx.body = { success: true, info: 'ok' };
+    } catch (e) {
+      ctx.body = { success: false, info: 'notok' };
+    }
+  }
+
+  async delPush() {
+    const { ctx } = this;
+    const { id } = ctx.request.body;
+    try {
+      await ctx.model.Push.destroy({
+        where: {
+          id,
+        },
+      });
+      ctx.body = { success: true, info: '删除成功' };
+    } catch (e) {
+      ctx.body = { success: false, info: '删除失败' };
+    }
+  }
 }
 
 module.exports = CommonController;

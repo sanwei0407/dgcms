@@ -12,44 +12,44 @@ module.exports = app => {
     },
     type: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     adUrl: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
     desc: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     goto: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     width: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     height: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     isDelete: {
       type: DataTypes.INTEGER(4),
       allowNull: false,
-      defaultValue: '0',
+      defaultValue: '0'
     },
     isHot: {
       type: DataTypes.INTEGER(4),
-      allowNull: true,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'ad',
+    tableName: 'ad'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

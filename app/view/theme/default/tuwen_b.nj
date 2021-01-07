@@ -1,19 +1,23 @@
 {% include "./public/head.nj" %}
 <link rel="stylesheet" href="/public/css/artteam.css?23432">
 <link rel="stylesheet" href="/public/css/list_b.css">
- <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
+<style>
+
+</style>
+<div class="ctmain">
+    <div class="chat" style="background:url(/public/img/p3.png) center center no-repeat;background-size:cover">
 
     </div>
 
-        <div class="lb_wrap">
-            <div class="clr">
-                <!--    面包屑-->
-                {% include "./public/innernav.nj" %}
-                <div class="searchBox">
-                    <input type="text" id="keyword" placeholder="输输入你要搜索的内容">
-                    <i class="iconfont icon-tubiao-"></i>
-                </div>
+    <div class="lb_wrap">
+        <div class="clr">
+            <!--    面包屑-->
+            {% include "./public/innernav.nj" %}
+            <div class="searchBox">
+                <input type="text" id="keyword" placeholder="输输入你要搜索的内容">
+                <i class="iconfont icon-tubiao-"></i>
             </div>
+        </div>
         <div class="lbleft">
             <div class="newlist">
                 {% for item in articleList %}
@@ -57,10 +61,10 @@
             <div class="reBox">
                 <div class="retitle">热门动态</div>
                 <div class="relist">
-                     {% for item in hotList %}
+                    {% for item in hotList %}
                     <div class="relist_item">
-                      <a href="{{cate.seoUrl}}/{{item.aid}}" >
-                        <div class="reitem_title">{{item.title}}</div>
+                        <a href="{{cate.seoUrl}}/{{item.aid}}" >
+                            <div class="reitem_title">{{item.title}}</div>
                         </a>
                         <div class="reitem_desc">
                             <span>{{item.author}}</span>
@@ -68,11 +72,13 @@
                             <div style="clear:both"></div>
                         </div>
                     </div>
-                     {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 <input type="hidden" id="baseUrl" value="{{cate.seoUrl}}" />
 <input type="hidden" id="cid" value="{{cate.cid}}" />
 <script>
