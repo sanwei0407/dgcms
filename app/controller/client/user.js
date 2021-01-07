@@ -67,6 +67,83 @@ class UserController extends Controller {
     }
   }
 
+  // 首页数据
+  // 最近一周用户注册数
+  async findweekusers() {
+    const { ctx } = this;
+    const { Op } = require('sequelize');
+    const timestamp =
+            new Date(
+                    new Date(new Date().toLocaleDateString()).getTime() -
+                    7 * 24 * 3600 * 1000
+            ).getTime();
+    // 今天零点的时间戳
+    const today =
+            new Date(
+                    new Date(new Date().toLocaleDateString()).getTime() - 8 * 3600 * 1000
+            ).getTime();
+    // 昨天零点的时间戳
+    const yestoday = today - 24 * 3600 * 1000;
+    try {
+      // 查询总用户数
+      const totalusers = await ctx.model.User.count({});
+      // 查询总文章数
+      const totalarticles = await ctx.model.Article.count({});
+      // 查询总活动数
+      const totalactivities = await ctx.model.Activity.count({});
+      // 查询最近一周的用户注册数
+      const lastweekusers = await ctx.model.User.count({
+        where: {
+          addTime: {
+            [Op.gte]: timestamp,
+            [Op.lte]: Date.now(),
+          },
+        },
+      });
+
+      // 查询昨日的用户注册数
+      const yesterdayuser = await ctx.model.User.count({
+        where: {
+          addTime: {
+            [Op.gte]: yestoday,
+            [Op.lte]: today,
+          },
+        },
+      });
+      // 查询今天的用户注册数
+      const todayusers = await ctx.model.User.count({
+        where: {
+          addTime: {
+            [Op.gte]: today,
+            [Op.lte]: Date.now(),
+          },
+        },
+      });
+      // 查询今天的用户注册数
+      const yesterdayarticles = await ctx.model.Article.count({
+        where: {
+          addTime: {
+            [Op.gte]: today,
+            [Op.lte]: Date.now(),
+          },
+        },
+      });
+      // 查询今日文章注册数
+      const todayarticle = await ctx.model.Article.count({
+        where: {
+          addTime: {
+            [Op.gte]: today,
+            [Op.lte]: Date.now(),
+          },
+        },
+      });
+      ctx.body = { success: true, totalusers, totalarticles, totalactivities, lastweekusers, yesterdayuser, todayusers, yesterdayarticles, todayarticle };
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
   // @author zbx
   // @last update 2020年11月11日 15:20
   // @用户登录的接口
