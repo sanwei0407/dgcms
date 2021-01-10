@@ -1,33 +1,23 @@
-# dg_egg
+# 冬瓜cms
 
 
 
-## QuickStart
+## 安装
 
-<!-- add docs here for user -->
-
-see [egg docs][egg] for more detail.
-
-### Development
-
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
+拉取项目 
 ```
-
-### Deploy
-
-```bash
-$ npm start
-$ npm stop
+yarn instsall 
+yarn run dev
 ```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+默认端口设置在8001
 
 
-[egg]: https://eggjs.org
+## tks 
+
+
+
+## 交流
+- QQ群  198089812
+
+
+## 感谢您
