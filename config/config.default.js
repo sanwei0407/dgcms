@@ -93,15 +93,15 @@ module.exports = appInfo => {
   // 短信验证码
   config.sms = {
     client: {
-      accessKeyId: 'LTAI4G3rBdNi2m2q6oGoNZ95', // 阿里云的AccessKey 管理
-      secretAccessKey: '5hss1fCpm2gBdyPRCtSvZS9HBZYQAi', // 阿里云的AccessKey 管理z中查看secret
+      accessKeyId: 'LTAI4G3rBdNi332m2q6oGoNZ95', // 阿里云的AccessKey 管理
+      secretAccessKey: '5hss1fCpm2gB3dyPRCtSvZS9HBZYQAi', // 阿里云的AccessKey 管理z中查看secret
     },
   };
   // 图片上传
   config.oss = {
     client: {
-      accessKeyId: 'LTAI4G5HVtXZHHRreswemANk', // 阿里云账号
-      accessKeySecret: '0UrW4PM2pz9JbYnM5Ab6EHOULtwavY',
+      accessKeyId: 'LTAI4G5HVtXZHHRreswe3mANk', // 阿里云账号
+      accessKeySecret: '0UrW4PM2pz9JbYnM5A3b6EHOULtwavY',
       bucket: 'waht',
       endpoint: 'oss-cn-shenzhen.aliyuncs.com',
       timeout: '60s',
